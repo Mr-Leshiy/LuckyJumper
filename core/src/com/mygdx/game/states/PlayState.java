@@ -15,7 +15,7 @@ public class PlayState extends State{
     public PlayState(GameStateManager gsm)
     {
         super(gsm);
-        background = new Texture("bg.png");
+        background = new Texture("bground.png");
     }
 
     @Override

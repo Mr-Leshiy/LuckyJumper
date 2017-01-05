@@ -7,6 +7,8 @@ import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.ButtonListener;
 
+import static javax.swing.text.html.HTML.Tag.HEAD;
+
 
 /**
  * Created by alexey on 05.01.17.
@@ -16,22 +18,26 @@ public class MenuState extends State {  // Класс меню
 
     private Texture background;
     private Button button_play;
+    private Button button_settings;
 
 
 
     public MenuState(final GameStateManager gsm) {
         super(gsm);
-<<<<<<< HEAD
-        background = new Texture("bg.png");
-        button_play =new Button(new Texture("Button.png"),150,150);
-=======
+
         background = new Texture("bground.png");
-        button_play =new Button(new Texture("playbtn.png"),150,150);
->>>>>>> bd26467649f3ddb9b8391236cc6fef02f78354fc
+        button_play =new Button(new Texture("button_play.png"),200,300);
         button_play.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
                 gsm.set(new PlayState(gsm));
+            }
+        });
+        button_settings =new Button(new Texture("button_play.png"),100,300);
+        button_settings.setOnClickListener(new ButtonListener() {
+            @Override
+            public void onClickListener() {
+                gsm.set(new SettingsState(gsm));
             }
         });
 
@@ -46,6 +52,10 @@ public class MenuState extends State {  // Класс меню
             if(button_play.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
             {
                 button_play.OnClick();
+            }
+            if(button_settings.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
+            {
+                button_settings.OnClick();
             }
         }
 
@@ -64,6 +74,7 @@ public class MenuState extends State {  // Класс меню
         sb.draw(background,0,0, GameClass.WIDTH, GameClass.HEIGTH);
         sb.end();
         button_play.redner(sb);
+        button_settings.redner(sb);
 
     }
 
@@ -72,7 +83,7 @@ public class MenuState extends State {  // Класс меню
 
         background.dispose();
         button_play.dispose();
-
+        button_settings.dispose();
     }
 
 
