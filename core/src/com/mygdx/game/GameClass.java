@@ -9,8 +9,8 @@ import com.mygdx.game.states.MenuState;
 
 public class GameClass extends ApplicationAdapter {
 
-	public static final int WIDTH=480;
-	public static final int HEIGTH=800;
+	public static final int WIDTH=800;
+	public static final int HEIGTH=480;
 
 	SpriteBatch batch;
 	GameStateManager gsm;

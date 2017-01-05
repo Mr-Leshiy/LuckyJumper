@@ -8,16 +8,17 @@ import com.mygdx.game.GameClass;
  * Created by alexey on 05.01.17.
  */
 
-public class PlayState extends State{
+public class SettingsState extends State {
 
-    Texture background;
+    private Texture background;
 
-    public PlayState(GameStateManager gsm)
+    public SettingsState(GameStateManager gsm)
     {
         super(gsm);
         background = new Texture("bground.png");
-    }
 
+
+    }
     @Override
     protected void handleInput() {
 
@@ -31,14 +32,13 @@ public class PlayState extends State{
     @Override
     public void redner(SpriteBatch sb) {
         sb.begin();
-        sb.draw(background,2,3, GameClass.WIDTH,GameClass.HEIGTH);
+        sb.draw(background,0,0, GameClass.WIDTH, GameClass.HEIGTH);
         sb.end();
 
     }
 
     @Override
     public void dispose() {
-
         background.dispose();
 
     }
