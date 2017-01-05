@@ -22,7 +22,7 @@ public class MenuState extends State {  // Класс меню
     public MenuState(final GameStateManager gsm) {
         super(gsm);
         background = new Texture("bg.png");
-        button_play =new Button(new Texture("playbtn.png"),150,150);
+        button_play =new Button(new Texture("Button.png"),150,150);
         button_play.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
