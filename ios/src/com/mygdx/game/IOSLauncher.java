@@ -5,13 +5,14 @@ import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import com.mygdx.game.Game;
 
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override
     protected IOSApplication createApplication() {
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
-        return new IOSApplication(new Game(), config);
+        config.useAccelerometer=false;
+        config.useCompass=false;
+        return new IOSApplication(new GameClass(), config);
     }
 
     public static void main(String[] argv) {
