@@ -2,6 +2,7 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Constants.Constants;
 import com.mygdx.game.GameClass;
 
 /**
@@ -15,7 +16,7 @@ public class SettingsState extends State {
     public SettingsState(GameStateManager gsm)
     {
         super(gsm);
-        background = new Texture("bground.png");
+        background = new Texture(Constants.settings_state_background);
 
 
     }

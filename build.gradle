@@ -60,19 +60,7 @@ project(":android") {
     }
 }
 
-project(":ios") {
-    apply plugin: "java"
-    apply plugin: "robovm"
 
-
-    dependencies {
-        compile project(":core")
-        compile "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
-        compile "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
-        compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
-    }
-}
 
 project(":core") {
     apply plugin: "java"
@@ -82,6 +70,10 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
     }
 }
+
+
+
+
 
 tasks.eclipse.doLast {
     delete ".project"

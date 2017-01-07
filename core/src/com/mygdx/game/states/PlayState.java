@@ -2,6 +2,7 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Constants.Constants;
 import com.mygdx.game.GameClass;
 
 /**
@@ -15,7 +16,7 @@ public class PlayState extends State{
     public PlayState(GameStateManager gsm)
     {
         super(gsm);
-        background = new Texture("bground.png");
+        background = new Texture(Constants.play_state_background);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class PlayState extends State{
     @Override
     public void redner(SpriteBatch sb) {
         sb.begin();
-        sb.draw(background,2,3, GameClass.WIDTH,GameClass.HEIGTH);
+        sb.draw(background,0,0, GameClass.WIDTH,GameClass.HEIGTH);
         sb.end();
 
     }

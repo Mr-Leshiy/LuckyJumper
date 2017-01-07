@@ -3,11 +3,11 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Constants.Constants;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.ButtonListener;
 
-import static javax.swing.text.html.HTML.Tag.HEAD;
 
 
 /**
@@ -25,39 +25,68 @@ public class MenuState extends State {  // Класс меню
     public MenuState(final GameStateManager gsm) {
         super(gsm);
 
-        background = new Texture("bground.png");
-        button_play =new Button(new Texture("button_play.png"),200,300);
+        background = new Texture(Constants.menu_state_background);
+
+        button_play =new Button(new Texture(Constants.button_play),GameClass.WIDTH/2-140,GameClass.HEIGTH/2+50);
         button_play.setOnClickListener(new ButtonListener() {
             @Override
-            public void onClickListener() {
+            public void onClickListener()
+            {
                 gsm.set(new PlayState(gsm));
             }
         });
-        button_settings =new Button(new Texture("button_play.png"),100,300);
+
+        button_settings =new Button(new Texture(Constants.button_setting),GameClass.WIDTH/2-140,GameClass.HEIGTH/2-50);
         button_settings.setOnClickListener(new ButtonListener() {
             @Override
-            public void onClickListener() {
+            public void onClickListener()
+            {
                 gsm.set(new SettingsState(gsm));
             }
         });
+
 
     }
 
     @Override
     public void handleInput()
     {
+        if(!Gdx.input.isTouched() && button_play.isTouched)
+        {
+            button_play.setTexture(new Texture(Constants.button_play));
+            button_play.isTouched=false;
+            button_play.OnClick();
+
+        }
+        if(!Gdx.input.isTouched() && button_settings.isTouched)
+        {
+            button_settings.setTexture(new Texture(Constants.button_setting));
+            button_settings.isTouched=false;
+            button_settings.OnClick();
+
+        }
+
+
         if(Gdx.input.justTouched())
         {
 
+
             if(button_play.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
             {
-                button_play.OnClick();
+                button_play.setTexture(new Texture(Constants.button_play_pressed));
+                button_play.isTouched=true;
+
+
             }
             if(button_settings.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
             {
-                button_settings.OnClick();
+                button_settings.setTexture(new Texture(Constants.button_setting_pressed));
+                button_settings.isTouched=true;
+
             }
+
         }
+
 
 
     }
