@@ -31,9 +31,9 @@ public class Button extends GameObject{
 
     @Override
     public void redner(SpriteBatch sb) {
-        sb.begin();
+
         sb.draw(objectTexture,object.getX(),object.getY(),objectTexture.getWidth(),objectTexture.getHeight());
-        sb.end();
+
     }
 
     @Override
