@@ -3,7 +3,6 @@ package com.mygdx.game.GameObjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.game.Constants.Constants;
 
 /**
  * Created by alexey on 05.01.17.
@@ -13,11 +12,13 @@ public class Button extends GameObject{
 
     private ButtonListener listener;
     public boolean isTouched;
+    private Texture[] objectTextures;
 
-    public Button(Texture texture,int x, int y)
+    public Button(Texture[] texture, int x, int y)
     {
 
-        super(texture,new Rectangle(x,y,texture.getWidth(),texture.getHeight()));
+        super(new Rectangle(x,y,texture[0].getWidth(),texture[0].getHeight()));
+        objectTextures=texture;
         isTouched=false;
 
 
@@ -27,19 +28,31 @@ public class Button extends GameObject{
 
 
 
+
     }
 
     @Override
     public void redner(SpriteBatch sb) {
 
-        sb.draw(objectTexture,object.getX(),object.getY(),objectTexture.getWidth(),objectTexture.getHeight());
+        if(!isTouched) {
+            sb.draw(objectTextures[0], object.getX(), object.getY(), object.getWidth(), object.getHeight());
+        }
+        else
+        {
+
+            sb.draw(objectTextures[1], object.getX(), object.getY(), object.getWidth(), object.getHeight());
+        }
 
     }
 
     @Override
     public void dispose() {
 
-        objectTexture.dispose();
+        for(Texture objecttexture: objectTextures)
+        {
+            objecttexture.dispose();
+
+        }
 
     }
 
@@ -60,10 +73,6 @@ public class Button extends GameObject{
        return object.contains(x,y);
     }
 
-    public void setTexture (Texture newTexture)
-    {
-        objectTexture=newTexture;
 
-    }
 
 }

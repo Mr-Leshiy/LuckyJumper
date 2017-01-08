@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.util.List;
+
 
 /**
  * Created by alexey on 05.01.17.
@@ -11,12 +13,12 @@ import com.badlogic.gdx.math.Rectangle;
 
 public abstract class GameObject {
 
-    protected Texture objectTexture;
+
     protected Rectangle object;
 
-    public GameObject(Texture objectTexture,Rectangle object)
+    public GameObject(Rectangle object)
     {
-        this.objectTexture=objectTexture;
+
         this.object=object;
     }
 
