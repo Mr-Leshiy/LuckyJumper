@@ -23,7 +23,7 @@ public class PlayState extends State{
     BackGround[] background;
     Button button_pause;
     Points points;
-
+    Texture fon;
 
     public PlayState(GameStateManager gsm)
     {
@@ -33,6 +33,8 @@ public class PlayState extends State{
         background = new BackGround[2];
         background[0]=new BackGround(new Texture(URL.play_state_background1),0,0,true);
         background[1]= new BackGround(new Texture(URL.play_state_background2),GameClass.WIDTH,0,true);
+        fon = new Texture("backgrounds/darker.png");
+
 
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
         points = new Points(GameClass.WIDTH/2-50,GameClass.HEIGTH-20);
@@ -95,6 +97,9 @@ public class PlayState extends State{
         background[1].redner(sb);
         button_pause.redner(sb);
         points.redner(sb);
+        if(isPaused) {
+            sb.draw(fon, 0, 0, fon.getWidth(), fon.getHeight());
+        }
         sb.end();
 
     }
@@ -106,7 +111,7 @@ public class PlayState extends State{
         background[1].dispose();
         button_pause.dispose();
         points.dispose();
-
+        fon.dispose();
 
 
     }
