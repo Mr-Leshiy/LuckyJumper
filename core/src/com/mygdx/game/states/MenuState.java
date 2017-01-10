@@ -22,23 +22,15 @@ public class MenuState extends State {  // Класс меню
     private Button button_settings;
 
 
-
-
-
-
     public MenuState(final GameStateManager gsm) {
         super(gsm);
 
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
 
-
-
         background = new BackGround(new Texture(URL.menu_state_background),0,0,false);
 
-
-
         Texture[] mas = {new Texture(URL.button_play),new Texture(URL.button_play_pressed)};
-       button_play =new Button(mas,GameClass.WIDTH/2-140,GameClass.HEIGTH/2+50);
+        button_play =new Button(mas,GameClass.WIDTH/2-140,GameClass.HEIGTH/2+50);
         button_play.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener()
@@ -65,17 +57,14 @@ public class MenuState extends State {  // Класс меню
     {
         if(!Gdx.input.isTouched() && button_play.isTouched)
         {
-
             button_play.isTouched=false;
             button_play.OnClick();
 
         }
         if(!Gdx.input.isTouched() && button_settings.isTouched)
         {
-
             button_settings.isTouched=false;
             button_settings.OnClick();
-
         }
 
 
@@ -86,8 +75,6 @@ public class MenuState extends State {  // Класс меню
             if(button_play.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
             {
                 button_play.isTouched=true;
-
-
             }
             if(button_settings.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
             {
@@ -104,10 +91,6 @@ public class MenuState extends State {  // Класс меню
     @Override
     public void update(float delta) {
         handleInput();
-
-
-
-
     }
 
     @Override
@@ -119,8 +102,6 @@ public class MenuState extends State {  // Класс меню
         button_play.redner(sb);
         button_settings.redner(sb);
         sb.end();
-
-
     }
 
     @Override
@@ -129,7 +110,6 @@ public class MenuState extends State {  // Класс меню
         background.dispose();
         button_play.dispose();
         button_settings.dispose();
-
     }
 
 }

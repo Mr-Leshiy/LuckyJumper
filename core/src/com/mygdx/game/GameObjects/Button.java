@@ -39,7 +39,6 @@ public class Button extends GameObject{
         }
         else
         {
-
             sb.draw(objectTextures[1], object.getX(), object.getY(), object.getWidth(), object.getHeight());
         }
 

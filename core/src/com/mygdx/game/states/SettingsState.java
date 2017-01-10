@@ -17,8 +17,6 @@ public class SettingsState extends State {
     {
         super(gsm);
         background = new Texture(URL.settings_state_background);
-
-
     }
     @Override
     protected void handleInput() {

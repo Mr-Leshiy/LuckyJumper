@@ -1,12 +1,15 @@
 package com.mygdx.game.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.BackGround;
+import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.Character;
 import com.mygdx.game.GameObjects.GameObject;
+import com.mygdx.game.GameObjects.Points;
 
 import java.util.List;
 
@@ -17,19 +20,21 @@ import java.util.List;
 public class PlayState extends State{
 
     BackGround[] background;
+    Button button_pause;
+    Points points;
+
 
     public PlayState(GameStateManager gsm)
     {
         super(gsm);
 
-
         background = new BackGround[2];
         background[0]=new BackGround(new Texture(URL.play_state_background1),0,0,true);
         background[1]= new BackGround(new Texture(URL.play_state_background2),GameClass.WIDTH,0,true);
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
-
-
-
+        Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
+        points = new Points(100,GameClass.HEIGTH-50);
+        button_pause = new Button(mas,10,GameClass.HEIGTH-50);
 
 
 
@@ -38,11 +43,29 @@ public class PlayState extends State{
     @Override
     protected void handleInput() {
 
+        if(!Gdx.input.isTouched() && button_pause.isTouched)
+        {
+
+            button_pause.isTouched=false;
+
+
+        }
+
+        if(Gdx.input.isTouched())
+        {
+
+            if(button_pause.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
+            {
+                button_pause.isTouched=true;
+            }
+
+        }
+
     }
 
     @Override
     public void update(float delta) {
-
+        handleInput();
         background[0].update(delta);
         background[1].update(delta);
 
@@ -55,6 +78,8 @@ public class PlayState extends State{
         sb.begin();
         background[0].redner(sb);
         background[1].redner(sb);
+        button_pause.redner(sb);
+        points.redner(sb);
         sb.end();
 
     }
@@ -64,6 +89,8 @@ public class PlayState extends State{
 
         background[0].dispose();
         background[1].dispose();
+        button_pause.dispose();
+        points.dispose();
 
 
 
