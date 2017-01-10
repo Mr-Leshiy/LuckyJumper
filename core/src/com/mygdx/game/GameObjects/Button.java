@@ -55,6 +55,16 @@ public class Button extends GameObject{
 
     }
 
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
     public void setOnClickListener(ButtonListener listener)
     {
         this.listener=listener;

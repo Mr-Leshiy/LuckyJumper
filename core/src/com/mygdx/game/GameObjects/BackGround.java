@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class BackGround extends GameObject {
 
-    public static final float speed=1f;
+    public static final float speed=0.5f;
     public boolean isScroll;
     private Texture objectTextures;
 
@@ -38,6 +38,18 @@ public class BackGround extends GameObject {
     @Override
     public void dispose() {
             objectTextures.dispose();
+    }
+
+    @Override
+    public void pause() {
+        isScroll=false;
+
+    }
+
+    @Override
+    public void resume() {
+        isScroll=true;
+
     }
 
     private void scrolling()

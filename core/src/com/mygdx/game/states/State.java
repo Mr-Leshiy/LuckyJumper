@@ -13,12 +13,14 @@ public abstract class State {
     protected OrthographicCamera camera;
     protected Vector3 mouse ;
     protected GameStateManager gsm;
+    protected boolean isPaused;
 
     public State(GameStateManager gsm)
     {
         this.gsm=gsm;
         camera = new OrthographicCamera();
         mouse = new Vector3();
+        isPaused=false;
 
     }
 
@@ -26,6 +28,8 @@ public abstract class State {
     public abstract void update(float delta); // обновление картинки
     public abstract void redner(SpriteBatch sb); // Отрисовка
     public abstract void dispose();
+    public abstract void pause();
+    public abstract void resume();
 
 
 }

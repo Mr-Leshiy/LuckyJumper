@@ -112,6 +112,16 @@ public class MenuState extends State {  // Класс меню
         button_settings.dispose();
     }
 
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
 }
 
 

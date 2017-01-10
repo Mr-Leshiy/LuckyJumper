@@ -7,6 +7,7 @@ import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.BackGround;
 import com.mygdx.game.GameObjects.Button;
+import com.mygdx.game.GameObjects.ButtonListener;
 import com.mygdx.game.GameObjects.Character;
 import com.mygdx.game.GameObjects.GameObject;
 import com.mygdx.game.GameObjects.Points;
@@ -27,14 +28,22 @@ public class PlayState extends State{
     public PlayState(GameStateManager gsm)
     {
         super(gsm);
+        camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
 
         background = new BackGround[2];
         background[0]=new BackGround(new Texture(URL.play_state_background1),0,0,true);
         background[1]= new BackGround(new Texture(URL.play_state_background2),GameClass.WIDTH,0,true);
-        camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
+
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
-        points = new Points(100,GameClass.HEIGTH-50);
+        points = new Points(GameClass.WIDTH/2-50,GameClass.HEIGTH-20);
         button_pause = new Button(mas,10,GameClass.HEIGTH-50);
+
+        button_pause.setOnClickListener(new ButtonListener() {
+            @Override
+            public void onClickListener() {
+                pause();
+            }
+        });
 
 
 
@@ -47,6 +56,7 @@ public class PlayState extends State{
         {
 
             button_pause.isTouched=false;
+            button_pause.OnClick();
 
 
         }
@@ -58,6 +68,10 @@ public class PlayState extends State{
             {
                 button_pause.isTouched=true;
             }
+            if(isPaused)
+            {
+                resume();
+            }
 
         }
 
@@ -68,6 +82,7 @@ public class PlayState extends State{
         handleInput();
         background[0].update(delta);
         background[1].update(delta);
+        points.update(delta);
 
 
     }
@@ -95,4 +110,28 @@ public class PlayState extends State{
 
 
     }
+
+    @Override
+    public void pause() {
+
+        isPaused=true;
+
+        background[0].pause();
+        background[1].pause();
+        button_pause.pause();
+        points.pause();
+
+    }
+
+    @Override
+    public void resume() {
+
+        isPaused=false;
+        background[0].resume();
+        background[1].resume();
+        button_pause.resume();
+        points.resume();
+
+    }
+
 }

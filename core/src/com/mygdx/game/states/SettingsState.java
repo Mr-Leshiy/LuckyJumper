@@ -41,4 +41,14 @@ public class SettingsState extends State {
         background.dispose();
 
     }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
 }

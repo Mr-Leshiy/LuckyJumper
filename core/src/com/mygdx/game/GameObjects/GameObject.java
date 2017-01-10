@@ -15,15 +15,19 @@ public abstract class GameObject {
 
 
     protected Rectangle object;
+    protected boolean isPaused;
 
     public GameObject(Rectangle object)
     {
 
         this.object=object;
+        isPaused=false;
     }
 
     public abstract void update(float delta); // обновление картинки
     public abstract void redner(SpriteBatch sb); // Отрисовка
     public abstract void dispose();
+    public abstract void pause();
+    public abstract void resume();
 
 }
