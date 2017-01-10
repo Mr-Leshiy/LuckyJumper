@@ -54,11 +54,8 @@ public class PlayState extends State{
 
         if(!Gdx.input.isTouched() && button_pause.isTouched)
         {
-
             button_pause.isTouched=false;
             button_pause.OnClick();
-
-
         }
 
         if(Gdx.input.isTouched())
