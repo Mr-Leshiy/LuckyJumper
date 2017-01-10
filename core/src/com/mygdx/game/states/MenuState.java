@@ -45,7 +45,7 @@ public class MenuState extends State {  // Класс меню
             @Override
             public void onClickListener()
             {
-                gsm.set(new SettingsState(gsm));
+                //gsm.set(new SettingsState(gsm));
             }
         });
 

@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Constants.URL;
-
+import com.mygdx.game.GameClass;
 
 
 /**
@@ -20,7 +20,7 @@ public class Points extends GameObject {
     private BitmapFont font_points;
     private float speed=5f;
     private float time;
-    private static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
+
 
     public int points;
 
@@ -53,7 +53,7 @@ public class Points extends GameObject {
 
     @Override
     public void redner(SpriteBatch sb) {
-        font_points.draw(sb, Integer.toString(points),object.getX(),object.getY());
+        font_points.draw(sb, "score: "+Integer.toString(points),object.getX(),object.getY());
 
     }
 
@@ -80,8 +80,8 @@ public class Points extends GameObject {
     {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(URL.font_Free_mono_bold));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.characters=FONT_CHARACTERS;
-        parameter.size=30;
+        parameter.characters= GameClass.FONT_CHARACTERS;
+        parameter.size=20;
         parameter.color= Color.BROWN;
         font_points=generator.generateFont(parameter);
         generator.dispose();

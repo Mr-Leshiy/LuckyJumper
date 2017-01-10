@@ -1,12 +1,8 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.BackGround;
@@ -21,9 +17,9 @@ import com.mygdx.game.GameObjects.Points;
 
 public class PlayState extends State{
 
-     BackGround[] background;
-     Button button_pause;
-    Points points;
+     private BackGround[] background;
+     private Button button_pause;
+     public Points score;
 
 
     public PlayState(final GameStateManager gsm)
@@ -38,7 +34,7 @@ public class PlayState extends State{
 
 
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
-        points = new Points(GameClass.WIDTH/2-50,GameClass.HEIGTH-20);
+        score = new Points(GameClass.WIDTH/2-80,GameClass.HEIGTH-20);
         button_pause = new Button(mas,10,GameClass.HEIGTH-50);
 
         button_pause.setOnClickListener(new ButtonListener() {
@@ -46,10 +42,7 @@ public class PlayState extends State{
             public void onClickListener() {
                 pause();
 
-                gsm.push(new PauseState(gsm,gsm.peek()));
-
-
-
+                gsm.push(new PauseState(gsm,gsm.peek(),score.points));
 
             }
         });
@@ -74,11 +67,11 @@ public class PlayState extends State{
             {
                 button_pause.isTouched=true;
             }
-            if(isPaused)
+         /*   if(isPaused)
             {
                 resume();
 
-            }
+            } */
 
         }
 
@@ -89,7 +82,7 @@ public class PlayState extends State{
         handleInput();
         background[0].update(delta);
         background[1].update(delta);
-        points.update(delta);
+        score.update(delta);
 
 
     }
@@ -101,7 +94,7 @@ public class PlayState extends State{
         background[0].redner(sb);
         background[1].redner(sb);
         button_pause.redner(sb);
-        points.redner(sb);
+        score.redner(sb);
         sb.end();
 
     }
@@ -112,7 +105,7 @@ public class PlayState extends State{
         background[0].dispose();
         background[1].dispose();
         button_pause.dispose();
-        points.dispose();
+        score.dispose();
 
 
 
@@ -126,7 +119,7 @@ public class PlayState extends State{
         background[0].pause();
         background[1].pause();
         button_pause.pause();
-        points.pause();
+        score.pause();
 
     }
 
@@ -137,7 +130,7 @@ public class PlayState extends State{
         background[0].resume();
         background[1].resume();
         button_pause.resume();
-        points.resume();
+        score.resume();
 
     }
 

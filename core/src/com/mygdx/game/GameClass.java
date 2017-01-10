@@ -11,6 +11,7 @@ public class GameClass extends ApplicationAdapter {
 
 	public static final int WIDTH=800;
 	public static final int HEIGTH=480;
+	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
 
 	SpriteBatch batch;
 	GameStateManager gsm;
@@ -37,7 +38,6 @@ public class GameClass extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		batch.dispose();
-
 
 	}
 }
