@@ -45,6 +45,8 @@ public class GameStateManager {
         states.peek().redner(sb);
     }
 
+    public State peek () { return  states.peek();}
+
 
 
 

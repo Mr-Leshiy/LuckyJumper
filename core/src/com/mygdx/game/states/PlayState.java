@@ -1,18 +1,19 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.BackGround;
 import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.ButtonListener;
-import com.mygdx.game.GameObjects.Character;
-import com.mygdx.game.GameObjects.GameObject;
 import com.mygdx.game.GameObjects.Points;
 
-import java.util.List;
 
 /**
  * Created by alexey on 05.01.17.
@@ -20,12 +21,12 @@ import java.util.List;
 
 public class PlayState extends State{
 
-    BackGround[] background;
-    Button button_pause;
+     BackGround[] background;
+     Button button_pause;
     Points points;
-    Texture fon;
 
-    public PlayState(GameStateManager gsm)
+
+    public PlayState(final GameStateManager gsm)
     {
         super(gsm);
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
@@ -33,7 +34,7 @@ public class PlayState extends State{
         background = new BackGround[2];
         background[0]=new BackGround(new Texture(URL.play_state_background1),0,0,true);
         background[1]= new BackGround(new Texture(URL.play_state_background2),GameClass.WIDTH,0,true);
-        fon = new Texture("backgrounds/darker.png");
+
 
 
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
@@ -44,6 +45,12 @@ public class PlayState extends State{
             @Override
             public void onClickListener() {
                 pause();
+
+                gsm.push(new PauseState(gsm,gsm.peek()));
+
+
+
+
             }
         });
 
@@ -70,6 +77,7 @@ public class PlayState extends State{
             if(isPaused)
             {
                 resume();
+
             }
 
         }
@@ -94,9 +102,6 @@ public class PlayState extends State{
         background[1].redner(sb);
         button_pause.redner(sb);
         points.redner(sb);
-        if(isPaused) {
-            sb.draw(fon, 0, 0, fon.getWidth(), fon.getHeight());
-        }
         sb.end();
 
     }
@@ -108,7 +113,7 @@ public class PlayState extends State{
         background[1].dispose();
         button_pause.dispose();
         points.dispose();
-        fon.dispose();
+
 
 
     }

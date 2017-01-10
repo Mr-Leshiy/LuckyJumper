@@ -15,11 +15,11 @@ public class BackGround extends GameObject {
     private Texture objectTextures;
 
 
-    public BackGround(Texture textures,int x,int y,boolean isScroll)
+    public BackGround(Texture texture,int x,int y,boolean isScroll)
     {
 
-        super(new Rectangle(x,y,textures.getWidth(),textures.getHeight()));
-        objectTextures=textures;
+        super(new Rectangle(x,y,texture.getWidth(),texture.getHeight()));
+        objectTextures=texture;
         this.isScroll=isScroll;
 
     }
