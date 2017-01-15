@@ -2,6 +2,7 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Backgrounds.MenuBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 
@@ -11,12 +12,12 @@ import com.mygdx.game.GameClass;
 
 public class SettingsState extends State {
 
-    private Texture background;
+    private MenuBackground background;
 
     public SettingsState(GameStateManager gsm)
     {
         super(gsm);
-        background = new Texture(URL.settings_state_background);
+        background = new MenuBackground();
     }
     @Override
     protected void handleInput() {
@@ -26,12 +27,14 @@ public class SettingsState extends State {
     @Override
     public void update(float delta) {
 
+        background.update(delta);
+
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
         sb.begin();
-        sb.draw(background,0,0, GameClass.WIDTH, GameClass.HEIGTH);
+        background.render(sb);
         sb.end();
 
     }

@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.mygdx.game.Backgrounds.PauseStateBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
-import com.mygdx.game.GameObjects.BackGround;
 import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.ButtonListener;
 
@@ -19,7 +19,7 @@ import com.mygdx.game.GameObjects.ButtonListener;
 public class PauseState extends State {
 
     private BitmapFont font_score;
-    private BackGround backGround;
+    private PauseStateBackground backGround;
     private State state;
     private Button button_resume;
     private Button button_to_menu;
@@ -33,10 +33,10 @@ public class PauseState extends State {
         camera.setToOrtho(false, GameClass.WIDTH,GameClass.HEIGTH);
         this.state=state;
         this.score=score;
-        backGround= new BackGround(new Texture(URL.pause_state_background),0,0,false);
+        backGround= new PauseStateBackground();
 
         Texture[] mas = {new Texture(URL.button_resume), new Texture(URL.button_resume_pressed)};
-        button_resume = new Button(mas,GameClass.WIDTH/2-140,GameClass.HEIGTH/2+50);
+        button_resume = new Button(mas,GameClass.WIDTH/2-mas[0].getWidth()/2,GameClass.HEIGTH/2+50);
         button_resume.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
@@ -46,7 +46,7 @@ public class PauseState extends State {
         });
 
         Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new Button(mas2,GameClass.WIDTH/2-140,GameClass.HEIGTH/2-50);
+        button_to_menu = new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-50);
         button_to_menu.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
@@ -102,15 +102,15 @@ public class PauseState extends State {
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(camera.combined);
-        state.redner(sb);
+        state.render(sb);
 
         sb.begin();
-        backGround.redner(sb);
+        backGround.render(sb);
 
-        button_to_menu.redner(sb);
-        button_resume.redner(sb);
+        button_to_menu.render(sb);
+        button_resume.render(sb);
         font_score.draw(sb,"Your score",GameClass.WIDTH/2-100,GameClass.HEIGTH-20);
         font_score.draw(sb,Integer.toString(score),GameClass.WIDTH/2-30,GameClass.HEIGTH-50);
 

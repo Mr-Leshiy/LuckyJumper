@@ -32,7 +32,7 @@ public class Button extends GameObject{
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
 
         if(!isTouched) {
             sb.draw(objectTextures[0], object.getX(), object.getY(), object.getWidth(), object.getHeight());

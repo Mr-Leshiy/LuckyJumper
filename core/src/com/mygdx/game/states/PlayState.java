@@ -3,9 +3,9 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Backgrounds.PlayStateBackgound;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
-import com.mygdx.game.GameObjects.BackGround;
 import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.ButtonListener;
 import com.mygdx.game.GameObjects.Points;
@@ -17,7 +17,7 @@ import com.mygdx.game.GameObjects.Points;
 
 public class PlayState extends State{
 
-     private BackGround[] background;
+     private PlayStateBackgound background;
      private Button button_pause;
      public Points score;
 
@@ -27,10 +27,7 @@ public class PlayState extends State{
         super(gsm);
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
 
-        background = new BackGround[2];
-        background[0]=new BackGround(new Texture(URL.play_state_background1),0,0,true);
-        background[1]= new BackGround(new Texture(URL.play_state_background2),GameClass.WIDTH,0,true);
-
+        background = new PlayStateBackgound();
 
 
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
@@ -67,11 +64,6 @@ public class PlayState extends State{
             {
                 button_pause.isTouched=true;
             }
-         /*   if(isPaused)
-            {
-                resume();
-
-            } */
 
         }
 
@@ -80,21 +72,19 @@ public class PlayState extends State{
     @Override
     public void update(float delta) {
         handleInput();
-        background[0].update(delta);
-        background[1].update(delta);
+        background.update(delta);
         score.update(delta);
 
 
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        background[0].redner(sb);
-        background[1].redner(sb);
-        button_pause.redner(sb);
-        score.redner(sb);
+        background.render(sb);
+        button_pause.render(sb);
+        score.render(sb);
         sb.end();
 
     }
@@ -102,8 +92,7 @@ public class PlayState extends State{
     @Override
     public void dispose() {
 
-        background[0].dispose();
-        background[1].dispose();
+        background.dispose();
         button_pause.dispose();
         score.dispose();
 
@@ -116,8 +105,7 @@ public class PlayState extends State{
 
         isPaused=true;
 
-        background[0].pause();
-        background[1].pause();
+        background.pause();
         button_pause.pause();
         score.pause();
 
@@ -127,8 +115,7 @@ public class PlayState extends State{
     public void resume() {
 
         isPaused=false;
-        background[0].resume();
-        background[1].resume();
+        background.resume();
         button_pause.resume();
         score.resume();
 

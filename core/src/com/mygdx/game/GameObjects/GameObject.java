@@ -25,7 +25,7 @@ public abstract class GameObject {
     }
 
     public abstract void update(float delta); // обновление картинки
-    public abstract void redner(SpriteBatch sb); // Отрисовка
+    public abstract void render(SpriteBatch sb); // Отрисовка
     public abstract void dispose();
     public abstract void pause();
     public abstract void resume();

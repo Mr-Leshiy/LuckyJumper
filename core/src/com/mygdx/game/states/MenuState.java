@@ -3,9 +3,9 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Backgrounds.MenuBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
-import com.mygdx.game.GameObjects.BackGround;
 import com.mygdx.game.GameObjects.Button;
 import com.mygdx.game.GameObjects.ButtonListener;
 
@@ -17,7 +17,7 @@ import com.mygdx.game.GameObjects.ButtonListener;
 
 public class MenuState extends State {  // Класс меню
 
-    private BackGround background;
+    private MenuBackground background;
     private Button button_play;
     private Button button_settings;
 
@@ -27,10 +27,10 @@ public class MenuState extends State {  // Класс меню
 
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
 
-        background = new BackGround(new Texture(URL.menu_state_background),0,0,false);
+        background = new MenuBackground();
 
         Texture[] mas = {new Texture(URL.button_play),new Texture(URL.button_play_pressed)};
-        button_play =new Button(mas,GameClass.WIDTH/2-140,GameClass.HEIGTH/2+50);
+        button_play =new Button(mas,GameClass.WIDTH/2-mas[0].getWidth()/2,GameClass.HEIGTH/2+50);
         button_play.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener()
@@ -40,12 +40,12 @@ public class MenuState extends State {  // Класс меню
         });
 
         Texture[] mas2 = {new Texture(URL.button_setting),new Texture(URL.button_setting_pressed)};
-        button_settings =new Button(mas2,GameClass.WIDTH/2-140,GameClass.HEIGTH/2-50);
+        button_settings =new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-50);
         button_settings.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener()
             {
-                //gsm.set(new SettingsState(gsm));
+                gsm.set(new SettingsState(gsm));
             }
         });
 
@@ -91,16 +91,17 @@ public class MenuState extends State {  // Класс меню
     @Override
     public void update(float delta) {
         handleInput();
+        background.update(delta);
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
 
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        background.redner(sb);
-        button_play.redner(sb);
-        button_settings.redner(sb);
+        background.render(sb);
+        button_play.render(sb);
+        button_settings.render(sb);
         sb.end();
     }
 

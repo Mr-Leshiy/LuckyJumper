@@ -18,7 +18,7 @@ import com.mygdx.game.GameClass;
 public class Points extends GameObject {
 
     private BitmapFont font_points;
-    private float speed=5f;
+    static float speed=5f;
     private float time;
 
 
@@ -49,10 +49,11 @@ public class Points extends GameObject {
 
 
 
+
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
         font_points.draw(sb, "score: "+Integer.toString(points),object.getX(),object.getY());
 
     }

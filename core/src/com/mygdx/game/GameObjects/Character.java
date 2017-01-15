@@ -36,7 +36,7 @@ public class Character extends GameObject {
     }
 
     @Override
-    public void redner(SpriteBatch sb) {
+    public void render(SpriteBatch sb) {
 
 
 

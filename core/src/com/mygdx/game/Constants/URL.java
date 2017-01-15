@@ -23,17 +23,21 @@ public class URL {
 
     // Бэкграунды
     final static public  String menu_state_background="backgrounds/Menu_bg.png";
+    final static public String menu_state_bg="backgrounds/menu_background.png";
 
     final static public String play_state_background1="backgrounds/play_background1.png";
     final static public String play_state_background2="backgrounds/play_background2.png";
 
     final static public String settings_state_background="backgrounds/Menu_bg.png";
-
     final static public String pause_state_background="backgrounds/darker.png";
+
+    final static public String quad="backgrounds/quad.png";
 
     //Модель персонажа
     final static public String character_state_0="character_0.png";
     final static public String character_state_1="character_1.png";
+
+
 
 
     //Шрифты
