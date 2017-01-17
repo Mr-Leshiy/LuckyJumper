@@ -18,22 +18,21 @@ public class PlayStateBackgound {
     private Texture[] backgroundTextures;
     private Rectangle[] coordinates;
     private static final float speed_scrolling=0.5f;
-    private boolean isScrool;
+
 
     public PlayStateBackgound()
     {
         backgroundTextures=new Texture[]{new Texture(URL.play_state_background1),new Texture(URL.play_state_background2)};
-        isScrool=true;
+
         coordinates= new Rectangle[]{new Rectangle(0,0,0,0), new Rectangle(GameClass.WIDTH,0,0,0)};
 
     }
 
     public void update(float delta)
     {
-        if(isScrool)
-        {
+
             scrolling();
-        }
+
     }
 
     public void render(SpriteBatch sb)
@@ -50,15 +49,7 @@ public class PlayStateBackgound {
         backgroundTextures[1].dispose();
     }
 
-    public void pause()
-    {
-        isScrool=false;
-    }
-    public void resume()
-    {
-        isScrool=true;
 
-    }
 
 
     private void scrolling()

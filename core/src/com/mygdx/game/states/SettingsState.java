@@ -1,10 +1,8 @@
 package com.mygdx.game.states;
 
-import com.badlogic.gdx.graphics.Texture;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Backgrounds.MenuBackground;
-import com.mygdx.game.Constants.URL;
-import com.mygdx.game.GameClass;
 
 /**
  * Created by alexey on 05.01.17.
@@ -54,4 +52,5 @@ public class SettingsState extends State {
     public void resume() {
 
     }
+
 }

@@ -2,6 +2,9 @@ package com.mygdx.game.Backgrounds;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.GameObjects.ButtonListener;
+import com.mygdx.game.states.GameStateManager;
+import com.mygdx.game.states.State;
 
 /**
  * Created by alexey on 15.01.17.
@@ -34,6 +37,7 @@ class RotatingQuad
             angle-=speed;
 
         }
+
 
 
     }

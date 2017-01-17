@@ -20,11 +20,7 @@ public class Points extends GameObject {
     private BitmapFont font_points;
     static float speed=5f;
     private float time;
-
-
     public int points;
-
-
 
     public Points(int x,int y)
     {
@@ -38,12 +34,12 @@ public class Points extends GameObject {
 
     @Override
     public void update(float delta) {
-        if(!isPaused) {
+
             time+=delta;
             if(time>1) {
                 addPoints();
                 time=0;
-            }
+
         }
 
 
@@ -65,17 +61,6 @@ public class Points extends GameObject {
 
     }
 
-    @Override
-    public void pause() {
-        isPaused=true;
-
-    }
-
-    @Override
-    public void resume() {
-        isPaused=false;
-
-    }
 
     private void initializeFontStyle()
     {
