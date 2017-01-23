@@ -1,4 +1,4 @@
-package com.mygdx.game.GameObjects;
+package com.mygdx.game.ObjectControls;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,13 +8,13 @@ import com.badlogic.gdx.math.Rectangle;
  * Created by alexey on 05.01.17.
  */
 
-public class Button extends GameObject{
+public class Button extends ObjectControl {
 
-    private ButtonListener listener;
+    private com.mygdx.game.ObjectControls.ButtonListener listener;
     public boolean isTouched;
     private Texture[] objectTextures;
 
-    public Button(Texture[] texture, int x, int y)
+    public Button(Texture[] texture, float x, float y)
     {
 
         super(new Rectangle(x,y,texture[0].getWidth(),texture[0].getHeight()));
@@ -57,7 +57,7 @@ public class Button extends GameObject{
 
 
 
-    public void setOnClickListener(ButtonListener listener)
+    public void setOnClickListener(com.mygdx.game.ObjectControls.ButtonListener listener)
     {
         this.listener=listener;
 
@@ -69,7 +69,7 @@ public class Button extends GameObject{
 
     }
 
-    public boolean isClick(int x,int y) // Если клик осуществляется не посредственно на кнопку
+    public boolean isClick(float x,float y) // Если клик осуществляется не посредственно на кнопку
     {
        return object.contains(x,y);
     }

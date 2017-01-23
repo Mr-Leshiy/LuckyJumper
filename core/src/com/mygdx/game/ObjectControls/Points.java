@@ -1,4 +1,4 @@
-package com.mygdx.game.GameObjects;
+package com.mygdx.game.ObjectControls;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -15,14 +15,14 @@ import com.mygdx.game.GameClass;
  * Created by alexey on 09.01.17.
  */
 
-public class Points extends GameObject {
+public class Points extends ObjectControl {
 
     private BitmapFont font_points;
     static float speed=5f;
     private float time;
     public int points;
 
-    public Points(int x,int y)
+    public Points(float x,float y)
     {
         super(new Rectangle(x,y,0,0));
 

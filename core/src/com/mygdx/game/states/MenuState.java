@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Backgrounds.MenuBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
-import com.mygdx.game.GameObjects.Button;
-import com.mygdx.game.GameObjects.ButtonListener;
+import com.mygdx.game.ObjectControls.Button;
+import com.mygdx.game.ObjectControls.ButtonListener;
 
 
 
@@ -72,11 +72,11 @@ public class MenuState extends State {  // Класс меню
         {
 
 
-            if(button_play.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
+            if(button_play.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_play.isTouched=true;
             }
-            if(button_settings.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
+            if(button_settings.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_settings.isTouched=true;
 
@@ -90,6 +90,7 @@ public class MenuState extends State {  // Класс меню
 
     @Override
     public void update(float delta) {
+        camera.update();
         handleInput();
         background.update(delta);
     }

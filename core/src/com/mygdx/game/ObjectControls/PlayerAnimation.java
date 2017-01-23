@@ -1,34 +1,30 @@
-package com.mygdx.game.GameObjects;
+package com.mygdx.game.ObjectControls;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Constants.URL;
+import com.mygdx.game.GameObjects.Player;
+import com.mygdx.game.states.PlayState;
+
 
 /**
  * Created by alexey on 08.01.17.
  */
 
-public class Character extends GameObject {
+public class PlayerAnimation extends ObjectControl {
 
-    public static final int GRAVITY = -10;
-
-
+    private Player player;
     private Texture[] run_frames;
     private Animation run_animation;
-    private Vector2 velosity;
     private float state_time;
     private static final float change_time = 0.25f;
     private boolean onGround;
 
 
-    public Character(int x, int y) {
-        super(new Rectangle(x, y, 0, 0));
-
-        velosity = new Vector2(0, 0);
+    public PlayerAnimation(Player player) {
+        super(new Rectangle(player.getBox().getPosition().x,player.getBox().getPosition().y,0, 0));
+        this.player=player;
         state_time = 0;
         onGround = false;
 
@@ -42,17 +38,9 @@ public class Character extends GameObject {
     public void update(float delta) {
 
         state_time += delta;
-        if (!onGround && object.getY()>0) {
-            velosity.add(0, GRAVITY);
-        }
-        else
-        {
-            object.setY(0);
-        }
-
-            velosity.scl(delta);
-            object.setY(velosity.y + object.getY());
-            velosity.scl(1 / delta);
+        if(state_time>1)
+            state_time=0;
+        object.setPosition(player.getBox().getPosition().x,player.getBox().getPosition().y);
 
 
 
@@ -73,21 +61,6 @@ public class Character extends GameObject {
             texture.dispose();
         }
 
-
-    }
-
-    public void onGround() {
-        onGround = true;
-    }
-
-    public void jump() {
-        velosity.add(0, 500);
-
-    }
-
-    public Rectangle getObject()
-    {
-        return object;
 
     }
 

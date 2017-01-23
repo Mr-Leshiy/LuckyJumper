@@ -9,8 +9,10 @@ import com.mygdx.game.states.MenuState;
 
 public class GameClass extends ApplicationAdapter {
 
-	public static final int WIDTH=800;
-	public static final int HEIGTH=480;
+	public static final float WIDTH=800;
+	public static final float HEIGTH=480;
+	public static float CONST_WIDTH;
+	public static float CONST_HEIGHT;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
 
 	SpriteBatch batch;
@@ -23,6 +25,9 @@ public class GameClass extends ApplicationAdapter {
 		gsm=new GameStateManager();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new MenuState(gsm));
+		CONST_HEIGHT=HEIGTH/Gdx.graphics.getHeight();
+		CONST_WIDTH=WIDTH/Gdx.graphics.getWidth();
+
 
 	}
 

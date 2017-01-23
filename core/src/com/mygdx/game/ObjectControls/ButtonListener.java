@@ -1,4 +1,4 @@
-package com.mygdx.game.GameObjects;
+package com.mygdx.game.ObjectControls;
 
 /**
  * Created by alexey on 05.01.17.

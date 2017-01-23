@@ -1,4 +1,4 @@
-package com.mygdx.game.GameObjects;
+package com.mygdx.game.ObjectControls;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,13 +11,13 @@ import java.util.List;
  * Created by alexey on 05.01.17.
  */
 
-public abstract class GameObject {
+public abstract class ObjectControl {
 
 
     protected Rectangle object;
 
 
-    public GameObject(Rectangle object)
+    public ObjectControl(Rectangle object)
     {
         this.object=object;
 

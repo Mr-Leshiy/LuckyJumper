@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.Backgrounds.PauseStateBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
-import com.mygdx.game.GameObjects.Button;
-import com.mygdx.game.GameObjects.ButtonListener;
+import com.mygdx.game.ObjectControls.Button;
+import com.mygdx.game.ObjectControls.ButtonListener;
 
 /**
  * Created by alexey on 10.01.17.
@@ -26,13 +26,13 @@ public class PauseState extends State {
     private int score;
 
 
-    public PauseState(final GameStateManager gsm, final State state, int score)
+    public PauseState(final GameStateManager gsm, final PlayState state)
     {
         super(gsm);
         initializeFontStyle();
         camera.setToOrtho(false, GameClass.WIDTH,GameClass.HEIGTH);
         this.state=state;
-        this.score=score;
+        this.score=state.getScore();
         backGround= new PauseStateBackground();
 
         Texture[] mas = {new Texture(URL.button_resume), new Texture(URL.button_resume_pressed)};
@@ -81,11 +81,11 @@ public class PauseState extends State {
         {
 
 
-            if(button_resume.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
+            if(button_resume.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_resume.isTouched=true;
             }
-            if(button_to_menu.isClick(Gdx.input.getX(),GameClass.HEIGTH-Gdx.input.getY()))
+            if(button_to_menu.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_to_menu.isTouched=true;
 
