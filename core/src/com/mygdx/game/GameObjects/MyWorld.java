@@ -15,6 +15,7 @@ public class MyWorld {
     private Player player;
     private List<Platform> platforms;
     boolean isGrounded=true;
+    public static final float SPEED=-4F;
 
 
     public Player getPlayer() {
@@ -23,9 +24,9 @@ public class MyWorld {
 
     public MyWorld()
     {
-        world = new World(new Vector2(0,-50),true);
-        world.setContactListener(new MyContactListener(this));
+        world = new World(new Vector2(0,-10F),true);
 
+        world.setContactListener(new MyContactListener(this));
         platforms = new ArrayList<Platform>();
 
         createWorld();
@@ -36,9 +37,8 @@ public class MyWorld {
     {
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.DynamicBody;
-
         Body bodyp = world.createBody(def);
-        bodyp.setTransform(100,150,-1);
+        bodyp.setTransform(1,5,0);
         player = new Player(bodyp);
 
         def.type= BodyDef.BodyType.KinematicBody;
@@ -46,8 +46,7 @@ public class MyWorld {
         for(int i=0;i<20;i++)
         {
             Body body =world.createBody(def);
-            body.setTransform(i*64,100,0);
-
+            body.setTransform(i*0.64f,1,0);
             platforms.add(new Platform(body));
 
         }

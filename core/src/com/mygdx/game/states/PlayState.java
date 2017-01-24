@@ -3,7 +3,6 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.game.Backgrounds.PlayStateBackgound;
 import com.mygdx.game.Constants.URL;
@@ -20,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 /**
  * Created by alexey on 05.01.17.
  */
@@ -34,7 +34,9 @@ public class PlayState extends State{
      private Points score;
      private PlayerAnimation player_animation;
      private List<GroundTexture> platforms;
+     private Box2DDebugRenderer b2rd;
 
+    public static final float RATE=100F;
 
 
 
@@ -42,6 +44,7 @@ public class PlayState extends State{
     public PlayState(final GameStateManager gsm)
     {
         super(gsm);
+        b2rd = new Box2DDebugRenderer();
 
         world = new MyWorld();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
@@ -64,9 +67,6 @@ public class PlayState extends State{
             }
         });
 
-
-
-
     }
 
     @Override
@@ -85,12 +85,13 @@ public class PlayState extends State{
             {
                 button_pause.isTouched=true;
             }
+            else
+            {
+                world.getPlayer().jump();
+
+            }
         }
-        if(Gdx.input.isTouched())
-        {
-            if(world.isGrounded())
-            world.getPlayer().jump();
-        }
+
 
     }
 
@@ -98,6 +99,7 @@ public class PlayState extends State{
     public void update(float delta) {
         camera.update();
         handleInput();
+        world.update(delta);
         background.update(delta);
         score.update(delta);
         player_animation.update(delta);
@@ -106,7 +108,7 @@ public class PlayState extends State{
             platform.update(delta);
         }
 
-        world.update(delta);
+
 
     }
 
@@ -124,6 +126,8 @@ public class PlayState extends State{
         player_animation.render(sb);
         sb.end();
 
+        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+
     }
 
     @Override
@@ -137,6 +141,8 @@ public class PlayState extends State{
         }
         score.dispose();
         player_animation.dispose();
+        world.getWorld().dispose();
+
 
 
 

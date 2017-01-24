@@ -22,14 +22,14 @@ public class MyContactListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
 
-        world.isGrounded=true;
+        //world.isGrounded=true;
 
     }
 
     @Override
     public void endContact(Contact contact) {
 
-        world.isGrounded=false;
+        //world.isGrounded=false;
 
     }
 

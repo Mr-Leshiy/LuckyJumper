@@ -16,6 +16,8 @@ public class Player {
     private boolean isJump=false;
     private Body box;
     private Fixture playerPhysicsFixture;
+    private final float weight=0.4f;
+    private final float height=0.4f;
 
 
     public Player(Body box)
@@ -23,11 +25,10 @@ public class Player {
         this.box=box;
 
         PolygonShape poly = new PolygonShape();
-        poly.setAsBox(1f,1f);
+        poly.setAsBox(weight,height);
         playerPhysicsFixture=box.createFixture(poly,1);
+        playerPhysicsFixture.setFriction(0);
         poly.dispose();
-
-        box.setBullet(true);
     }
 
     public Body getBox() {
@@ -36,21 +37,24 @@ public class Player {
 
     public void update(float delta)
     {
-        if(isJump)
-        {
-            box.applyLinearImpulse(0,10,box.getPosition().x,box.getPosition().y,true);
-            isJump=false;
-
-
-        }
 
 
     }
 
+    public Fixture getPlayerPhysicsFixture() {
+        return playerPhysicsFixture;
+    }
+
     public void jump()
     {
-        isJump=true;
+        box.applyLinearImpulse(0,5F,box.getPosition().x,box.getPosition().y,true);
+    }
+    public float getWeight() {
+        return weight;
+    }
 
+    public float getHeight() {
+        return height;
     }
 
 }

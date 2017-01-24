@@ -21,7 +21,6 @@ public class PlayerAnimation extends ObjectControl {
     private static final float change_time = 0.25f;
     private boolean onGround;
 
-
     public PlayerAnimation(Player player) {
         super(new Rectangle(player.getBox().getPosition().x,player.getBox().getPosition().y,0, 0));
         this.player=player;
@@ -32,6 +31,9 @@ public class PlayerAnimation extends ObjectControl {
         object.setHeight(new Texture("player_walk1.png").getHeight());
         object.setWidth(new Texture("player_walk1.png").getWidth());
         run_animation = new Animation(change_time, run_frames);
+
+
+
     }
 
     @Override
@@ -40,10 +42,8 @@ public class PlayerAnimation extends ObjectControl {
         state_time += delta;
         if(state_time>1)
             state_time=0;
-        object.setPosition(player.getBox().getPosition().x,player.getBox().getPosition().y);
 
-
-
+        object.setPosition((player.getBox().getPosition().x-player.getWeight())* PlayState.RATE,(player.getBox().getPosition().y-player.getHeight())*PlayState.RATE);
 
     }
 
