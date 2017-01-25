@@ -1,6 +1,7 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -11,13 +12,8 @@ import com.mygdx.game.GameObjects.MyWorld;
 import com.mygdx.game.GameObjects.Platform;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
-import com.mygdx.game.ObjectControls.GroundTexture;
 import com.mygdx.game.ObjectControls.PlayerAnimation;
 import com.mygdx.game.ObjectControls.Points;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 
 /**
@@ -27,16 +23,15 @@ import java.util.List;
 public class PlayState extends State{
 
 
-
      private MyWorld world;
      private PlayStateBackgound background;
      private Button button_pause;
      private Points score;
      private PlayerAnimation player_animation;
-     private List<GroundTexture> platforms;
+     private Texture platform;
+     private Texture platform2;
      private Box2DDebugRenderer b2rd;
-
-    public static final float RATE=100F;
+     public static final float RATE=100F;
 
 
 
@@ -45,17 +40,10 @@ public class PlayState extends State{
     {
         super(gsm);
         b2rd = new Box2DDebugRenderer();
-
         world = new MyWorld();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         background = new PlayStateBackgound();
         player_animation = new PlayerAnimation(world.getPlayer());
-        platforms = new ArrayList<GroundTexture>();
-        for (Platform platform: world.getPlatforms())
-        {
-            platforms.add(new GroundTexture(platform));
-
-        }
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
         score = new Points(GameClass.WIDTH/2-80,GameClass.HEIGTH-20);
         button_pause = new Button(mas,10,GameClass.HEIGTH-50);
@@ -66,6 +54,8 @@ public class PlayState extends State{
 
             }
         });
+        platform = new Texture(URL.platform_1);
+        platform2 = new Texture(URL.platfomr_2);
 
     }
 
@@ -92,21 +82,27 @@ public class PlayState extends State{
             }
         }
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F4))
+        {
+
+
+            world.changeActivelatforms();
+
+        }
+
 
     }
 
     @Override
     public void update(float delta) {
+
         camera.update();
         handleInput();
         world.update(delta);
         background.update(delta);
         score.update(delta);
         player_animation.update(delta);
-        for(GroundTexture platform: platforms)
-        {
-            platform.update(delta);
-        }
+
 
 
 
@@ -119,10 +115,13 @@ public class PlayState extends State{
         background.render(sb);
         button_pause.render(sb);
         score.render(sb);
-        for(GroundTexture platform: platforms)
+        for(Platform pl:world.getPlatforms())
         {
-            platform.render(sb);
+            if((Boolean) pl.getBox().getUserData())
+            sb.draw(platform2,(pl.getBox().getPosition().x-pl.getWeight())*PlayState.RATE,(pl.getBox().getPosition().y-pl.getHeight())*PlayState.RATE);
+
         }
+
         player_animation.render(sb);
         sb.end();
 
@@ -135,10 +134,7 @@ public class PlayState extends State{
 
         background.dispose();
         button_pause.dispose();
-        for(GroundTexture platform: platforms)
-        {
-            platform.dispose();
-        }
+        platform.dispose();
         score.dispose();
         player_animation.dispose();
         world.getWorld().dispose();

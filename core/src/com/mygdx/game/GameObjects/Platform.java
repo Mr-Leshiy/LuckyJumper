@@ -13,7 +13,7 @@ public class Platform {
     private Body box;
     private Fixture platformPhysicsFixture;
     private final float weight=0.64f;
-    private final float height=0.04f;
+    private final float height=0.16f;
 
     public  Platform(Body box)
     {

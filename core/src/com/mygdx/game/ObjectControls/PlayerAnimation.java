@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameObjects.Player;
 import com.mygdx.game.states.PlayState;
 
@@ -27,9 +28,9 @@ public class PlayerAnimation extends ObjectControl {
         state_time = 0;
         onGround = false;
 
-        run_frames = new Texture[]{new Texture("player_walk1.png"), new Texture("player_walk2.png")};
-        object.setHeight(new Texture("player_walk1.png").getHeight());
-        object.setWidth(new Texture("player_walk1.png").getWidth());
+        run_frames = new Texture[]{new Texture(URL.player_walk_1), new Texture(URL.player_walk_2)};
+        object.setHeight(run_frames[0].getHeight());
+        object.setWidth(run_frames[0].getWidth());
         run_animation = new Animation(change_time, run_frames);
 
 
