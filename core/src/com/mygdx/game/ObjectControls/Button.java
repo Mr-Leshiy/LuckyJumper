@@ -27,8 +27,6 @@ public class Button extends ObjectControl {
     public void update(float delta) {
 
 
-
-
     }
 
     @Override

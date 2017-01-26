@@ -17,6 +17,7 @@ public abstract class ObjectControl {
     protected Rectangle object;
 
 
+
     public ObjectControl(Rectangle object)
     {
         this.object=object;

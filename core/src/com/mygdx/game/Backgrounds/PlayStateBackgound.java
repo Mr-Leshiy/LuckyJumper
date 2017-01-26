@@ -1,5 +1,6 @@
 package com.mygdx.game.Backgrounds;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -20,8 +21,10 @@ public class PlayStateBackgound {
     private static final float speed_scrolling=0.5f;
 
 
+
     public PlayStateBackgound()
     {
+
         backgroundTextures=new Texture[]{new Texture(URL.play_state_background1),new Texture(URL.play_state_background2)};
 
         coordinates= new Rectangle[]{new Rectangle(0,0,0,0), new Rectangle(GameClass.WIDTH,0,0,0)};

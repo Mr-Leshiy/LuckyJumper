@@ -17,9 +17,7 @@ public class MyWorld {
     private Player player;
     private List<Platform> platforms;
     boolean isGrounded=true;
-    public static final float SPEED=-0.5F;
-    private Body edgeBox1;
-    private Body edgeBox2;
+    public static final float SPEED=-1.2F;
     private Body endWorld;
 
 
@@ -44,37 +42,21 @@ public class MyWorld {
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.DynamicBody;
         Body bodyp = world.createBody(def);
-        bodyp.setTransform(4f,3f,0);
+        bodyp.setTransform(3.5f,3f,0);
         player = new Player(bodyp);
         for(int i=0;i<20;i++) {
 
-            addPlatform(i*2f,1);
+            addPlatform(i*2.3f,1);
 
         }
 
         def.type= BodyDef.BodyType.StaticBody;
-
-        EdgeShape edgeShape1= new EdgeShape();
-        edgeShape1.set(1,8,1,0);
-        edgeBox1=world.createBody(def);
-        edgeBox1.setTransform(2,0,0);
-        edgeBox1.createFixture(edgeShape1,0);
-
-        EdgeShape edgeShape2= new EdgeShape();
-        edgeShape2.set(3,8,3,0);
-        edgeBox2=world.createBody(def);
-        edgeBox2.setTransform(3,0,0);
-        edgeBox2.createFixture(edgeShape1,0);
 
         EdgeShape end= new EdgeShape();
         end.set(0,0,8,0);
         endWorld=world.createBody(def);
         endWorld.setTransform(0,0,0);
         endWorld.createFixture(end,0);
-
-
-
-
 
     }
 

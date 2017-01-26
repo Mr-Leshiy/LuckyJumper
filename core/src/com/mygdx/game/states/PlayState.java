@@ -33,9 +33,6 @@ public class PlayState extends State{
      private Box2DDebugRenderer b2rd;
      public static final float RATE=100F;
 
-
-
-
     public PlayState(final GameStateManager gsm)
     {
         super(gsm);
@@ -56,6 +53,8 @@ public class PlayState extends State{
         });
         platform = new Texture(URL.platform_1);
         platform2 = new Texture(URL.platfomr_2);
+
+
 
     }
 
@@ -78,6 +77,7 @@ public class PlayState extends State{
             else
             {
                 world.getPlayer().jump();
+
 
             }
         }
@@ -103,14 +103,10 @@ public class PlayState extends State{
         score.update(delta);
         player_animation.update(delta);
 
-
-
-
     }
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(camera.combined);
         sb.begin();
         background.render(sb);
         button_pause.render(sb);
