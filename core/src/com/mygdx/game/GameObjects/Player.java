@@ -18,7 +18,6 @@ public class Player {
     private boolean isJump=false;
     private Body box;
     private Fixture playerPhysicsFixture;
-    private Fixture playerContactFixture;
     private final float weight=0.35f;
     private final float height=0.35f;
     private float oldY;
@@ -32,14 +31,7 @@ public class Player {
         playerPhysicsFixture=box.createFixture(poly,1);
         playerPhysicsFixture.setFriction(0f);
         poly.dispose();
-        CircleShape circle = new CircleShape();
-        circle.setRadius(weight);
-        circle.setPosition(new Vector2(0,0f));
-        playerContactFixture=box.createFixture(circle,0);
-        playerContactFixture.setFriction(0);
-        circle.dispose();
         box.setBullet(true);
-
         oldY=box.getPosition().y;
     }
 

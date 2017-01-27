@@ -3,8 +3,12 @@ package com.mygdx.game.GameObjects;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.WorldManifold;
+import com.badlogic.gdx.utils.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,12 +20,9 @@ public class MyWorld {
     private World world;
     private Player player;
     private List<Platform> platforms;
-    boolean isGrounded=true;
     public static final float SPEED=-1.2F;
     private Body endWorld;
-
-
-
+    private float time;
 
     public Player getPlayer() {
         return player;
@@ -34,6 +35,7 @@ public class MyWorld {
         world.setContactListener(new MyContactListener(this));
         platforms = new ArrayList<Platform>();
         createWorld();
+        time=0;
 
     }
 
@@ -44,9 +46,9 @@ public class MyWorld {
         Body bodyp = world.createBody(def);
         bodyp.setTransform(3.5f,3f,0);
         player = new Player(bodyp);
-        for(int i=0;i<20;i++) {
+        for(int i=0;i<10;i++) {
 
-            addPlatform(i*2.3f,1);
+            addPlatform(i*2.5f,1);
 
         }
 
@@ -67,8 +69,15 @@ public class MyWorld {
 
     public void update(float delta)
     {
+
         player.update(delta);
         deletePlatforms();
+        if (platforms.size()<10)
+        {
+            addPlatform(platforms.get(platforms.size()-1).getBox().getPosition().x+2.5f,random.nextInt(3));
+
+
+        }
         world.step(delta,4,4);
 
     }
@@ -78,16 +87,11 @@ public class MyWorld {
         return world;
     }
 
-    public boolean isGrounded()
-    {
-        return isGrounded;
-    }
-
     public void deletePlatforms()
     {
        for(int i=0;i<platforms.size();i++)
         {
-            if(platforms.get(i).getBox().getPosition().x<-100)
+            if(platforms.get(i).getBox().getPosition().x<-5)
             {
                 platforms.get(i).getBox().setActive(false);
                 world.destroyBody(platforms.get(i).getBox());
@@ -134,6 +138,29 @@ public class MyWorld {
 
 
     }
+
+    public boolean isGrounded()
+    {
+        Array<Contact> contacts = world.getContactList();
+        for(Contact contact:contacts)
+        {
+            if(contact.isTouching() && (contact.getFixtureA()==player.getPlayerPhysicsFixture())
+                    && (contact.getFixtureB()==player.getPlayerPhysicsFixture()))
+            {
+              return true;
+
+            }
+
+
+
+        }
+
+        return false;
+
+    }
+
+
+
 
 
 }

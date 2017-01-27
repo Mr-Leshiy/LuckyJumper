@@ -2,6 +2,7 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -30,13 +31,17 @@ public class PlayState extends State{
      private PlayerAnimation player_animation;
      private Texture platform;
      private Texture platform2;
-     private Box2DDebugRenderer b2rd;
      public static final float RATE=100F;
+     private SpriteBatch staticbatch;
+
+     private Box2DDebugRenderer b2rd;
+     private FPSLogger fpslog;
 
     public PlayState(final GameStateManager gsm)
     {
+
         super(gsm);
-        b2rd = new Box2DDebugRenderer();
+        staticbatch = new SpriteBatch();
         world = new MyWorld();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         background = new PlayStateBackgound();
@@ -53,6 +58,10 @@ public class PlayState extends State{
         });
         platform = new Texture(URL.platform_1);
         platform2 = new Texture(URL.platfomr_2);
+
+
+        b2rd = new Box2DDebugRenderer();
+        fpslog = new FPSLogger();
 
 
 
@@ -76,6 +85,7 @@ public class PlayState extends State{
             }
             else
             {
+
                 world.getPlayer().jump();
 
 
@@ -96,32 +106,41 @@ public class PlayState extends State{
     @Override
     public void update(float delta) {
 
-        camera.update();
         handleInput();
         world.update(delta);
         background.update(delta);
         score.update(delta);
         player_animation.update(delta);
 
+        camera.translate(0, world.getPlayer().getDeltaY() * RATE);
+        if(camera.position.y>240) {
+            camera.update();
+        }
+
     }
 
     @Override
     public void render(SpriteBatch sb) {
+
+
+        staticbatch.begin();
+        background.render(staticbatch);
+        button_pause.render(staticbatch);
+        score.render(staticbatch);
+        staticbatch.end();
+
+        sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        background.render(sb);
-        button_pause.render(sb);
-        score.render(sb);
         for(Platform pl:world.getPlatforms())
         {
             if((Boolean) pl.getBox().getUserData())
             sb.draw(platform2,(pl.getBox().getPosition().x-pl.getWeight())*PlayState.RATE,(pl.getBox().getPosition().y-pl.getHeight())*PlayState.RATE);
 
         }
-
         player_animation.render(sb);
         sb.end();
-
         b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+        fpslog.log();
 
     }
 
@@ -134,9 +153,7 @@ public class PlayState extends State{
         score.dispose();
         player_animation.dispose();
         world.getWorld().dispose();
-
-
-
+        staticbatch.dispose();
 
     }
 

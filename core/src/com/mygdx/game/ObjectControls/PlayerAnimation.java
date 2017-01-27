@@ -27,7 +27,6 @@ public class PlayerAnimation extends ObjectControl {
         this.player=player;
         state_time = 0;
         onGround = false;
-
         run_frames = new Texture[]{new Texture(URL.player_walk_1), new Texture(URL.player_walk_2)};
         object.setHeight(run_frames[0].getHeight());
         object.setWidth(run_frames[0].getWidth());

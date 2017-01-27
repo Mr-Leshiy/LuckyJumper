@@ -33,7 +33,6 @@ public class MyContactListener implements ContactListener {
     public void endContact(Contact contact) {
 
 
-
     }
 
     @Override
