@@ -25,6 +25,18 @@ public class MyContactListener implements ContactListener {
     @Override
     public void beginContact(Contact contact) {
 
+        if(contact.getFixtureA()==world.getPlayer().getPlayerPhysicsFixture() || contact.getFixtureB()==world.getPlayer().getPlayerPhysicsFixture())
+        {
+            if((contact.getFixtureA().getBody().getUserData()!=null && contact.getFixtureA().getBody().getUserData().equals('e')) ||
+                    (contact.getFixtureB().getBody().getUserData()!=null && contact.getFixtureB().getBody().getUserData().equals('e'))
+                    )
+            {
+                world.playerDead=true;
+
+            }
+
+        }
+
 
 
     }

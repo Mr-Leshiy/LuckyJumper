@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.WorldManifold;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class MyWorld {
     public static final float SPEED=-1.2F;
     private Body endWorld;
     private float time;
+    boolean playerDead;
 
     public Player getPlayer() {
         return player;
@@ -59,6 +59,7 @@ public class MyWorld {
         endWorld=world.createBody(def);
         endWorld.setTransform(0,0,0);
         endWorld.createFixture(end,0);
+        endWorld.setUserData('e');
 
     }
 
@@ -145,19 +146,25 @@ public class MyWorld {
         for(Contact contact:contacts)
         {
             if(contact.isTouching() && (contact.getFixtureA()==player.getPlayerPhysicsFixture())
-                    && (contact.getFixtureB()==player.getPlayerPhysicsFixture()))
+                    || (contact.getFixtureB()==player.getPlayerPhysicsFixture()))
             {
               return true;
 
             }
-
-
-
         }
 
         return false;
 
     }
+
+    public boolean isPlayerDead()
+    {
+
+        return playerDead;
+
+    }
+
+
 
 
 

@@ -1,8 +1,8 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,41 +13,31 @@ import com.mygdx.game.GameClass;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
+
 /**
- * Created by alexey on 10.01.17.
+ * Created by alexey on 29.01.17.
  */
 
-public class PauseState extends State {
+public class GameOverState extends State {
 
-    private BitmapFont font_score;
-    private PauseStateBackground backGround;
-    private State state;
-    private Button button_resume;
+    private PlayState state;
+    private BitmapFont message;
+    private PauseStateBackground backgound;
     private Button button_to_menu;
-    private int score;
+    private FileHandle file;
 
 
-    public PauseState(final GameStateManager gsm,final PlayState state)
-    {
+    public GameOverState(final GameStateManager gsm,final PlayState state) {
         super(gsm);
-        font_score=initializeFontStyle();
-        camera.setToOrtho(false, GameClass.WIDTH,GameClass.HEIGTH);
         this.state=state;
-        this.score=state.getScore();
-        backGround= new PauseStateBackground();
+        message=initializeFontStyle();
+        file = Gdx.files.local("ScoreFile.txt");
 
-        Texture[] mas = {new Texture(URL.button_resume), new Texture(URL.button_resume_pressed)};
-        button_resume = new Button(mas,GameClass.WIDTH/2-mas[0].getWidth()/2,GameClass.HEIGTH/2+50);
-        button_resume.setOnClickListener(new ButtonListener() {
-            @Override
-            public void onClickListener() {
-                gsm.pop();
-                state.resume();
-            }
-        });
 
+        backgound = new PauseStateBackground();
+        camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-50);
+        button_to_menu = new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-40);
         button_to_menu.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
@@ -58,19 +48,11 @@ public class PauseState extends State {
         });
 
 
-
-
     }
 
     @Override
     protected void handleInput() {
 
-        if(!Gdx.input.isTouched() && button_resume.isTouched)
-        {
-            button_resume.isTouched=false;
-            button_resume.OnClick();
-
-        }
         if(!Gdx.input.isTouched() && button_to_menu.isTouched)
         {
             button_to_menu.isTouched=false;
@@ -81,11 +63,6 @@ public class PauseState extends State {
         if(Gdx.input.justTouched())
         {
 
-
-            if(button_resume.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
-            {
-                button_resume.isTouched=true;
-            }
             if(button_to_menu.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_to_menu.isTouched=true;
@@ -94,10 +71,12 @@ public class PauseState extends State {
 
         }
 
+
     }
 
     @Override
     public void update(float delta) {
+
         handleInput();
 
     }
@@ -107,27 +86,23 @@ public class PauseState extends State {
 
         state.render(sb);
         sb.setProjectionMatrix(camera.combined);
+
         sb.begin();
-        backGround.render(sb);
+        backgound.render(sb);
         button_to_menu.render(sb);
-        button_resume.render(sb);
-        font_score.draw(sb,"Your score",GameClass.WIDTH/2-100,GameClass.HEIGTH-20);
-        font_score.draw(sb,Integer.toString(score),GameClass.WIDTH/2-30,GameClass.HEIGTH-50);
-
+        message.draw(sb,"GAME OVER",GameClass.WIDTH/2-100,GameClass.HEIGTH-20);
+        message.draw(sb,"Your score",GameClass.WIDTH/2-100,GameClass.HEIGTH-80);
+        message.draw(sb,Integer.toString(state.getScore()),GameClass.WIDTH/2-30,GameClass.HEIGTH-110);
         sb.end();
-
 
     }
 
     @Override
     public void dispose() {
 
-
-        backGround.dispose();
-        button_resume.dispose();
+        message.dispose();
+        backgound.dispose();
         button_to_menu.dispose();
-        font_score.dispose();
-
 
     }
 
@@ -140,6 +115,7 @@ public class PauseState extends State {
     public void resume() {
 
     }
+
     private BitmapFont initializeFontStyle()
     {
         BitmapFont font;
@@ -154,5 +130,4 @@ public class PauseState extends State {
 
 
     }
-
 }

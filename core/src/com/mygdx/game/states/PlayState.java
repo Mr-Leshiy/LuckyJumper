@@ -85,20 +85,20 @@ public class PlayState extends State{
             }
             else
             {
-
+                if(world.isGrounded())
                 world.getPlayer().jump();
-
-
             }
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.F4))
         {
-
-
             world.changeActivelatforms();
-
         }
+        if(world.isPlayerDead())
+        {
+            gsm.push(new GameOverState(gsm,this));
+        }
+
 
 
     }
