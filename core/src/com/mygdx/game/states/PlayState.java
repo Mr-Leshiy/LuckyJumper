@@ -3,6 +3,7 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -33,6 +34,7 @@ public class PlayState extends State{
      private Texture platform2;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
+     private OrthographicCamera static_camera;
      private Box2DDebugRenderer b2rd;
      private FPSLogger fpslog;
      private boolean isIncressed=false;
@@ -42,6 +44,8 @@ public class PlayState extends State{
 
         super(gsm);
         staticbatch = new SpriteBatch();
+        static_camera=new OrthographicCamera();
+        static_camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         world = new MyWorld();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         background = new PlayStateBackgound();
@@ -58,6 +62,7 @@ public class PlayState extends State{
         });
         platform = new Texture(URL.platform_1);
         platform2 = new Texture(URL.platfomr_2);
+        staticbatch.setProjectionMatrix(static_camera.combined);
 
 
         b2rd = new Box2DDebugRenderer();
