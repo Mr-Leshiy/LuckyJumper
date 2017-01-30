@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.Backgrounds.PauseStateBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
+import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
@@ -53,6 +54,8 @@ public class PauseState extends State {
             public void onClickListener() {
                 gsm.pop();
                 gsm.set(new MenuState(gsm));
+                GameInformationFileHandler info = new GameInformationFileHandler();
+                info.setPoints(state.getScore());
 
             }
         });

@@ -25,6 +25,10 @@ public class GameClass extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		gsm=new GameStateManager();
+
+		if(!Gdx.files.local("GameInformation.xml").exists())
+		GameInformationFileHandler.createDocument();
+
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new MenuState(gsm));
 		CONST_HEIGHT=HEIGTH/Gdx.graphics.getHeight();

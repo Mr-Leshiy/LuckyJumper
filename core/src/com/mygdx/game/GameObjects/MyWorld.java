@@ -19,7 +19,6 @@ public class MyWorld {
     private World world;
     private Player player;
     private List<Platform> platforms;
-    public static final float SPEED=-1.2F;
     private Body endWorld;
     private float time;
     boolean playerDead;
@@ -46,7 +45,7 @@ public class MyWorld {
         Body bodyp = world.createBody(def);
         bodyp.setTransform(3.5f,3f,0);
         player = new Player(bodyp);
-        for(int i=0;i<10;i++) {
+        for(int i=0;i<5;i++) {
 
             addPlatform(i*2.5f,1);
 
@@ -75,7 +74,19 @@ public class MyWorld {
         deletePlatforms();
         if (platforms.size()<10)
         {
-            addPlatform(platforms.get(platforms.size()-1).getBox().getPosition().x+2.5f,random.nextInt(3));
+            if(random.nextBoolean()) {
+                addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.8f);
+            }
+            else {
+                if((platforms.get(platforms.size() - 1).getBox().getPosition().y - 0.8f)>0) {
+                    addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y - 0.8f);
+                }
+                else
+                {
+                    addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.8f);
+                }
+            }
+
 
 
         }
@@ -145,8 +156,8 @@ public class MyWorld {
         Array<Contact> contacts = world.getContactList();
         for(Contact contact:contacts)
         {
-            if(contact.isTouching() && (contact.getFixtureA()==player.getPlayerPhysicsFixture())
-                    || (contact.getFixtureB()==player.getPlayerPhysicsFixture()))
+            if(contact.isTouching() && (contact.getFixtureA()==player.getPlayerPhysicsFixture()
+                    || contact.getFixtureB()==player.getPlayerPhysicsFixture()))
             {
               return true;
 
@@ -161,6 +172,17 @@ public class MyWorld {
     {
 
         return playerDead;
+
+    }
+
+    public void increaseSpeed()
+    {
+        for(Platform pl:platforms)
+        {
+            pl.increaseSpeed();
+        }
+
+
 
     }
 

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.Backgrounds.PauseStateBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
+import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
@@ -24,16 +25,13 @@ public class GameOverState extends State {
     private BitmapFont message;
     private PauseStateBackground backgound;
     private Button button_to_menu;
-    private FileHandle file;
+
 
 
     public GameOverState(final GameStateManager gsm,final PlayState state) {
         super(gsm);
         this.state=state;
         message=initializeFontStyle();
-        file = Gdx.files.local("ScoreFile.txt");
-
-
         backgound = new PauseStateBackground();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
@@ -47,6 +45,9 @@ public class GameOverState extends State {
             }
         });
 
+
+        GameInformationFileHandler info = new GameInformationFileHandler();
+        info.setPoints(state.getScore());
 
     }
 

@@ -33,9 +33,9 @@ public class PlayState extends State{
      private Texture platform2;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
-
      private Box2DDebugRenderer b2rd;
      private FPSLogger fpslog;
+     private boolean isIncressed=false;
 
     public PlayState(final GameStateManager gsm)
     {
@@ -85,12 +85,18 @@ public class PlayState extends State{
             }
             else
             {
-                if(world.isGrounded())
-                world.getPlayer().jump();
+                if(Gdx.input.getX()<GameClass.WIDTH/2) {
+                    if (world.isGrounded())
+                        world.getPlayer().jump();
+                }
+                else
+                {
+                    world.changeActivelatforms();
+                }
             }
         }
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.F4))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
         {
             world.changeActivelatforms();
         }
@@ -117,6 +123,8 @@ public class PlayState extends State{
             camera.update();
         }
 
+
+
     }
 
     @Override
@@ -139,7 +147,7 @@ public class PlayState extends State{
         }
         player_animation.render(sb);
         sb.end();
-        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+        //b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
         fpslog.log();
 
     }

@@ -14,6 +14,7 @@ public class Platform {
     private Fixture platformPhysicsFixture;
     private final float weight=0.64f;
     private final float height=0.16f;
+    private static float speed=-1.2f;;
 
     public  Platform(Body box)
     {
@@ -22,7 +23,7 @@ public class Platform {
         poly.setAsBox(weight,height);
         platformPhysicsFixture=box.createFixture(poly,0);
         poly.dispose();
-        box.setLinearVelocity(MyWorld.SPEED,0);
+        box.setLinearVelocity(speed,0);
 
 
     }
@@ -38,6 +39,13 @@ public class Platform {
 
     public float getHeight() {
         return height;
+    }
+
+    public void increaseSpeed()
+    {
+        speed-=0.3f;
+        box.setLinearVelocity(speed,0);
+
     }
 
 }
