@@ -22,7 +22,6 @@ import javax.xml.transform.stream.StreamResult;
 public class GameInformationFileHandler {
 
     private final static String NAME="GameInformation.xml";
-
     private Document document;
 
 
@@ -30,7 +29,7 @@ public class GameInformationFileHandler {
     {
         try{
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            factory.setNamespaceAware(true);
+            factory.setValidating(false);
             DocumentBuilder builder = factory.newDocumentBuilder();
             document = builder.parse(Gdx.files.local(NAME).file());
         }
@@ -47,15 +46,13 @@ public class GameInformationFileHandler {
     public int getPoints()
     {
         Node points_node = document.getElementsByTagName("points").item(0);
-        return Integer.getInteger(points_node.getTextContent());
+        return Integer.valueOf(points_node.getTextContent());
 
     }
     public void setPoints(int points)
     {
         Node points_node = document.getElementsByTagName("points").item(0);
-
         points_node.setTextContent(Integer.toString(points));
-
 
         try {
             FileHandle fileHandle = Gdx.files.local(NAME);
@@ -69,6 +66,36 @@ public class GameInformationFileHandler {
 
         }
 
+    }
+
+    public void addNeuronPoints(int points)
+    {
+
+        Node points_node = document.getElementsByTagName("neuron_points").item(0);
+        int result=points+Integer.valueOf(points_node.getTextContent());
+
+        points_node.setTextContent(Integer.toString(result));
+
+        try {
+            FileHandle fileHandle = Gdx.files.local(NAME);
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(new DOMSource(document), new StreamResult(fileHandle.file()));
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+
+        }
+
+
+
+    }
+
+    public int getNeuronsPoints()
+    {
+        Node points_node = document.getElementsByTagName("neuron_points").item(0);
+        return Integer.valueOf(points_node.getTextContent());
     }
 
     public static void createDocument()
@@ -87,9 +114,9 @@ public class GameInformationFileHandler {
         points.setTextContent("0");
         gameInfo.appendChild(points);
 
-
-
-
+        Element neuron_points = document.createElement("neuron_points");
+        neuron_points.setTextContent("0");
+        gameInfo.appendChild(neuron_points);
 
 
         FileHandle fileHandle = Gdx.files.local(NAME);

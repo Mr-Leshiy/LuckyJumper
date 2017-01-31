@@ -22,6 +22,8 @@ public class MyWorld {
     private Body endWorld;
     private float time;
     boolean playerDead;
+    private List<Neurons> neurons;
+    public boolean isDelete=false;
 
     public Player getPlayer() {
         return player;
@@ -33,9 +35,14 @@ public class MyWorld {
         random = new Random();
         world.setContactListener(new MyContactListener(this));
         platforms = new ArrayList<Platform>();
+        neurons= new ArrayList<Neurons>();
         createWorld();
         time=0;
 
+    }
+
+    public List<Neurons> getNeurons() {
+        return neurons;
     }
 
     private void createWorld()
@@ -47,12 +54,11 @@ public class MyWorld {
         player = new Player(bodyp);
         for(int i=0;i<5;i++) {
 
-            addPlatform(i*2.5f,1);
+            addPlatform(i * 2.5f, 1);
 
         }
 
         def.type= BodyDef.BodyType.StaticBody;
-
         EdgeShape end= new EdgeShape();
         end.set(0,0,8,0);
         endWorld=world.createBody(def);
@@ -74,6 +80,7 @@ public class MyWorld {
         deletePlatforms();
         if (platforms.size()<10)
         {
+
             if(random.nextBoolean()) {
                 addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.8f);
             }
@@ -86,10 +93,15 @@ public class MyWorld {
                     addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.8f);
                 }
             }
+            if(random.nextBoolean())
+            {
+                addNeuron(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
+                        ,platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
 
-
-
+            }
         }
+
+        deleteNeurons();
         world.step(delta,4,4);
 
     }
@@ -118,7 +130,43 @@ public class MyWorld {
 
     }
 
-    public Platform addPlatform(float x, float y)
+    public void deleteNeurons()
+    {
+        for(int i=0;i<neurons.size();i++)
+        {
+            if(neurons.get(i).getBody().getPosition().x<-5)
+            {
+                neurons.get(i).getBody().setActive(false);
+                world.destroyBody(neurons.get(i).getBody());
+                neurons.remove(i);
+
+            }
+            if( neurons.get(i).getBody().getUserData().equals('d'))
+            {
+                neurons.get(i).getBody().setActive(false);
+                world.destroyBody(neurons.get(i).getBody());
+                neurons.remove(i);
+                isDelete=true;
+            }
+
+        }
+
+
+
+    }
+
+
+    public void addNeuron(float x,float y)
+    {
+        BodyDef def = new BodyDef();
+        def.type= BodyDef.BodyType.KinematicBody;
+        Body body =world.createBody(def);
+        body.setTransform(x,y,0);
+        body.setUserData('n');
+        Neurons neuron = new Neurons(body);
+        neurons.add(neuron);
+    }
+    public void addPlatform(float x, float y)
     {
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.KinematicBody;
@@ -127,7 +175,7 @@ public class MyWorld {
         body.setUserData(random.nextBoolean());
         Platform platform = new Platform(body);
         platforms.add(platform);
-        return platform;
+
     }
 
     public void changeActivelatforms()
@@ -185,8 +233,6 @@ public class MyWorld {
 
 
     }
-
-
 
 
 

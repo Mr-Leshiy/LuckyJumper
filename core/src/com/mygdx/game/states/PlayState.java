@@ -11,9 +11,11 @@ import com.mygdx.game.Backgrounds.PlayStateBackgound;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.MyWorld;
+import com.mygdx.game.GameObjects.Neurons;
 import com.mygdx.game.GameObjects.Platform;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
+import com.mygdx.game.ObjectControls.NeuronPoints;
 import com.mygdx.game.ObjectControls.PlayerAnimation;
 import com.mygdx.game.ObjectControls.Points;
 
@@ -29,9 +31,10 @@ public class PlayState extends State{
      private PlayStateBackgound background;
      private Button button_pause;
      private Points score;
+     private NeuronPoints neuronPoints;
      private PlayerAnimation player_animation;
-     private Texture platform;
      private Texture platform2;
+     private Texture neuron;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
@@ -52,6 +55,7 @@ public class PlayState extends State{
         player_animation = new PlayerAnimation(world.getPlayer());
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
         score = new Points(GameClass.WIDTH/2-80,GameClass.HEIGTH-20);
+        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20,0);
         button_pause = new Button(mas,10,GameClass.HEIGTH-50);
         button_pause.setOnClickListener(new ButtonListener() {
             @Override
@@ -60,15 +64,12 @@ public class PlayState extends State{
 
             }
         });
-        platform = new Texture(URL.platform_1);
         platform2 = new Texture(URL.platfomr_2);
+        neuron= new Texture(URL.neuron);
+
         staticbatch.setProjectionMatrix(static_camera.combined);
-
-
         b2rd = new Box2DDebugRenderer();
         fpslog = new FPSLogger();
-
-
 
     }
 
@@ -112,6 +113,7 @@ public class PlayState extends State{
 
 
 
+
     }
 
     @Override
@@ -127,6 +129,11 @@ public class PlayState extends State{
         if(camera.position.y>240) {
             camera.update();
         }
+        if(world.isDelete)
+        {
+            neuronPoints.addPoints();
+            world.isDelete=false;
+        }
 
 
 
@@ -139,7 +146,10 @@ public class PlayState extends State{
         staticbatch.begin();
         background.render(staticbatch);
         button_pause.render(staticbatch);
+        neuronPoints.render(staticbatch);
         score.render(staticbatch);
+
+
         staticbatch.end();
 
         sb.setProjectionMatrix(camera.combined);
@@ -147,12 +157,19 @@ public class PlayState extends State{
         for(Platform pl:world.getPlatforms())
         {
             if((Boolean) pl.getBox().getUserData())
-            sb.draw(platform2,(pl.getBox().getPosition().x-pl.getWeight())*PlayState.RATE,(pl.getBox().getPosition().y-pl.getHeight())*PlayState.RATE);
+            sb.draw(platform2,(pl.getBox().getPosition().x-pl.getWeight())*RATE,(pl.getBox().getPosition().y-pl.getHeight())*RATE);
 
         }
+        for(Neurons n:world.getNeurons())
+        {
+            sb.draw(neuron,(n.getBody().getPosition().x-n.getWeight())*RATE,(n.getBody().getPosition().y-n.getHeight())*RATE);
+
+        }
+
+
         player_animation.render(sb);
         sb.end();
-        //b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
         fpslog.log();
 
     }
@@ -162,11 +179,15 @@ public class PlayState extends State{
 
         background.dispose();
         button_pause.dispose();
-        platform.dispose();
         score.dispose();
         player_animation.dispose();
         world.getWorld().dispose();
         staticbatch.dispose();
+        neuron.dispose();
+        platform2.dispose();
+        neuronPoints.dispose();
+
+
 
     }
 
@@ -187,7 +208,13 @@ public class PlayState extends State{
 
     public int getScore()
     {
-        return score.points;
+        return score.getPoints();
+
+    }
+
+    public int getNeuronPoints()
+    {
+        return neuronPoints.getPoints();
 
     }
 

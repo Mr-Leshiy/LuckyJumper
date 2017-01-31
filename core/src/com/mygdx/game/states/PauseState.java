@@ -11,6 +11,7 @@ import com.mygdx.game.Backgrounds.PauseStateBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 import com.mygdx.game.GameInformationFileHandler;
+import com.mygdx.game.GameObjects.Platform;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
@@ -22,7 +23,7 @@ public class PauseState extends State {
 
     private BitmapFont font_score;
     private PauseStateBackground backGround;
-    private State state;
+    private PlayState state;
     private Button button_resume;
     private Button button_to_menu;
     private int score;
@@ -56,6 +57,7 @@ public class PauseState extends State {
                 gsm.set(new MenuState(gsm));
                 GameInformationFileHandler info = new GameInformationFileHandler();
                 info.setPoints(state.getScore());
+                info.setPoints(state.getNeuronPoints());
 
             }
         });

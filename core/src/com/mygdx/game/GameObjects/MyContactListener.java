@@ -1,5 +1,6 @@
 package com.mygdx.game.GameObjects;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -76,6 +77,32 @@ public class MyContactListener implements ContactListener {
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
+
+        Body body=null;
+
+        if(contact.getFixtureA()==world.getPlayer().getPlayerPhysicsFixture() || contact.getFixtureB()==world.getPlayer().getPlayerPhysicsFixture()) {
+
+            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData()!=null &&
+                    contact.getFixtureA().getBody().getUserData().equals('n'))
+            {
+
+                body=contact.getFixtureA().getBody();
+
+            }
+            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData()!=null
+                    && contact.getFixtureB().getBody().getUserData().equals('n')) {
+
+                body=contact.getFixtureB().getBody();
+
+            }
+
+
+            if(body!=null)
+            {
+              body.setUserData('d');
+
+            }
+        }
 
     }
 }

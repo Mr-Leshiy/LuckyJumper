@@ -2,66 +2,72 @@ package com.mygdx.game.ObjectControls;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeType;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 
-
 /**
- * Created by alexey on 09.01.17.
+ * Created by alexey on 31.01.17.
  */
 
-public class Points extends ObjectControl {
+public class NeuronPoints extends ObjectControl {
 
+    private Texture neuron_texture;
     private BitmapFont font_points;
-    private float speed=1.2f;
-    private float time;
     private int points;
+    private GlyphLayout layout;
 
-    public Points(float x,float y)
+    public NeuronPoints(float x, float y,int points)
     {
         super(new Rectangle(x,y,0,0));
-
-       initializeFontStyle();
-        points=0;
+        neuron_texture = new Texture(URL.neuron_points);
+        layout=new GlyphLayout();
+        initializeFontStyle();
+        this.points=points;
 
     }
 
-
     @Override
     public void update(float delta) {
-
-            time+=delta;
-            if(time>2.5f/speed) {
-                points++;
-                time=0;
-
-        }
 
     }
 
     @Override
     public void render(SpriteBatch sb) {
-        font_points.draw(sb, "score: "+Integer.toString(points),object.getX(),object.getY());
+
+        layout.setText(font_points,Integer.toString(points));
+        font_points.draw(sb,Integer.toString(points),object.getX()-layout.width,object.getY());
+        sb.draw(neuron_texture,object.getX()+10,object.getY()-30);
+
 
     }
 
     @Override
     public void dispose() {
 
+        neuron_texture.dispose();
         font_points.dispose();
 
     }
 
+    public int getPoints() {
+        return points;
+    }
 
+    public void addPoints()
+    {
+        points++;
+    }
     private void initializeFontStyle()
     {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(URL.font_Free_mono_bold));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.characters= GameClass.FONT_CHARACTERS;
         parameter.size=20;
         parameter.color= Color.BROWN;
@@ -71,13 +77,4 @@ public class Points extends ObjectControl {
 
     }
 
-    public void increaseSpeed()
-    {
-        speed+=0.3f;
-
-    }
-
-    public int getPoints() {
-        return points;
-    }
 }

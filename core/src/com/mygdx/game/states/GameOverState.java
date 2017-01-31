@@ -48,6 +48,8 @@ public class GameOverState extends State {
 
         GameInformationFileHandler info = new GameInformationFileHandler();
         info.setPoints(state.getScore());
+        info.addNeuronPoints(state.getNeuronPoints());
+
 
     }
 
