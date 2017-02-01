@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
@@ -24,6 +25,7 @@ public class MyWorld {
     boolean playerDead;
     private List<Neurons> neurons;
     public boolean isDelete=false;
+    public boolean isContact=false;
 
     public Player getPlayer() {
         return player;
@@ -122,6 +124,12 @@ public class MyWorld {
                 platforms.remove(i);
 
             }
+            if(platforms.get(i).getBox().getFixtureList().size==2 && platforms.get(i).getBox().getFixtureList().get(1).getUserData().equals('d'))
+            {
+                platforms.get(i).destroyContactixture();
+                isContact=true;
+
+            }
 
 
         }
@@ -168,6 +176,8 @@ public class MyWorld {
     }
     public void addPlatform(float x, float y)
     {
+
+
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);

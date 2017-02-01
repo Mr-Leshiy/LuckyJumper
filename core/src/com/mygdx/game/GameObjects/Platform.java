@@ -1,6 +1,8 @@
 package com.mygdx.game.GameObjects;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
@@ -14,7 +16,9 @@ public class Platform {
     private Fixture platformPhysicsFixture;
     private final float weight=0.64f;
     private final float height=0.16f;
-    private static float speed=-1.2f;;
+    public static float speed=-1.2f;;
+    private Fixture platformContactFixture;
+
 
     public  Platform(Body box)
     {
@@ -25,6 +29,12 @@ public class Platform {
         poly.dispose();
         box.setLinearVelocity(speed,0);
 
+        EdgeShape pe= new EdgeShape();
+        pe.set(-weight,height,weight,height);
+        platformContactFixture=box.createFixture(pe,0);
+        platformContactFixture.setUserData('c');
+        pe.dispose();
+
 
     }
 
@@ -32,6 +42,9 @@ public class Platform {
     {
         return box;
 
+    }
+    public Fixture getPlatformContactFixture() {
+        return platformContactFixture;
     }
     public float getWeight() {
         return weight;
@@ -47,5 +60,11 @@ public class Platform {
         box.setLinearVelocity(speed,0);
 
     }
+
+    public void destroyContactixture()
+    {
+        box.destroyFixture(platformContactFixture);
+    }
+
 
 }

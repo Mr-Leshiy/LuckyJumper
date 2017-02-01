@@ -18,8 +18,6 @@ import com.mygdx.game.GameClass;
 public class Points extends ObjectControl {
 
     private BitmapFont font_points;
-    private float speed=1.2f;
-    private float time;
     private int points;
 
     public Points(float x,float y)
@@ -34,13 +32,6 @@ public class Points extends ObjectControl {
 
     @Override
     public void update(float delta) {
-
-            time+=delta;
-            if(time>2.5f/speed) {
-                points++;
-                time=0;
-
-        }
 
     }
 
@@ -71,10 +62,9 @@ public class Points extends ObjectControl {
 
     }
 
-    public void increaseSpeed()
+    public void addPoints()
     {
-        speed+=0.3f;
-
+        points++;
     }
 
     public int getPoints() {

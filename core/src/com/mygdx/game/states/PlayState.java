@@ -135,6 +135,12 @@ public class PlayState extends State{
             world.isDelete=false;
         }
 
+        if(world.isContact)
+        {
+            score.addPoints();
+            world.isContact=false;
+        }
+
 
 
     }

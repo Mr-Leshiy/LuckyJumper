@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.WorldManifold;
 
@@ -51,7 +52,7 @@ public class MyContactListener implements ContactListener {
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
-       if(contact.getFixtureA().getBody().getUserData() instanceof Boolean && contact.getFixtureA().getBody().getUserData()!=null)
+       if(contact.getFixtureA().getBody().getUserData()!=null && contact.getFixtureA().getBody().getUserData() instanceof Boolean)
        {
            if(!(Boolean) contact.getFixtureA().getBody().getUserData())
            {
@@ -61,7 +62,7 @@ public class MyContactListener implements ContactListener {
 
 
        }
-        if(contact.getFixtureB().getBody().getUserData() instanceof Boolean && contact.getFixtureB().getBody().getUserData()!=null)
+        if(contact.getFixtureB().getBody().getUserData()!=null && contact.getFixtureB().getBody().getUserData() instanceof Boolean )
         {
             if(!(Boolean) contact.getFixtureB().getBody().getUserData())
             {
@@ -78,30 +79,33 @@ public class MyContactListener implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
-        Body body=null;
 
         if(contact.getFixtureA()==world.getPlayer().getPlayerPhysicsFixture() || contact.getFixtureB()==world.getPlayer().getPlayerPhysicsFixture()) {
 
-            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData()!=null &&
-                    contact.getFixtureA().getBody().getUserData().equals('n'))
+            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('n'))
+            {
+                contact.getFixtureA().getBody().setUserData('d');
+
+            }
+            if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('n')) {
+
+                contact.getFixtureB().getBody().setUserData('d');
+
+            }
+
+
+            if (contact.getFixtureA().getUserData() != null && contact.getFixtureA().getUserData().equals('c'))
             {
 
-                body=contact.getFixtureA().getBody();
+                contact.getFixtureA().setUserData('d');
 
             }
-            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData()!=null
-                    && contact.getFixtureB().getBody().getUserData().equals('n')) {
+            if (contact.getFixtureB().getUserData() != null  && contact.getFixtureB().getUserData().equals('c')) {
 
-                body=contact.getFixtureB().getBody();
-
-            }
-
-
-            if(body!=null)
-            {
-              body.setUserData('d');
+                contact.getFixtureB().setUserData('d');
 
             }
+
         }
 
     }
