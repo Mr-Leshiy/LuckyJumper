@@ -5,7 +5,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
@@ -19,13 +18,14 @@ public class MyWorld {
     private Random random;
     private World world;
     private Player player;
-    private List<Platform> platforms;
+    private List<Platform> platform1s;
     private Body endWorld;
     private float time;
     boolean playerDead;
     private List<Neurons> neurons;
     public boolean isDelete=false;
     public boolean isContact=false;
+    private final static float T=-1.35f;
 
     public Player getPlayer() {
         return player;
@@ -36,7 +36,7 @@ public class MyWorld {
         world = new World(new Vector2(0,-10f),true);
         random = new Random();
         world.setContactListener(new MyContactListener(this));
-        platforms = new ArrayList<Platform>();
+        platform1s = new ArrayList<Platform>();
         neurons= new ArrayList<Neurons>();
         createWorld();
         time=0;
@@ -52,13 +52,15 @@ public class MyWorld {
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.DynamicBody;
         Body bodyp = world.createBody(def);
-        bodyp.setTransform(3.5f,3f,0);
+        bodyp.setTransform(3.5f,2f,0);
         player = new Player(bodyp);
-        for(int i=0;i<5;i++) {
 
-            addPlatform(i * 2.5f, 1);
-
-        }
+        def.type= BodyDef.BodyType.KinematicBody;
+        Body body =world.createBody(def);
+        body.setTransform(3,1.5f,0);
+        body.setUserData(true);
+        StartPlatform platform1 = new StartPlatform(body);
+        platform1s.add(platform1);
 
         def.type= BodyDef.BodyType.StaticBody;
         EdgeShape end= new EdgeShape();
@@ -70,9 +72,9 @@ public class MyWorld {
 
     }
 
-    public List<Platform> getPlatforms()
+    public List<Platform> getPlatform1s()
     {
-        return platforms;
+        return platform1s;
     }
 
     public void update(float delta)
@@ -80,25 +82,31 @@ public class MyWorld {
 
         player.update(delta);
         deletePlatforms();
-        if (platforms.size()<10)
+        if (platform1s.size()<10)
         {
 
             if(random.nextBoolean()) {
-                addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.8f);
+                addPlatform(platform1s.get(platform1s.size() - 1).getBox().getPosition().x +
+                                platform1s.get(platform1s.size() - 1).getWeight()+ Platform1.speed*T,
+                        platform1s.get(platform1s.size() - 1).getBox().getPosition().y + 0.8f);
             }
             else {
-                if((platforms.get(platforms.size() - 1).getBox().getPosition().y - 0.8f)>0) {
-                    addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y - 0.8f);
+                if((platform1s.get(platform1s.size() - 1).getBox().getPosition().y - 0.8f)>0) {
+                    addPlatform(platform1s.get(platform1s.size() - 1).getBox().getPosition().x +
+                                    platform1s.get(platform1s.size() - 1).getWeight()+Platform1.speed*T,
+                            platform1s.get(platform1s.size() - 1).getBox().getPosition().y - 0.8f);
                 }
                 else
                 {
-                    addPlatform(platforms.get(platforms.size() - 1).getBox().getPosition().x + 2.5f, platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.8f);
+                    addPlatform(platform1s.get(platform1s.size() - 1).getBox().getPosition().x+
+                            platform1s.get(platform1s.size() - 1).getWeight() + Platform1.speed*T,
+                            platform1s.get(platform1s.size() - 1).getBox().getPosition().y + 0.8f);
                 }
             }
             if(random.nextBoolean())
             {
-                addNeuron(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
-                        ,platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
+                addNeuron(platform1s.get(platform1s.size()-1).getBox().getPosition().x+0.15f
+                        , platform1s.get(platform1s.size()-1).getBox().getPosition().y+0.5f);
 
             }
         }
@@ -115,18 +123,18 @@ public class MyWorld {
 
     public void deletePlatforms()
     {
-       for(int i=0;i<platforms.size();i++)
+       for(int i = 0; i< platform1s.size(); i++)
         {
-            if(platforms.get(i).getBox().getPosition().x<-5)
+            if(platform1s.get(i).getBox().getPosition().x<-5)
             {
-                platforms.get(i).getBox().setActive(false);
-                world.destroyBody(platforms.get(i).getBox());
-                platforms.remove(i);
+                platform1s.get(i).getBox().setActive(false);
+                world.destroyBody(platform1s.get(i).getBox());
+                platform1s.remove(i);
 
             }
-            if(platforms.get(i).getBox().getFixtureList().size==2 && platforms.get(i).getBox().getFixtureList().get(1).getUserData().equals('d'))
+            if(platform1s.get(i).getBox().getFixtureList().size==2 && platform1s.get(i).getBox().getFixtureList().get(1).getUserData().equals('d'))
             {
-                platforms.get(i).destroyContactixture();
+                platform1s.get(i).destroyContactFixture();
                 isContact=true;
 
             }
@@ -177,21 +185,20 @@ public class MyWorld {
     public void addPlatform(float x, float y)
     {
 
-
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
         body.setTransform(x,y,0);
         body.setUserData(random.nextBoolean());
-        Platform platform = new Platform(body);
-        platforms.add(platform);
+        Platform1 platform1 = new Platform1(body);
+        platform1s.add(platform1);
 
     }
 
     public void changeActivelatforms()
     {
 
-        for(Platform pl:platforms)
+        for(Platform pl: platform1s)
         {
             if ((Boolean)pl.getBox().getUserData())
             {
@@ -232,20 +239,6 @@ public class MyWorld {
         return playerDead;
 
     }
-
-    public void increaseSpeed()
-    {
-        for(Platform pl:platforms)
-        {
-            pl.increaseSpeed();
-        }
-
-
-
-    }
-
-
-
 
 
 }

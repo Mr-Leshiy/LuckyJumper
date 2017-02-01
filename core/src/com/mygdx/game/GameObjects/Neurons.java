@@ -14,7 +14,7 @@ public class Neurons {
     private final float weight=0.17f;
     private final float height=0.17f;
     private Fixture neuronFixture;
-    private static float speed=-1.2f;;
+
 
 
     public Neurons(Body box)
@@ -24,7 +24,7 @@ public class Neurons {
         poly.setAsBox(weight,height);
         neuronFixture=box.createFixture(poly,0);
         poly.dispose();
-        body.setLinearVelocity(speed,0);
+        body.setLinearVelocity(Platform.speed,0);
     }
 
     public Body getBody() {

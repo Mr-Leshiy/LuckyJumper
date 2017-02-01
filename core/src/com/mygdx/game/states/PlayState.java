@@ -13,6 +13,8 @@ import com.mygdx.game.GameClass;
 import com.mygdx.game.GameObjects.MyWorld;
 import com.mygdx.game.GameObjects.Neurons;
 import com.mygdx.game.GameObjects.Platform;
+import com.mygdx.game.GameObjects.Platform1;
+import com.mygdx.game.GameObjects.StartPlatform;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 import com.mygdx.game.ObjectControls.NeuronPoints;
@@ -33,8 +35,9 @@ public class PlayState extends State{
      private Points score;
      private NeuronPoints neuronPoints;
      private PlayerAnimation player_animation;
-     private Texture platform2;
+     private Texture platform1;
      private Texture neuron;
+     private Texture start_platform;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
@@ -64,7 +67,8 @@ public class PlayState extends State{
 
             }
         });
-        platform2 = new Texture(URL.platfomr_2);
+        platform1 = new Texture(URL.platfomr_1);
+        start_platform = new Texture(URL.start_platform);
         neuron= new Texture(URL.neuron);
 
         staticbatch.setProjectionMatrix(static_camera.combined);
@@ -106,7 +110,7 @@ public class PlayState extends State{
         {
             world.changeActivelatforms();
         }
-        if(world.isPlayerDead())
+         if(world.isPlayerDead())
         {
             gsm.push(new GameOverState(gsm,this));
         }
@@ -160,10 +164,14 @@ public class PlayState extends State{
 
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        for(Platform pl:world.getPlatforms())
+        for(Platform pl:world.getPlatform1s())
         {
-            if((Boolean) pl.getBox().getUserData())
-            sb.draw(platform2,(pl.getBox().getPosition().x-pl.getWeight())*RATE,(pl.getBox().getPosition().y-pl.getHeight())*RATE);
+            if((Boolean) pl.getBox().getUserData()) {
+                if (pl instanceof Platform1)
+                    sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                if (pl instanceof StartPlatform)
+                    sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+            }
 
         }
         for(Neurons n:world.getNeurons())
@@ -190,8 +198,9 @@ public class PlayState extends State{
         world.getWorld().dispose();
         staticbatch.dispose();
         neuron.dispose();
-        platform2.dispose();
+        platform1.dispose();
         neuronPoints.dispose();
+        start_platform.dispose();
 
 
 
