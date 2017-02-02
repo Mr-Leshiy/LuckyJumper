@@ -53,13 +53,6 @@ public class Platform1 extends Platform {
         return height;
     }
 
-    public void increaseSpeed()
-    {
-        speed-=0.3f;
-        box.setLinearVelocity(speed,0);
-
-    }
-
     @Override
     public void destroyContactFixture()
     {

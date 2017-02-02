@@ -1,6 +1,5 @@
 package com.mygdx.game.states;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,55 +12,60 @@ import com.mygdx.game.ObjectControls.ButtonListener;
 import com.mygdx.game.ObjectControls.NeuronPoints;
 
 /**
- * Created by alexey on 05.01.17.
+ * Created by alexey on 02.02.17.
  */
 
-public class SettingsState extends State {
+public class BustersState extends State {
 
     private MenuBackground background;
-    private Button button_to_menu;
+    private Button button_back;
+    private NeuronPoints  neuronPoints;
 
-    public SettingsState(final GameStateManager gsm,final MenuBackground background)
+    public BustersState(final GameStateManager gsm,final MenuBackground background)
     {
         super(gsm);
-        this.background = background;
-        Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-40);
-        button_to_menu.setOnClickListener(new ButtonListener() {
+
+        this.background=background;
+        Texture[] mas = {new Texture(URL.button_back),new Texture(URL.button_back_pressed)};
+        button_back = new Button(mas,GameClass.WIDTH/2-mas[0].getWidth()/2,40);
+
+        button_back.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new MenuState(gsm,background));
-
+                gsm.set(new ShopState(gsm,background));
             }
         });
 
+        GameInformationFileHandler info = new GameInformationFileHandler();
+        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20,info.getNeuronsPoints());
     }
+
     @Override
     protected void handleInput() {
-        if(!Gdx.input.isTouched() && button_to_menu.isTouched)
+
+
+        if(!Gdx.input.isTouched() && button_back.isTouched)
         {
-            button_to_menu.isTouched=false;
-            button_to_menu.OnClick();
+            button_back.isTouched=false;
+            button_back.OnClick();
         }
+
 
 
         if(Gdx.input.justTouched())
         {
 
-            if(button_to_menu.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
+            if(button_back.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
-                button_to_menu.isTouched=true;
+                button_back.isTouched=true;
 
             }
-
         }
-
 
     }
 
     @Override
     public void update(float delta) {
-
         handleInput();
         background.update(delta);
 
@@ -71,14 +75,17 @@ public class SettingsState extends State {
     public void render(SpriteBatch sb) {
         sb.begin();
         background.render(sb);
-        button_to_menu.render(sb);
+        button_back.render(sb);
+        neuronPoints.render(sb);
         sb.end();
 
     }
 
     @Override
     public void dispose() {
-        button_to_menu.dispose();
+
+        button_back.dispose();
+        neuronPoints.dispose();
 
     }
 
@@ -91,5 +98,4 @@ public class SettingsState extends State {
     public void resume() {
 
     }
-
 }

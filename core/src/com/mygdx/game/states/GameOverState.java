@@ -40,7 +40,7 @@ public class GameOverState extends State {
             @Override
             public void onClickListener() {
                 gsm.pop();
-                gsm.set(new MenuState(gsm));
+                gsm.set(new MenuState(gsm,null));
 
             }
         });

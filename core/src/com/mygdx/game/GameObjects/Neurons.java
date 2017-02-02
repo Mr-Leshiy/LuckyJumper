@@ -41,4 +41,10 @@ public class Neurons {
     public Fixture getNeuronFixture() {
         return neuronFixture;
     }
+
+    public void increaseSpeed()
+    {
+        body.setLinearVelocity(Platform.speed,0);
+
+    }
 }

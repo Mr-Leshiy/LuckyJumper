@@ -52,7 +52,7 @@ public class PauseState extends State {
             @Override
             public void onClickListener() {
                 gsm.pop();
-                gsm.set(new MenuState(gsm));
+                gsm.set(new MenuState(gsm,null));
                 GameInformationFileHandler info = new GameInformationFileHandler();
                 info.setPoints(state.getScore());
                 info.setPoints(state.getNeuronPoints());
@@ -78,6 +78,9 @@ public class PauseState extends State {
         {
             button_to_menu.isTouched=false;
             button_to_menu.OnClick();
+            GameInformationFileHandler info = new GameInformationFileHandler();
+            info.setPoints(state.getScore());
+            info.addNeuronPoints(state.getNeuronPoints());
         }
 
 

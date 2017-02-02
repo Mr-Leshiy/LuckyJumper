@@ -30,7 +30,7 @@ public class GameClass extends ApplicationAdapter {
 		GameInformationFileHandler.createDocument();
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
-		gsm.push(new MenuState(gsm));
+		gsm.push(new MenuState(gsm,null));
 		CONST_HEIGHT=HEIGTH/Gdx.graphics.getHeight();
 		CONST_WIDTH=WIDTH/Gdx.graphics.getWidth();
 

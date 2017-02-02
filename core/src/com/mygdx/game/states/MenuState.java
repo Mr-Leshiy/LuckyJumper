@@ -20,15 +20,23 @@ public class MenuState extends State {  // Класс меню
     private MenuBackground background;
     private Button button_play;
     private Button button_settings;
+    private Button button_shop;
 
 
-    public MenuState(final GameStateManager gsm) {
+    public MenuState(final GameStateManager gsm,MenuBackground b) {
         super(gsm);
 
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
 
-        background = new MenuBackground();
+        if(b==null)
+        {
+            background = new MenuBackground();
+        }
+        else
+        {
+            background=b;
 
+        }
         Texture[] mas = {new Texture(URL.button_play),new Texture(URL.button_play_pressed)};
         button_play =new Button(mas,GameClass.WIDTH/2-mas[0].getWidth()/2,GameClass.HEIGTH/2+50);
         button_play.setOnClickListener(new ButtonListener() {
@@ -36,18 +44,30 @@ public class MenuState extends State {  // Класс меню
             public void onClickListener()
             {
                 gsm.set(new PlayState(gsm));
+                background.dispose();
             }
         });
 
         Texture[] mas2 = {new Texture(URL.button_setting),new Texture(URL.button_setting_pressed)};
-        button_settings =new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-50);
+        button_settings =new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-150);
         button_settings.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener()
             {
-                gsm.set(new SettingsState(gsm));
+                gsm.set(new SettingsState(gsm,background));
             }
         });
+
+        Texture[] mas3 = {new Texture(URL.button_shop),new Texture(URL.button_shop_pressed)};
+        button_shop = new Button(mas3,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-50);
+        button_shop.setOnClickListener(new ButtonListener() {
+            @Override
+            public void onClickListener() {
+                gsm.set(new ShopState(gsm,background));
+
+            }
+        });
+
 
 
     }
@@ -66,6 +86,11 @@ public class MenuState extends State {  // Класс меню
             button_settings.isTouched=false;
             button_settings.OnClick();
         }
+        if(!Gdx.input.isTouched() && button_shop.isTouched)
+        {
+            button_shop.isTouched=false;
+            button_shop.OnClick();
+        }
 
 
         if(Gdx.input.justTouched())
@@ -81,6 +106,12 @@ public class MenuState extends State {  // Класс меню
                 button_settings.isTouched=true;
 
             }
+            if(button_shop.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
+            {
+                button_shop.isTouched=true;
+
+            }
+
 
         }
 
@@ -90,7 +121,6 @@ public class MenuState extends State {  // Класс меню
 
     @Override
     public void update(float delta) {
-        camera.update();
         handleInput();
         background.update(delta);
     }
@@ -103,15 +133,16 @@ public class MenuState extends State {  // Класс меню
         background.render(sb);
         button_play.render(sb);
         button_settings.render(sb);
+        button_shop.render(sb);
         sb.end();
     }
 
     @Override
     public void dispose() {
 
-        background.dispose();
         button_play.dispose();
         button_settings.dispose();
+        button_shop.dispose();
     }
 
     @Override

@@ -21,6 +21,16 @@ public class URL {
     final static public String button_resume="buttons/button_resume.png";
     final static public String button_resume_pressed="buttons/button_resume_pressed.png";
 
+    final static public String button_shop="buttons/button_shop.png";
+    final static public String button_shop_pressed="buttons/button_shop_pressed.png";
+
+    final static public String shop_button_busters="buttons/shop_button_busters.png";
+    final static public String shop_button_busters_pressed="buttons/shop_button_busters_pressed.png";
+
+    final static public String button_back="buttons/button_back.png";
+    final static public String button_back_pressed="buttons/button_back_pressed.png";
+
+
     // Бэкграунды
     final static public String menu_state_bg="backgrounds/menu_background.png";
 

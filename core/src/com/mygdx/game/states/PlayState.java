@@ -142,8 +142,13 @@ public class PlayState extends State{
         if(world.isContact)
         {
             score.addPoints();
+            if(score.getPoints()%20==0)
+            {
+                world.inncreaseSpeed();
+            }
             world.isContact=false;
         }
+
 
 
 
@@ -201,8 +206,6 @@ public class PlayState extends State{
         platform1.dispose();
         neuronPoints.dispose();
         start_platform.dispose();
-
-
 
     }
 

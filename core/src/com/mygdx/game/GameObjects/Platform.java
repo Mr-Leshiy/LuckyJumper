@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public abstract class Platform {
 
     protected Body box;
-    public static float speed=-1.8f;
+    public static float speed;
 
     public Platform(Body box)
     {
@@ -23,5 +23,19 @@ public abstract class Platform {
     abstract public void destroyContactFixture();
     abstract public float getWeight();
     abstract public float getHeight();
+    public static void increaseSpeed()
+    {
+        speed-=0.5f;
+    }
+
+    public void setSpeed()
+    {
+        box.setLinearVelocity(speed,0);
+    }
+    public static void resetsSpeed()
+    {
+        speed=-2.2f;
+
+    }
 
 }

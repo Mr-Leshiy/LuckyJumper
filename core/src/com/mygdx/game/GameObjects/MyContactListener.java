@@ -73,6 +73,19 @@ public class MyContactListener implements ContactListener {
 
         }
 
+        if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('n'))
+        {
+            contact.setEnabled(false);
+            contact.getFixtureA().getBody().setUserData('d');
+
+        }
+        if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('n')) {
+
+            contact.setEnabled(false);
+            contact.getFixtureB().getBody().setUserData('d');
+        }
+
+
 
     }
 
@@ -82,17 +95,6 @@ public class MyContactListener implements ContactListener {
 
         if(contact.getFixtureA()==world.getPlayer().getPlayerPhysicsFixture() || contact.getFixtureB()==world.getPlayer().getPlayerPhysicsFixture()) {
 
-            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('n'))
-            {
-                contact.getFixtureA().getBody().setUserData('d');
-
-            }
-            if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('n')) {
-
-                contact.getFixtureB().getBody().setUserData('d');
-
-            }
-
 
             if (contact.getFixtureA().getUserData() != null && contact.getFixtureA().getUserData().equals('c'))
             {
@@ -101,6 +103,7 @@ public class MyContactListener implements ContactListener {
 
             }
             if (contact.getFixtureB().getUserData() != null  && contact.getFixtureB().getUserData().equals('c')) {
+
 
                 contact.getFixtureB().setUserData('d');
 
