@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.states.PlayState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +23,16 @@ public class MyWorld {
     private Body endWorld;
     boolean playerDead;
     private List<Neurons> neurons;
-
     public boolean isDelete=false;
     public boolean isContact=false;
-    private final static float T=0.5f;
+    private final static float T=0;
     private float platformSpawn_X;
     private float platformSpawn_Y;
+    private Clock clock;
+    boolean isTimeActive;
 
-    public Player getPlayer() {
-        return player;
-    }
+    private float time= PlayState.time;
+
 
     public MyWorld()
     {
@@ -42,10 +43,6 @@ public class MyWorld {
         platforms = new ArrayList<Platform>();
         neurons= new ArrayList<Neurons>();
         createWorld();
-    }
-
-    public List<Neurons> getNeurons() {
-        return neurons;
     }
 
     private void createWorld()
@@ -74,11 +71,32 @@ public class MyWorld {
         platformSpawn_X=platform1.getWeight()+platform1.getBox().getPosition().x;
         platformSpawn_Y=platform1.getBox().getPosition().y;
 
+        isTimeActive=false;
     }
 
     public List<Platform> getPlatform1s()
     {
         return platforms;
+    }
+
+    public Clock getClock() {
+        return clock;
+    }
+
+    public List<Neurons> getNeurons() {
+        return neurons;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public boolean isTimeActive() {
+        return isTimeActive;
+    }
+
+    public float getTime() {
+        return time/PlayState.time;
     }
 
     public void update(float delta)
@@ -123,18 +141,45 @@ public class MyWorld {
             }
 
 
-            if(random.nextInt(100)<80)
+            if(random.nextInt(100)<50)
             {
                 addNeuron(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
                         , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
 
             }
+            else {
+
+                if (random.nextInt()<20) {
+
+                    addClock(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
+                            , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
+
+                }
+            }
         }
 
         platformSpawn_X=platforms.get(platforms.size()-1).getBox().getPosition().x+platforms.get(platforms.size() - 1).getWeight();
-
         deleteNeurons();
-        world.step(delta,4,4);
+        deleteCLock();
+
+        if(isTimeActive)
+        {
+
+            time-=delta;
+            world.step(delta/2,4,4);
+
+        }
+        else
+        {
+            world.step(delta,4,4);
+
+        }
+        if(time<0)
+        {
+            time=PlayState.time;
+            isTimeActive=false;
+        }
+
 
     }
 
@@ -193,6 +238,18 @@ public class MyWorld {
 
     }
 
+    public void deleteCLock()
+    {
+        if(clock!=null && (isTimeActive || clock.getBody().getPosition().x<-5))
+        {
+            clock.getBody().setActive(false);
+            world.destroyBody(clock.getBody());
+            clock=null;
+
+        }
+
+    }
+
 
     public void addNeuron(float x,float y)
     {
@@ -203,6 +260,20 @@ public class MyWorld {
         body.setUserData('n');
         Neurons neuron = new Neurons(body);
         neurons.add(neuron);
+    }
+
+    public void addClock(float x, float y)
+    {
+        if (clock == null && !isTimeActive)
+        {
+        BodyDef def = new BodyDef();
+        def.type = BodyDef.BodyType.KinematicBody;
+        Body body = world.createBody(def);
+        body.setTransform(x, y, 0);
+        body.setUserData('t');
+        clock = new Clock(body);
+        }
+
     }
     public void addPlatform(float x, float y)
     {
@@ -264,7 +335,7 @@ public class MyWorld {
 
     public void inncreaseSpeed()
     {
-      Platform.increaseSpeed();
+        Platform.increaseSpeed();
         for(Platform pl:platforms)
         {
             pl.setSpeed();
@@ -273,6 +344,8 @@ public class MyWorld {
         {
             n.increaseSpeed();
         }
+
+        clock.increaseSpeed();
 
     }
 

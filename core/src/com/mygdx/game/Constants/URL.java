@@ -24,8 +24,8 @@ public class URL {
     final static public String button_shop="buttons/button_shop.png";
     final static public String button_shop_pressed="buttons/button_shop_pressed.png";
 
-    final static public String shop_button_busters="buttons/shop_button_busters.png";
-    final static public String shop_button_busters_pressed="buttons/shop_button_busters_pressed.png";
+    final static public String shop_button_boosters="buttons/shop_button_boosters.png";
+    final static public String shop_button_boosters_pressed="buttons/shop_button_boosters_pressed.png";
 
     final static public String button_back="buttons/button_back.png";
     final static public String button_back_pressed="buttons/button_back_pressed.png";
@@ -60,6 +60,9 @@ public class URL {
     //другие спрайты
     final static public String neuron="Neurons.png";
     final static public String neuron_points="Neurons2.png";
+    final static public String clock="clock.png";
+    final static public String time_line="time_line.png";
+    final static public String time_line_frame="time_line_frame.png";
 
 
 

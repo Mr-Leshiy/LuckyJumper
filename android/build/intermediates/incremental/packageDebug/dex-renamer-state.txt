@@ -1,4 +1,4 @@
-#Thu Feb 02 19:56:33 EET 2017
+#Fri Feb 03 12:36:26 EET 2017
 base.0=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

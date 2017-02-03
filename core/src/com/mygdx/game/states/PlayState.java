@@ -38,12 +38,16 @@ public class PlayState extends State{
      private Texture platform1;
      private Texture neuron;
      private Texture start_platform;
+     private Texture clock;
+     private Texture time_line;
+     private Texture time_line_frame;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
      private Box2DDebugRenderer b2rd;
      private FPSLogger fpslog;
      private boolean isIncressed=false;
+     public static float time=10;
 
     public PlayState(final GameStateManager gsm)
     {
@@ -70,7 +74,9 @@ public class PlayState extends State{
         platform1 = new Texture(URL.platfomr_1);
         start_platform = new Texture(URL.start_platform);
         neuron= new Texture(URL.neuron);
-
+        clock = new Texture(URL.clock);
+        time_line = new Texture(URL.time_line);
+        time_line_frame = new Texture(URL.time_line_frame);
         staticbatch.setProjectionMatrix(static_camera.combined);
         b2rd = new Box2DDebugRenderer();
         fpslog = new FPSLogger();
@@ -149,9 +155,6 @@ public class PlayState extends State{
             world.isContact=false;
         }
 
-
-
-
     }
 
     @Override
@@ -163,6 +166,12 @@ public class PlayState extends State{
         button_pause.render(staticbatch);
         neuronPoints.render(staticbatch);
         score.render(staticbatch);
+
+        if(world.isTimeActive())
+        {
+            staticbatch.draw(time_line,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,world.getTime()*time_line.getWidth(),time_line.getHeight());
+            staticbatch.draw(time_line_frame,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,time_line_frame.getWidth(),time_line_frame.getHeight());
+        }
 
 
         staticbatch.end();
@@ -184,11 +193,16 @@ public class PlayState extends State{
             sb.draw(neuron,(n.getBody().getPosition().x-n.getWeight())*RATE,(n.getBody().getPosition().y-n.getHeight())*RATE);
 
         }
+        if(world.getClock()!=null)
+        {
+            sb.draw(clock,(world.getClock().getBody().getPosition().x-world.getClock().getWeight())*RATE,
+                    (world.getClock().getBody().getPosition().y-world.getClock().getHeight())*RATE);
 
+        }
 
         player_animation.render(sb);
         sb.end();
-        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+      //  b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
         fpslog.log();
 
     }
@@ -206,6 +220,9 @@ public class PlayState extends State{
         platform1.dispose();
         neuronPoints.dispose();
         start_platform.dispose();
+        clock.dispose();
+        time_line.dispose();
+        time_line_frame.dispose();
 
     }
 

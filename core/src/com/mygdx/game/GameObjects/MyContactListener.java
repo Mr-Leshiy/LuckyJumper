@@ -85,6 +85,18 @@ public class MyContactListener implements ContactListener {
             contact.getFixtureB().getBody().setUserData('d');
         }
 
+        if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('t'))
+        {
+            contact.setEnabled(false);
+            contact.getFixtureA().getBody().setUserData('e');
+
+        }
+        if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('t')) {
+
+            contact.setEnabled(false);
+            world.isTimeActive=true;
+        }
+
 
 
     }

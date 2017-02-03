@@ -20,7 +20,7 @@ public class ShopState extends State {
     private MenuBackground background;
     private NeuronPoints neuronPoints;
     private Button button_to_menu;
-    private Button button_busters;
+    private Button button_boosters;
 
     public ShopState(final GameStateManager gsm, final MenuBackground background)
     {
@@ -38,9 +38,9 @@ public class ShopState extends State {
             }
         });
 
-        Texture[] mas2 = {new Texture(URL.shop_button_busters),new Texture(URL.shop_button_busters_pressed)};
-        button_busters = new Button(mas2, 150,GameClass.HEIGTH-200);
-        button_busters.setOnClickListener(new ButtonListener() {
+        Texture[] mas2 = {new Texture(URL.shop_button_boosters),new Texture(URL.shop_button_boosters_pressed)};
+        button_boosters = new Button(mas2, 150,GameClass.HEIGTH-200);
+        button_boosters.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
 
@@ -64,10 +64,10 @@ public class ShopState extends State {
             button_to_menu.isTouched=false;
             button_to_menu.OnClick();
         }
-        if(!Gdx.input.isTouched() && button_busters.isTouched)
+        if(!Gdx.input.isTouched() && button_boosters.isTouched)
         {
-            button_busters.isTouched=false;
-            button_busters.OnClick();
+            button_boosters.isTouched=false;
+            button_boosters.OnClick();
         }
 
 
@@ -80,9 +80,9 @@ public class ShopState extends State {
                 button_to_menu.isTouched=true;
 
             }
-            if(button_busters.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
+            if(button_boosters.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
-                button_busters.isTouched=true;
+                button_boosters.isTouched=true;
 
             }
         }
@@ -104,7 +104,7 @@ public class ShopState extends State {
         background.render(sb);
         neuronPoints.render(sb);
         button_to_menu.render(sb);
-        button_busters.render(sb);
+        button_boosters.render(sb);
         sb.end();
 
     }
@@ -113,7 +113,7 @@ public class ShopState extends State {
     public void dispose() {
 
         neuronPoints.dispose();
-        button_busters.dispose();
+        button_boosters.dispose();
         button_to_menu.dispose();
 
 
