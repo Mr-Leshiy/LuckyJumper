@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.Backgrounds.PauseStateBackground;
@@ -25,6 +26,8 @@ public class PauseState extends State {
     private Button button_resume;
     private Button button_to_menu;
     private int score;
+    private GlyphLayout layout1;
+    private GlyphLayout layout2;
 
 
     public PauseState(final GameStateManager gsm,final PlayState state)
@@ -60,7 +63,10 @@ public class PauseState extends State {
             }
         });
 
-
+        layout1 = new GlyphLayout();
+        layout1.setText(font_score,"Your score");
+        layout2 = new GlyphLayout();
+        layout2.setText(font_score,Integer.toString(score));
 
 
     }
@@ -117,8 +123,8 @@ public class PauseState extends State {
         backGround.render(sb);
         button_to_menu.render(sb);
         button_resume.render(sb);
-        font_score.draw(sb,"Your score",GameClass.WIDTH/2-100,GameClass.HEIGTH-20);
-        font_score.draw(sb,Integer.toString(score),GameClass.WIDTH/2-30,GameClass.HEIGTH-50);
+        font_score.draw(sb,"Your score",GameClass.WIDTH/2-layout1.width/2,GameClass.HEIGTH-20);
+        font_score.draw(sb,Integer.toString(score),GameClass.WIDTH/2-layout2.width/2,GameClass.HEIGTH-50);
 
         sb.end();
 

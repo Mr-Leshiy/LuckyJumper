@@ -61,7 +61,7 @@ public class PlayState extends State{
         background = new PlayStateBackgound();
         player_animation = new PlayerAnimation(world.getPlayer());
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
-        score = new Points(GameClass.WIDTH/2-80,GameClass.HEIGTH-20);
+        score = new Points(GameClass.WIDTH/2,GameClass.HEIGTH-20);
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20,0);
         button_pause = new Button(mas,10,GameClass.HEIGTH-50);
         button_pause.setOnClickListener(new ButtonListener() {

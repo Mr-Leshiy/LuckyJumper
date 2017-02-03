@@ -46,9 +46,6 @@ public class URL {
     final static public String player_walk_1="player/player_walk1.png";
     final static public String player_walk_2="player/player_walk2.png";
 
-
-
-
     //Шрифты
     final static public String font_Free_mono_bold="fonts/FreeMonoBold.ttf";
 

@@ -3,6 +3,7 @@ package com.mygdx.game.ObjectControls;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
@@ -19,13 +20,17 @@ public class Points extends ObjectControl {
 
     private BitmapFont font_points;
     private int points;
+    private GlyphLayout layout;
 
     public Points(float x,float y)
     {
         super(new Rectangle(x,y,0,0));
 
-       initializeFontStyle();
+        layout =new GlyphLayout();
+        initializeFontStyle();
         points=0;
+        layout.setText(font_points,"score: "+Integer.toString(points));
+
 
     }
 
@@ -37,15 +42,14 @@ public class Points extends ObjectControl {
 
     @Override
     public void render(SpriteBatch sb) {
-        font_points.draw(sb, "score: "+Integer.toString(points),object.getX(),object.getY());
+
+        font_points.draw(sb, "score: "+Integer.toString(points),object.getX()-layout.width/2,object.getY());
 
     }
 
     @Override
     public void dispose() {
-
         font_points.dispose();
-
     }
 
 
@@ -65,6 +69,7 @@ public class Points extends ObjectControl {
     public void addPoints()
     {
         points++;
+        layout.setText(font_points,"score: "+Integer.toString(points));
     }
 
     public int getPoints() {

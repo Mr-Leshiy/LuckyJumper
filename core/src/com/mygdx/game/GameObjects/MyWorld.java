@@ -205,12 +205,7 @@ public class MyWorld {
                 isContact=true;
 
             }
-
-
         }
-
-
-
     }
 
     public void deleteNeurons()
@@ -233,8 +228,6 @@ public class MyWorld {
             }
 
         }
-
-
 
     }
 

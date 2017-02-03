@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.Backgrounds.PauseStateBackground;
@@ -25,6 +26,9 @@ public class GameOverState extends State {
     private BitmapFont message;
     private PauseStateBackground backgound;
     private Button button_to_menu;
+    private GlyphLayout layout1;
+    private GlyphLayout layout2;
+    private GlyphLayout layout3;
 
 
 
@@ -49,6 +53,15 @@ public class GameOverState extends State {
         GameInformationFileHandler info = new GameInformationFileHandler();
         info.setPoints(state.getScore());
         info.addNeuronPoints(state.getNeuronPoints());
+
+        layout1= new GlyphLayout();
+        layout1.setText(message,"GAME OVER");
+        layout2= new GlyphLayout();
+        layout2.setText(message,"Your score");
+        layout3 = new GlyphLayout();
+        layout3.setText(message,Integer.toString(state.getScore()));
+
+
 
 
     }
@@ -93,9 +106,9 @@ public class GameOverState extends State {
         sb.begin();
         backgound.render(sb);
         button_to_menu.render(sb);
-        message.draw(sb,"GAME OVER",GameClass.WIDTH/2-100,GameClass.HEIGTH-20);
-        message.draw(sb,"Your score",GameClass.WIDTH/2-100,GameClass.HEIGTH-80);
-        message.draw(sb,Integer.toString(state.getScore()),GameClass.WIDTH/2-30,GameClass.HEIGTH-110);
+        message.draw(sb,"GAME OVER",GameClass.WIDTH/2-layout1.width/2,GameClass.HEIGTH-20);
+        message.draw(sb,"Your score",GameClass.WIDTH/2-layout2.width/2,GameClass.HEIGTH-80);
+        message.draw(sb,Integer.toString(state.getScore()),GameClass.WIDTH/2-layout3.width/2,GameClass.HEIGTH-110);
         sb.end();
 
     }
