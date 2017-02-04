@@ -14,6 +14,9 @@ import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Created by alexey on 10.01.17.
  */
@@ -84,9 +87,21 @@ public class PauseState extends State {
         {
             button_to_menu.isTouched=false;
             button_to_menu.OnClick();
-            GameInformationFileHandler info = new GameInformationFileHandler();
-            info.setPoints(state.getScore());
-            info.addNeuronPoints(state.getNeuronPoints());
+            final GameInformationFileHandler info = new GameInformationFileHandler();
+
+            ExecutorService exec = Executors.newCachedThreadPool();
+
+            exec.execute(new Runnable() {
+                @Override
+                public void run() {
+                    info.setPoints(state.getScore());
+                    info.addNeuronPoints(state.getNeuronPoints());
+                }
+            });
+
+            exec.shutdown();
+
+
         }
 
 
@@ -125,7 +140,6 @@ public class PauseState extends State {
         button_resume.render(sb);
         font_score.draw(sb,"Your score",GameClass.WIDTH/2-layout1.width/2,GameClass.HEIGTH-20);
         font_score.draw(sb,Integer.toString(score),GameClass.WIDTH/2-layout2.width/2,GameClass.HEIGTH-50);
-
         sb.end();
 
 

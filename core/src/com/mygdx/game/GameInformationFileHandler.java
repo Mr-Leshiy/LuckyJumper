@@ -6,6 +6,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
+import java.util.concurrent.*;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -37,9 +39,6 @@ public class GameInformationFileHandler {
         {
             e.printStackTrace();
         }
-
-
-
     }
 
 
@@ -96,6 +95,7 @@ public class GameInformationFileHandler {
     {
         Node points_node = document.getElementsByTagName("neuron_points").item(0);
         return Integer.valueOf(points_node.getTextContent());
+
     }
 
     public static void createDocument()
@@ -123,10 +123,6 @@ public class GameInformationFileHandler {
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(new DOMSource(document), new StreamResult(fileHandle.file()));
-
-
-
-
     }
 
         catch (Exception e)
@@ -137,9 +133,6 @@ public class GameInformationFileHandler {
 
 
     }
-
-
-
 
 
 }

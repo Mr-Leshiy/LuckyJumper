@@ -15,6 +15,9 @@ import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 /**
  * Created by alexey on 29.01.17.
@@ -50,9 +53,19 @@ public class GameOverState extends State {
         });
 
 
-        GameInformationFileHandler info = new GameInformationFileHandler();
-        info.setPoints(state.getScore());
-        info.addNeuronPoints(state.getNeuronPoints());
+        final GameInformationFileHandler info = new GameInformationFileHandler();
+
+        ExecutorService exec = Executors.newCachedThreadPool();
+
+        exec.execute(new Runnable() {
+            @Override
+            public void run() {
+                info.setPoints(state.getScore());
+                info.addNeuronPoints(state.getNeuronPoints());
+            }
+        });
+
+        exec.shutdown();
 
         layout1= new GlyphLayout();
         layout1.setText(message,"GAME OVER");

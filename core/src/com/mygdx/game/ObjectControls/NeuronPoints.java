@@ -23,13 +23,13 @@ public class NeuronPoints extends ObjectControl {
     private int points;
     private GlyphLayout layout;
 
-    public NeuronPoints(float x, float y,int points)
+    public NeuronPoints(float x, float y)
     {
         super(new Rectangle(x,y,0,0));
         neuron_texture = new Texture(URL.neuron_points);
         layout=new GlyphLayout();
         initializeFontStyle();
-        this.points=points;
+        this.points=0;
 
     }
 
@@ -74,6 +74,12 @@ public class NeuronPoints extends ObjectControl {
         font_points=generator.generateFont(parameter);
         generator.dispose();
 
+
+    }
+
+    public void setPoint(int points)
+    {
+        this.points=points;
 
     }
 

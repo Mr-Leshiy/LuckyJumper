@@ -11,6 +11,9 @@ import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 import com.mygdx.game.ObjectControls.NeuronPoints;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Created by alexey on 02.02.17.
  */
@@ -36,8 +39,18 @@ public class BustersState extends State {
             }
         });
 
-        GameInformationFileHandler info = new GameInformationFileHandler();
-        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20,info.getNeuronsPoints());
+        final GameInformationFileHandler info = new GameInformationFileHandler();
+        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
+
+        ExecutorService exec = Executors.newCachedThreadPool();
+
+        exec.execute(new Runnable() {
+            @Override
+            public void run() {
+                neuronPoints.setPoint(info.getNeuronsPoints());
+            }
+        });
+        exec.shutdown();
     }
 
     @Override

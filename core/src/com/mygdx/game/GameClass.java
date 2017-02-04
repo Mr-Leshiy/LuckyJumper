@@ -34,7 +34,6 @@ public class GameClass extends ApplicationAdapter {
 		CONST_HEIGHT=HEIGTH/Gdx.graphics.getHeight();
 		CONST_WIDTH=WIDTH/Gdx.graphics.getWidth();
 
-
 	}
 
 	@Override

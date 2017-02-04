@@ -33,7 +33,7 @@ public class MyWorld {
 
     private float time= PlayState.time;
 
-
+    
     public MyWorld()
     {
         world = new World(new Vector2(0,-10f),true);
@@ -338,7 +338,9 @@ public class MyWorld {
             n.increaseSpeed();
         }
 
-        clock.increaseSpeed();
+        if(clock!=null) {
+            clock.increaseSpeed();
+        }
 
     }
 
