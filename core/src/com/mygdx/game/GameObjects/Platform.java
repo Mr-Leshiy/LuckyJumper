@@ -25,7 +25,7 @@ public abstract class Platform {
     abstract public float getHeight();
     public static void increaseSpeed()
     {
-        speed-=0.5f;
+        speed-=0.1f;
     }
 
     public void setSpeed()
@@ -34,7 +34,7 @@ public abstract class Platform {
     }
     public static void resetsSpeed()
     {
-        speed=-2.2f;
+        speed=-2f;
 
     }
 

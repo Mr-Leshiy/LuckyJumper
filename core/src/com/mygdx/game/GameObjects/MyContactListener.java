@@ -56,6 +56,7 @@ public class MyContactListener implements ContactListener {
        {
            if(!(Boolean) contact.getFixtureA().getBody().getUserData())
            {
+
                contact.setEnabled(false);
 
            }
@@ -98,6 +99,20 @@ public class MyContactListener implements ContactListener {
         }
 
 
+        if (contact.isEnabled() && (contact.getFixtureA().getUserData() != null && contact.getFixtureA().getUserData().equals('c')))
+        {
+            contact.setEnabled(false);
+            contact.getFixtureA().setUserData('d');
+
+        }
+        if (contact.isEnabled() && (contact.getFixtureB().getUserData() != null  && contact.getFixtureB().getUserData().equals('c'))) {
+
+            contact.setEnabled(false);
+            contact.getFixtureB().setUserData('d');
+
+        }
+
+
 
     }
 
@@ -105,23 +120,8 @@ public class MyContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
 
-        if(contact.getFixtureA()==world.getPlayer().getPlayerPhysicsFixture() || contact.getFixtureB()==world.getPlayer().getPlayerPhysicsFixture()) {
 
 
-            if (contact.getFixtureA().getUserData() != null && contact.getFixtureA().getUserData().equals('c'))
-            {
-
-                contact.getFixtureA().setUserData('d');
-
-            }
-            if (contact.getFixtureB().getUserData() != null  && contact.getFixtureB().getUserData().equals('c')) {
-
-
-                contact.getFixtureB().setUserData('d');
-
-            }
-
-        }
 
     }
 }

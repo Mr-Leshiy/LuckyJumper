@@ -109,19 +109,19 @@ public class MyWorld {
 
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X- Platform1.speed+T,platformSpawn_Y +0.8f);
+                addPlatform(platformSpawn_X- Platform1.speed+T,platformSpawn_Y +1f);
                 platformSpawn_Y+=0.8f;
 
             }
             else
             {
                 if((platformSpawn_Y-0.8f)>0) {
-                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 0.8f);
+                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 1f);
                     platformSpawn_Y -= 0.8f;
                 }
                 else
                 {
-                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 0.8f);
+                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 1f);
                     platformSpawn_Y += 0.8f;
 
                 }
@@ -129,13 +129,13 @@ public class MyWorld {
             }
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 1.6f);
+                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 2f);
 
             }
             if (random.nextBoolean())
             {
-                if((platformSpawn_Y)-1.6f>0)
-                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 1.6f);
+                if((platformSpawn_Y)-2f>0)
+                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 2f);
 
 
             }
@@ -210,23 +210,22 @@ public class MyWorld {
 
     public void deleteNeurons()
     {
-        for(int i=0;i<neurons.size();i++)
-        {
-            if(neurons.get(i).getBody().getPosition().x<-5)
-            {
-                neurons.get(i).getBody().setActive(false);
-                world.destroyBody(neurons.get(i).getBody());
-                neurons.remove(i);
+        if(neurons.size()>0) {
+            for (int i = 0; i < neurons.size(); i++) {
+                if (neurons.get(i).getBody().getPosition().x < -5) {
+                    neurons.get(i).getBody().setActive(false);
+                    world.destroyBody(neurons.get(i).getBody());
+                    neurons.remove(i);
+
+                }
+                if (neurons.get(i).getBody().getUserData().equals('d')) {
+                    neurons.get(i).getBody().setActive(false);
+                    world.destroyBody(neurons.get(i).getBody());
+                    neurons.remove(i);
+                    isDelete = true;
+                }
 
             }
-            if( neurons.get(i).getBody().getUserData().equals('d'))
-            {
-                neurons.get(i).getBody().setActive(false);
-                world.destroyBody(neurons.get(i).getBody());
-                neurons.remove(i);
-                isDelete=true;
-            }
-
         }
 
     }

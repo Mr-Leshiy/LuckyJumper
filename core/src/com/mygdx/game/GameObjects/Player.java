@@ -46,7 +46,7 @@ public class Player {
     public void update(float delta)
     {
         oldY=box.getPosition().y;
-        box.setTransform(3.5f,box.getPosition().y,0);
+        box.setTransform(2.7f,box.getPosition().y,0);
 
 
     }
@@ -57,7 +57,7 @@ public class Player {
 
     public void jump()
     {
-        box.applyLinearImpulse(0f,2.5F,box.getPosition().x,box.getPosition().y,true);
+        box.applyLinearImpulse(0f,2.8F,box.getPosition().x,box.getPosition().y,true);
     }
     public float getWeight() {
         return weight;
