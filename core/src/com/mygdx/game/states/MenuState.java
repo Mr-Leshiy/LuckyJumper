@@ -9,6 +9,8 @@ import com.mygdx.game.GameClass;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -21,6 +23,7 @@ public class MenuState extends State {  // Класс меню
     private Button button_play;
     private Button button_settings;
     private Button button_shop;
+
 
 
     public MenuState(final GameStateManager gsm,MenuBackground b) {

@@ -52,20 +52,9 @@ public class ShopState extends State {
         });
 
 
-        final GameInformationFileHandler info = new GameInformationFileHandler();
+        GameInformationFileHandler info = new GameInformationFileHandler();
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
-
-        ExecutorService exec = Executors.newCachedThreadPool();
-
-        exec.execute(new Runnable() {
-            @Override
-            public void run() {
-
-                neuronPoints.setPoint(info.getNeuronsPoints());
-            }
-        });
-
-        exec.shutdown();
+        neuronPoints.setPoint(info.getNeuronsPoints());
 
 
     }
