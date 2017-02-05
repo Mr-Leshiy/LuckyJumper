@@ -28,5 +28,12 @@ public abstract class ObjectControl {
     public abstract void render(SpriteBatch sb); // Отрисовка
     public abstract void dispose();
 
+    public void moveTo(float deltaX,float deltaY)
+    {
+        object.setX(object.x+deltaX);
+        object.setY(object.y+deltaY);
+
+    }
+
 
 }

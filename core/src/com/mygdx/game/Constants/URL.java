@@ -30,6 +30,10 @@ public class URL {
     final static public String button_back="buttons/button_back.png";
     final static public String button_back_pressed="buttons/button_back_pressed.png";
 
+    final static public String shop_button_clock_boosters="buttons/shop_button_clock_booster.png";
+    final static public String shop_button_clock_boosters_pressed="buttons/shop_button_clock_booster_pressed.png";
+
+
 
     // Бэкграунды
     final static public String menu_state_bg="backgrounds/menu_background.png";
@@ -37,10 +41,13 @@ public class URL {
     final static public String play_state_background1="backgrounds/play_background1.png";
     final static public String play_state_background2="backgrounds/play_background2.png";
 
-
     final static public String pause_state_background="backgrounds/darker.png";
 
     final static public String quad="backgrounds/quad.png";
+
+    final static public String shop_item_background="backgrounds/shop_item_background.png";
+
+    final static public String scrool_box_border="backgrounds/scrool_box_border.png";
 
     //Модель персонажа
     final static public String player_walk_1="player/player_walk1.png";
@@ -60,6 +67,8 @@ public class URL {
     final static public String clock="clock.png";
     final static public String time_line="time_line.png";
     final static public String time_line_frame="time_line_frame.png";
+    final static public String shop_booster_level_active="shop_booster_level_active.png";
+    final static public String shop_booster_level_non_active="shop_booster_level_non_active.png";
 
 
 

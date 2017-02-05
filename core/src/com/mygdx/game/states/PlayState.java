@@ -199,7 +199,7 @@ public class PlayState extends State{
 
         player_animation.render(sb);
         sb.end();
-        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+      //  b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
         fpslog.log();
 
     }

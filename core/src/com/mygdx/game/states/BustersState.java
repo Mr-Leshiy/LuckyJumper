@@ -10,6 +10,8 @@ import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 import com.mygdx.game.ObjectControls.NeuronPoints;
+import com.mygdx.game.ObjectControls.ScrollingBox;
+import com.mygdx.game.ObjectControls.ShopBoostersItem;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,6 +25,8 @@ public class BustersState extends State {
     private MenuBackground background;
     private Button button_back;
     private NeuronPoints  neuronPoints;
+    private ShopBoostersItem clock_item;
+    private ScrollingBox scbox;
 
     public BustersState(final GameStateManager gsm,final MenuBackground background)
     {
@@ -42,6 +46,11 @@ public class BustersState extends State {
         GameInformationFileHandler info = new GameInformationFileHandler();
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
         neuronPoints.setPoint(info.getNeuronsPoints());
+        clock_item= new ShopBoostersItem(0,0,new Texture[]{new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)});
+
+        scbox= new ScrollingBox(GameClass.WIDTH/2,120);
+        scbox.addObject(clock_item);
+        scbox.addObject(new ShopBoostersItem(0,0,new Texture[]{new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)}));
     }
 
     @Override
@@ -66,6 +75,8 @@ public class BustersState extends State {
             }
         }
 
+        clock_item.ButtonClickHandle();
+
     }
 
     @Override
@@ -82,6 +93,9 @@ public class BustersState extends State {
         button_back.render(sb);
         neuronPoints.render(sb);
         sb.end();
+        scbox.render(sb);
+
+
 
     }
 
@@ -90,6 +104,7 @@ public class BustersState extends State {
 
         button_back.dispose();
         neuronPoints.dispose();
+        scbox.dispose();
 
     }
 
@@ -102,4 +117,5 @@ public class BustersState extends State {
     public void resume() {
 
     }
+
 }
