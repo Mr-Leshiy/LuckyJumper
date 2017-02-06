@@ -115,14 +115,12 @@ public class ScrollingBox extends ObjectControl {
         @Override
         public boolean pan(float x, float y, float deltaX, float deltaY) {
 
-            if(objects.get(objects.size()-1).object.y+deltaY<maxY && objects.get(0).object.y+deltaY>minY) {
+            if(objects.get(objects.size()-1).object.y-deltaY<maxY && objects.get(0).object.y-deltaY>minY) {
                 for (ObjectControl objectControl : objects) {
-                        objectControl.moveTo(0, deltaY);
+                        objectControl.moveTo(0, -deltaY);
                     }
 
                 }
-
-
             return false;
         }
 

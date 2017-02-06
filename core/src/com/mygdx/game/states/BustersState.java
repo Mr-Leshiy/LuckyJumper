@@ -13,8 +13,6 @@ import com.mygdx.game.ObjectControls.NeuronPoints;
 import com.mygdx.game.ObjectControls.ScrollingBox;
 import com.mygdx.game.ObjectControls.ShopBoostersItem;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by alexey on 02.02.17.
@@ -42,15 +40,39 @@ public class BustersState extends State {
                 gsm.set(new ShopState(gsm,background));
             }
         });
-
-        GameInformationFileHandler info = new GameInformationFileHandler();
+        scbox= new ScrollingBox(GameClass.WIDTH/2,120);
+        final GameInformationFileHandler info = new GameInformationFileHandler();
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
         neuronPoints.setPoint(info.getNeuronsPoints());
-        clock_item= new ShopBoostersItem(0,0,new Texture[]{new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)});
 
-        scbox= new ScrollingBox(GameClass.WIDTH/2,120);
+        Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
+        clock_item= new ShopBoostersItem(0,0, m,info.getPrice("clockItem"),info.getLevel("clockItem"));
+
+        clock_item.setOnClickBuuttonListener(new ButtonListener() {
+            @Override
+            public void onClickListener() {
+
+                if(neuronPoints.getPoints()>=clock_item.getPrice() && clock_item.getCurrent_level()<4)
+                {
+                    neuronPoints.setPoint(neuronPoints.getPoints()-clock_item.getPrice());
+                    info.spentNeronPoints(clock_item.getPrice());
+
+                    clock_item.setPrice(2*clock_item.getPrice());
+                    clock_item.setLevel(clock_item.getCurrent_level()+1);
+
+
+                    info.setPrice("clockItem",clock_item.getPrice());
+                    info.setLevel("clockItem",clock_item.getCurrent_level());
+
+                }
+
+
+            }
+        });
+
+
         scbox.addObject(clock_item);
-        scbox.addObject(new ShopBoostersItem(0,0,new Texture[]{new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)}));
+        scbox.addObject(new ShopBoostersItem(0,0,m,750,3));
     }
 
     @Override
@@ -64,15 +86,13 @@ public class BustersState extends State {
         }
 
 
+        if(Gdx.input.justTouched()) {
 
-        if(Gdx.input.justTouched())
-        {
-
-            if(button_back.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
-            {
-                button_back.isTouched=true;
+            if (button_back.isClick(Gdx.input.getX() * GameClass.CONST_WIDTH, GameClass.HEIGTH - Gdx.input.getY() * GameClass.CONST_HEIGHT)) {
+                button_back.isTouched = true;
 
             }
+
         }
 
         clock_item.ButtonClickHandle();

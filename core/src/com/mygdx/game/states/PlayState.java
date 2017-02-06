@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.game.Backgrounds.PlayStateBackgound;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
+import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.GameObjects.MyWorld;
 import com.mygdx.game.GameObjects.Neurons;
 import com.mygdx.game.GameObjects.Platform;
@@ -47,12 +48,15 @@ public class PlayState extends State{
      private Box2DDebugRenderer b2rd;
      private FPSLogger fpslog;
      private boolean isIncressed=false;
-     public static float time=10;
+     public static float clock_time=10;
 
     public PlayState(final GameStateManager gsm)
     {
 
         super(gsm);
+        GameInformationFileHandler info = new GameInformationFileHandler();
+        clock_time=(info.getLevel("clockItem")*0.25f+1)*clock_time;
+
         staticbatch = new SpriteBatch();
         static_camera=new OrthographicCamera();
         static_camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
@@ -80,6 +84,7 @@ public class PlayState extends State{
         staticbatch.setProjectionMatrix(static_camera.combined);
         b2rd = new Box2DDebugRenderer();
         fpslog = new FPSLogger();
+
 
     }
 

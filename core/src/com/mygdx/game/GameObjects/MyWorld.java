@@ -31,7 +31,7 @@ public class MyWorld {
     private Clock clock;
     boolean isTimeActive;
 
-    private float time= PlayState.time;
+    private float time= PlayState.clock_time;
 
     
     public MyWorld()
@@ -96,7 +96,7 @@ public class MyWorld {
     }
 
     public float getTime() {
-        return time/PlayState.time;
+        return time/PlayState.clock_time;
     }
 
     public void update(float delta)
@@ -176,7 +176,7 @@ public class MyWorld {
         }
         if(time<0)
         {
-            time=PlayState.time;
+            time=PlayState.clock_time;
             isTimeActive=false;
         }
 

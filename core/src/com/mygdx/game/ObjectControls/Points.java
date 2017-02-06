@@ -27,7 +27,7 @@ public class Points extends ObjectControl {
         super(new Rectangle(x,y,0,0));
 
         layout =new GlyphLayout();
-        initializeFontStyle();
+        font_points=initializeFontStyle();
         points=0;
         layout.setText(font_points,"score: "+Integer.toString(points));
 
@@ -53,15 +53,20 @@ public class Points extends ObjectControl {
     }
 
 
-    private void initializeFontStyle()
+    private BitmapFont initializeFontStyle()
     {
+        BitmapFont font;
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(URL.font_Free_mono_bold));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.characters= GameClass.FONT_CHARACTERS;
         parameter.size=20;
         parameter.color= Color.BROWN;
-        font_points=generator.generateFont(parameter);
+        font=generator.generateFont(parameter);
         generator.dispose();
+
+        return font;
+
+
 
 
     }

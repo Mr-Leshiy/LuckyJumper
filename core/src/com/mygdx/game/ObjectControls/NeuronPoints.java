@@ -23,12 +23,13 @@ public class NeuronPoints extends ObjectControl {
     private int points;
     private GlyphLayout layout;
 
+
     public NeuronPoints(float x, float y)
     {
         super(new Rectangle(x,y,0,0));
         neuron_texture = new Texture(URL.neuron_points);
         layout=new GlyphLayout();
-        initializeFontStyle();
+        font_points=initializeFontStyle();
         this.points=0;
 
     }
@@ -64,19 +65,19 @@ public class NeuronPoints extends ObjectControl {
     {
         points++;
     }
-    private void initializeFontStyle()
+    private BitmapFont initializeFontStyle()
     {
+        BitmapFont font;
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(URL.font_Free_mono_bold));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.characters= GameClass.FONT_CHARACTERS;
         parameter.size=20;
         parameter.color= Color.BROWN;
-        font_points=generator.generateFont(parameter);
+        font=generator.generateFont(parameter);
         generator.dispose();
-
+        return font;
 
     }
-
     public void setPoint(int points)
     {
         this.points=points;

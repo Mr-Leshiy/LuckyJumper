@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<GAME>
 <gameInfo>
 <points>0</points>
-<neuron_points>595</neuron_points>
+<neuron_points>0</neuron_points>
 </gameInfo>
+<shopInfo>
+<boosters>
+<clockItem>
+<current_price>1600</current_price>
+<current_level>4</current_level>
+</clockItem>
+</boosters>
+</shopInfo>
+</GAME>

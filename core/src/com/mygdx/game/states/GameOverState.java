@@ -74,9 +74,6 @@ public class GameOverState extends State {
         layout3 = new GlyphLayout();
         layout3.setText(message,Integer.toString(state.getScore()));
 
-
-
-
     }
 
     @Override
