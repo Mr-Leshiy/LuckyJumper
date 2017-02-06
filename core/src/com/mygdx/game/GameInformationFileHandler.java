@@ -209,7 +209,7 @@ public class GameInformationFileHandler {
             Element boosters = document.createElement("boosters");
             shopInfo.appendChild(boosters);
 
-            Element clockItem=document.createElement("clockItem");
+            Element clockItem=document.createElement("clock_item");
             boosters.appendChild(clockItem);
 
             Element price=document.createElement("current_price");
@@ -219,6 +219,19 @@ public class GameInformationFileHandler {
             Element level=document.createElement("current_level");
             level.setTextContent("0");
             clockItem.appendChild(level);
+
+            Element platformBoost=document.createElement("platform_booster_item");
+            boosters.appendChild(platformBoost);
+
+            Element price1=document.createElement("current_price");
+            price1.setTextContent("100");
+
+           platformBoost.appendChild(price1);
+
+            Element level1=document.createElement("current_level");
+            level1.setTextContent("0");
+            platformBoost.appendChild(level1);
+
 
             FileHandle fileHandle = Gdx.files.local(NAME);
             Transformer transformer = TransformerFactory.newInstance().newTransformer();

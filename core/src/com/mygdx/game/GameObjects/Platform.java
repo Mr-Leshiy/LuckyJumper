@@ -11,9 +11,11 @@ public abstract class Platform {
     protected Body box;
     public static float speed;
 
+
     public Platform(Body box)
     {
         this.box=box;
+
     }
 
     public Body getBox() {
@@ -27,6 +29,8 @@ public abstract class Platform {
     {
         speed-=0.2f;
     }
+
+
 
     public void setSpeed()
     {

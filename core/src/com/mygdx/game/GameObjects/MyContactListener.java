@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.WorldManifold;
+import com.mygdx.game.states.PlayState;
 
 import javax.swing.text.StyledEditorKit;
 
@@ -52,27 +53,68 @@ public class MyContactListener implements ContactListener {
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
-       if(contact.getFixtureA().getBody().getUserData()!=null && contact.getFixtureA().getBody().getUserData() instanceof Boolean)
-       {
-           if(!(Boolean) contact.getFixtureA().getBody().getUserData())
-           {
+        if(!world.isTimePlatformBoostActive()) {
 
-               contact.setEnabled(false);
+            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof PlatformData) {
+                PlatformData data = (PlatformData) contact.getFixtureA().getBody().getUserData();
 
-           }
+                if (!data.isActive()) {
+
+                    contact.setEnabled(false);
+
+                }
 
 
-       }
-        if(contact.getFixtureB().getBody().getUserData()!=null && contact.getFixtureB().getBody().getUserData() instanceof Boolean )
+            }
+            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData() instanceof PlatformData) {
+                PlatformData data = (PlatformData) contact.getFixtureB().getBody().getUserData();
+                if (!data.isActive()) {
+                    contact.setEnabled(false);
+
+                }
+
+
+            }
+        }
+        else
         {
-            if(!(Boolean) contact.getFixtureB().getBody().getUserData())
+            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof PlatformData)
             {
-                contact.setEnabled(false);
+                PlatformData data = (PlatformData) contact.getFixtureA().getBody().getUserData();
+                if(!data.isBoost())
+                {
+                    if (!data.isActive()) {
+
+                        contact.setEnabled(false);
+
+                    }
+
+                }
+
+
+            }
+            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData() instanceof PlatformData)
+            {
+                PlatformData data = (PlatformData) contact.getFixtureB().getBody().getUserData();
+                if(!data.isBoost())
+                {
+                    if (!data.isActive()) {
+
+                        contact.setEnabled(false);
+
+                    }
+
+                }
+
 
             }
 
 
+
         }
+
+
+
 
         if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('n'))
         {
@@ -89,13 +131,30 @@ public class MyContactListener implements ContactListener {
         if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('t'))
         {
             contact.setEnabled(false);
-            contact.getFixtureA().getBody().setUserData('e');
+            world.isTimeClockActive=true;
+            world.time= PlayState.clock_time;
+
 
         }
         if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('t')) {
 
             contact.setEnabled(false);
-            world.isTimeActive=true;
+            world.isTimeClockActive=true;
+            world.time= PlayState.clock_time;
+        }
+        if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('b'))
+        {
+            contact.setEnabled(false);
+            world.isTimePlatformBoostActive=true;
+            world.time=PlayState.platform_boost_time;
+
+
+        }
+        if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('b')) {
+
+            contact.setEnabled(false);
+            world.isTimePlatformBoostActive=true;
+            world.time=PlayState.platform_boost_time;
         }
 
 

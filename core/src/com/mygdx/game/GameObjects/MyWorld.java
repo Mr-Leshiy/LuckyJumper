@@ -29,10 +29,11 @@ public class MyWorld {
     private float platformSpawn_X;
     private float platformSpawn_Y;
     private Clock clock;
-    boolean isTimeActive;
+    private PlatformBoost platformBoost;
+    boolean isTimeClockActive;
+    boolean isTimePlatformBoostActive;
 
-    private float time= PlayState.clock_time;
-
+    float time;
     
     public MyWorld()
     {
@@ -56,7 +57,7 @@ public class MyWorld {
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
         body.setTransform(4,1.5f,0);
-        body.setUserData(true);
+        body.setUserData(new PlatformData(true,false));
         StartPlatform platform1 = new StartPlatform(body);
         platforms.add(platform1);
 
@@ -71,16 +72,24 @@ public class MyWorld {
         platformSpawn_X=platform1.getWeight()+platform1.getBox().getPosition().x;
         platformSpawn_Y=platform1.getBox().getPosition().y;
 
-        isTimeActive=false;
+        isTimeClockActive=false;
+        isTimePlatformBoostActive=false;
     }
 
-    public List<Platform> getPlatform1s()
+    public boolean isTimePlatformBoostActive() {
+        return isTimePlatformBoostActive;
+    }
+
+    public List<Platform> getPlatforms()
     {
         return platforms;
     }
 
     public Clock getClock() {
         return clock;
+    }
+    public PlatformBoost getPlatformBoost() {
+        return platformBoost;
     }
 
     public List<Neurons> getNeurons() {
@@ -91,13 +100,22 @@ public class MyWorld {
         return player;
     }
 
-    public boolean isTimeActive() {
-        return isTimeActive;
+    public boolean isTimeClockActive() {
+        return isTimeClockActive;
     }
 
     public float getTime() {
-        return time/PlayState.clock_time;
+        if(isTimePlatformBoostActive()) {
+            return time / PlayState.platform_boost_time;
+        }
+        else
+        {
+            return time / PlayState.clock_time;
+
+
+        }
     }
+
 
     public void update(float delta)
     {
@@ -109,19 +127,19 @@ public class MyWorld {
 
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X- Platform1.speed+T,platformSpawn_Y +1f);
+                addPlatform(platformSpawn_X- Platform1.speed+T,platformSpawn_Y +1f,true);
                 platformSpawn_Y+=0.8f;
 
             }
             else
             {
                 if((platformSpawn_Y-0.8f)>0) {
-                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 1f);
+                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 1f,true);
                     platformSpawn_Y -= 0.8f;
                 }
                 else
                 {
-                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 1f);
+                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 1f,true);
                     platformSpawn_Y += 0.8f;
 
                 }
@@ -129,13 +147,13 @@ public class MyWorld {
             }
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 2f);
+                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 2f,false);
 
             }
             if (random.nextBoolean())
             {
                 if((platformSpawn_Y)-2f>0)
-                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 2f);
+                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 2f,false);
 
 
             }
@@ -148,21 +166,28 @@ public class MyWorld {
 
             }
             else {
+             if (random.nextInt(100)<15) {
 
-                if (random.nextInt()<20) {
-
-                    addClock(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
-                            , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
-
-                }
+                addClock(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
+                        , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
             }
+            if(random.nextInt(100)<15) {
+                addPlatformBoost(platforms.get(platforms.size()-1).getBox().getPosition().x+0.05f
+                        , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
+            }
+
+            }
+
+
+
         }
 
         platformSpawn_X=platforms.get(platforms.size()-1).getBox().getPosition().x+platforms.get(platforms.size() - 1).getWeight();
         deleteNeurons();
         deleteCLock();
+        deletePlatformBoost();
 
-        if(isTimeActive)
+        if(isTimeClockActive)
         {
 
             time-=delta;
@@ -177,7 +202,17 @@ public class MyWorld {
         if(time<0)
         {
             time=PlayState.clock_time;
-            isTimeActive=false;
+            isTimeClockActive=false;
+        }
+
+        if(isTimePlatformBoostActive) {
+
+            time -= delta;
+        }
+        if(time<0)
+        {
+            time=PlayState.clock_time;
+            isTimePlatformBoostActive=false;
         }
 
 
@@ -232,11 +267,22 @@ public class MyWorld {
 
     public void deleteCLock()
     {
-        if(clock!=null && (isTimeActive || clock.getBody().getPosition().x<-5))
+        if(clock!=null && (isTimeClockActive || clock.getBody().getPosition().x<-5))
         {
             clock.getBody().setActive(false);
             world.destroyBody(clock.getBody());
             clock=null;
+
+        }
+
+    }
+    public void deletePlatformBoost()
+    {
+        if(platformBoost!=null && (isTimePlatformBoostActive || platformBoost.getBody().getPosition().x<-5))
+        {
+            platformBoost.getBody().setActive(false);
+            world.destroyBody(platformBoost.getBody());
+            platformBoost=null;
 
         }
 
@@ -256,7 +302,7 @@ public class MyWorld {
 
     public void addClock(float x, float y)
     {
-        if (clock == null && !isTimeActive)
+        if (clock == null && !isTimeClockActive && platformBoost==null)
         {
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.KinematicBody;
@@ -267,14 +313,29 @@ public class MyWorld {
         }
 
     }
-    public void addPlatform(float x, float y)
+
+    public void addPlatformBoost(float x, float y)
+    {
+        if (platformBoost == null && !isTimePlatformBoostActive && clock==null)
+        {
+            BodyDef def = new BodyDef();
+            def.type = BodyDef.BodyType.KinematicBody;
+            Body body = world.createBody(def);
+            body.setTransform(x, y, 0);
+            body.setUserData('b');
+            platformBoost = new PlatformBoost(body);
+        }
+
+    }
+    public void addPlatform(float x, float y,boolean isBoost)
     {
 
         BodyDef def = new BodyDef();
+        PlatformData data = new PlatformData(random.nextBoolean(),isBoost);
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
         body.setTransform(x,y,0);
-        body.setUserData(random.nextBoolean());
+        body.setUserData(data);
         Platform1 platform1 = new Platform1(body);
         platforms.add(platform1);
 
@@ -285,19 +346,20 @@ public class MyWorld {
 
         for(Platform pl: platforms)
         {
-            if ((Boolean)pl.getBox().getUserData())
-            {
-                pl.getBox().setUserData(false);
+            PlatformData data = (PlatformData) pl.getBox().getUserData();
 
-            }
-            else
-            {
-                pl.getBox().setUserData(true);
+         if ( data.isActive())
+         {
+             data.isActive=false;
 
-            }
+         }
+         else
+         {
+             data.isActive=true;
+
+         }
 
         }
-
 
     }
 
@@ -340,8 +402,15 @@ public class MyWorld {
         if(clock!=null) {
             clock.increaseSpeed();
         }
+        if(platformBoost!=null)
+        {
+            platformBoost.increaseSpeed();
+
+        }
 
     }
 
 
 }
+
+

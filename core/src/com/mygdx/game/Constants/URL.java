@@ -33,6 +33,9 @@ public class URL {
     final static public String shop_button_clock_boosters="buttons/shop_button_clock_booster.png";
     final static public String shop_button_clock_boosters_pressed="buttons/shop_button_clock_booster_pressed.png";
 
+    final static public String shop_button_platform_booster="buttons/shop_button_platform_booster.png";
+    final static public String shop_button_platform_booster_pressed="buttons/shop_button_platform_booster_pressed.png";
+
 
 
     // Бэкграунды
@@ -60,6 +63,7 @@ public class URL {
     //Платформы
     final static public String platfomr_1="platforms/platform1.png";
     final static public String start_platform="platforms/start_platform.png";
+    final static public String platfomr_1_boost="platforms/platform1_boost.png";
 
     //другие спрайты
     final static public String neuron="Neurons.png";
@@ -69,6 +73,7 @@ public class URL {
     final static public String time_line_frame="time_line_frame.png";
     final static public String shop_booster_level_active="shop_booster_level_active.png";
     final static public String shop_booster_level_non_active="shop_booster_level_non_active.png";
+    final static public String platformBoost="platformBoost.png";
 
 
 

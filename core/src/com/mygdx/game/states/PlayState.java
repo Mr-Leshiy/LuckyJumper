@@ -15,6 +15,7 @@ import com.mygdx.game.GameObjects.MyWorld;
 import com.mygdx.game.GameObjects.Neurons;
 import com.mygdx.game.GameObjects.Platform;
 import com.mygdx.game.GameObjects.Platform1;
+import com.mygdx.game.GameObjects.PlatformData;
 import com.mygdx.game.GameObjects.StartPlatform;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
@@ -37,9 +38,11 @@ public class PlayState extends State{
      private NeuronPoints neuronPoints;
      private PlayerAnimation player_animation;
      private Texture platform1;
+     private Texture platform1_boost;
      private Texture neuron;
      private Texture start_platform;
      private Texture clock;
+     private Texture platformBoost;
      private Texture time_line;
      private Texture time_line_frame;
      public static final float RATE=100F;
@@ -49,13 +52,17 @@ public class PlayState extends State{
      private FPSLogger fpslog;
      private boolean isIncressed=false;
      public static float clock_time=10;
+    public static float platform_boost_time=10;
 
     public PlayState(final GameStateManager gsm)
     {
 
         super(gsm);
         GameInformationFileHandler info = new GameInformationFileHandler();
-        clock_time=(info.getLevel("clockItem")*0.25f+1)*clock_time;
+        clock_time=(info.getLevel("clock_item")*0.25f+1)*clock_time;
+        platform_boost_time=(info.getLevel("platform_booster_item")*0.25f+1)*clock_time;
+
+
 
         staticbatch = new SpriteBatch();
         static_camera=new OrthographicCamera();
@@ -76,9 +83,11 @@ public class PlayState extends State{
             }
         });
         platform1 = new Texture(URL.platfomr_1);
+        platform1_boost = new Texture(URL.platfomr_1_boost);
         start_platform = new Texture(URL.start_platform);
         neuron= new Texture(URL.neuron);
         clock = new Texture(URL.clock);
+        platformBoost = new Texture(URL.platformBoost);
         time_line = new Texture(URL.time_line);
         time_line_frame = new Texture(URL.time_line_frame);
         staticbatch.setProjectionMatrix(static_camera.combined);
@@ -169,7 +178,7 @@ public class PlayState extends State{
         neuronPoints.render(staticbatch);
         score.render(staticbatch);
 
-        if(world.isTimeActive())
+        if(world.isTimeClockActive() || world.isTimePlatformBoostActive())
         {
             staticbatch.draw(time_line,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,world.getTime()*time_line.getWidth(),time_line.getHeight());
             staticbatch.draw(time_line_frame,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,time_line_frame.getWidth(),time_line_frame.getHeight());
@@ -180,16 +189,52 @@ public class PlayState extends State{
 
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        for(Platform pl:world.getPlatform1s())
+        for(Platform pl:world.getPlatforms())
         {
-            if((Boolean) pl.getBox().getUserData()) {
-                if (pl instanceof Platform1)
-                    sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
-                if (pl instanceof StartPlatform)
-                    sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+            PlatformData data = (PlatformData) pl.getBox().getUserData();
+
+            if(!world.isTimePlatformBoostActive())
+            {
+
+                if (data.isActive())
+                {
+                    if (pl instanceof Platform1)
+                    {
+                        sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                    }
+                }
+
             }
+            else
+            {
+                if(!data.isBoost())
+                {
+                    if(data.isActive())
+                    {
+                        sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                    }
+                }
+                else
+                {
+                    sb.draw(platform1_boost, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+
+                }
+
+
+
+
+            }
+         if (data.isActive())
+                    {
+                        if (pl instanceof StartPlatform)
+                        {
+                            sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                        }
+                    }
 
         }
+
+
         for(Neurons n:world.getNeurons())
         {
             sb.draw(neuron,(n.getBody().getPosition().x-n.getWeight())*RATE,(n.getBody().getPosition().y-n.getHeight())*RATE);
@@ -201,10 +246,17 @@ public class PlayState extends State{
                     (world.getClock().getBody().getPosition().y-world.getClock().getHeight())*RATE);
 
         }
+        if(world.getPlatformBoost()!=null)
+        {
+            sb.draw(platformBoost,(world.getPlatformBoost().getBody().getPosition().x-world.getPlatformBoost().getWeight())*RATE,
+                    (world.getPlatformBoost().getBody().getPosition().y-world.getPlatformBoost().getHeight())*RATE);
+
+        }
+
 
         player_animation.render(sb);
         sb.end();
-      //  b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
+        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
         fpslog.log();
 
     }
@@ -223,8 +275,11 @@ public class PlayState extends State{
         neuronPoints.dispose();
         start_platform.dispose();
         clock.dispose();
+        platform1_boost.dispose();
         time_line.dispose();
         time_line_frame.dispose();
+        platform1_boost.dispose();
+        platformBoost.dispose();
 
     }
 

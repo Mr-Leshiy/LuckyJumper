@@ -24,6 +24,7 @@ public class BustersState extends State {
     private Button button_back;
     private NeuronPoints  neuronPoints;
     private ShopBoostersItem clock_item;
+    private ShopBoostersItem platform_booster;
     private ScrollingBox scbox;
 
     public BustersState(final GameStateManager gsm,final MenuBackground background)
@@ -46,7 +47,7 @@ public class BustersState extends State {
         neuronPoints.setPoint(info.getNeuronsPoints());
 
         Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
-        clock_item= new ShopBoostersItem(0,0, m,info.getPrice("clockItem"),info.getLevel("clockItem"));
+        clock_item= new ShopBoostersItem(0,0, m,info.getPrice("clock_item"),info.getLevel("clock_item"));
 
         clock_item.setOnClickBuuttonListener(new ButtonListener() {
             @Override
@@ -60,19 +61,37 @@ public class BustersState extends State {
                     clock_item.setPrice(2*clock_item.getPrice());
                     clock_item.setLevel(clock_item.getCurrent_level()+1);
 
-
-                    info.setPrice("clockItem",clock_item.getPrice());
-                    info.setLevel("clockItem",clock_item.getCurrent_level());
+                    info.setPrice("clock_item",clock_item.getPrice());
+                    info.setLevel("clock_item",clock_item.getCurrent_level());
 
                 }
 
 
             }
         });
-
-
         scbox.addObject(clock_item);
-        scbox.addObject(new ShopBoostersItem(0,0,m,750,3));
+
+        Texture[] m2 = {new Texture(URL.shop_button_platform_booster),new Texture(URL.shop_button_platform_booster_pressed)};
+        platform_booster= new ShopBoostersItem(0,0,m2,info.getPrice("platform_booster_item"),info.getLevel("platform_booster_item"));
+        platform_booster.setOnClickBuuttonListener(new ButtonListener() {
+            @Override
+            public void onClickListener() {
+                if(neuronPoints.getPoints()>= platform_booster.getPrice() &&  platform_booster.getCurrent_level()<4) {
+                    neuronPoints.setPoint(neuronPoints.getPoints() - platform_booster.getPrice());
+                    info.spentNeronPoints(platform_booster.getPrice());
+
+                    platform_booster.setPrice(2 * platform_booster.getPrice());
+                    platform_booster.setLevel(platform_booster.getCurrent_level() + 1);
+
+                    info.setPrice("platform_booster_item", platform_booster.getPrice());
+                    info.setLevel("platform_booster_item", platform_booster.getCurrent_level());
+                }
+
+            }
+        });
+
+        scbox.addObject(platform_booster);
+
     }
 
     @Override
@@ -96,6 +115,7 @@ public class BustersState extends State {
         }
 
         clock_item.ButtonClickHandle();
+        platform_booster.ButtonClickHandle();
 
     }
 

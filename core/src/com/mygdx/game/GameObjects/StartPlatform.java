@@ -18,7 +18,6 @@ public class StartPlatform extends Platform {
     public StartPlatform(Body box)
     {
         super(box);
-
         PolygonShape poly = new PolygonShape();
         poly.setAsBox(weight,height);
         platformPhysicsFixture=box.createFixture(poly,0);
