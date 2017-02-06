@@ -48,9 +48,7 @@ public class PlayState extends State{
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
-     private Box2DDebugRenderer b2rd;
      private FPSLogger fpslog;
-     private boolean isIncressed=false;
      public static float clock_time=10;
     public static float platform_boost_time=10;
 
@@ -91,7 +89,6 @@ public class PlayState extends State{
         time_line = new Texture(URL.time_line);
         time_line_frame = new Texture(URL.time_line_frame);
         staticbatch.setProjectionMatrix(static_camera.combined);
-        b2rd = new Box2DDebugRenderer();
         fpslog = new FPSLogger();
 
 
@@ -256,7 +253,6 @@ public class PlayState extends State{
 
         player_animation.render(sb);
         sb.end();
-        b2rd.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
         fpslog.log();
 
     }
