@@ -5,29 +5,29 @@
     density="hdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="11019554000453"
+    timestamp="26626835727320"
     token="6450027129571290324"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="1498" />
+        duration="146" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="419" />
+        duration="234" />
     <task
         name="verifier"
-        duration="14" />
+        duration="10" />
 
     <artifact
         location="/home/alexey/Документы/This_Side_of_Paradise/android/build/outputs/apk/android-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="11019554000453"
+        timestamp="26626835727320"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/home/alexey/Документы/This_Side_of_Paradise/android/build/outputs/apk/android-debug.apk"
