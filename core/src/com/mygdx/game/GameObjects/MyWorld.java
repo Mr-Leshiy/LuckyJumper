@@ -3,6 +3,7 @@ package com.mygdx.game.GameObjects;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -37,6 +38,7 @@ public class MyWorld {
     
     public MyWorld()
     {
+        Box2D.init();
         world = new World(new Vector2(0,-10f),true);
         Platform.resetsSpeed();
         random = new Random();
@@ -127,19 +129,19 @@ public class MyWorld {
 
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X- Platform1.speed+T,platformSpawn_Y +1f,true);
+                addPlatform(platformSpawn_X- Platform1.speed,platformSpawn_Y +1f,true);
                 platformSpawn_Y+=0.8f;
 
             }
             else
             {
                 if((platformSpawn_Y-0.8f)>0) {
-                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 1f,true);
+                    addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y - 1f,true);
                     platformSpawn_Y -= 0.8f;
                 }
                 else
                 {
-                    addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 1f,true);
+                    addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y + 1f,true);
                     platformSpawn_Y += 0.8f;
 
                 }
@@ -147,13 +149,13 @@ public class MyWorld {
             }
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y + 2f,false);
+                addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y + 2f,false);
 
             }
             if (random.nextBoolean())
             {
                 if((platformSpawn_Y)-2f>0)
-                addPlatform(platformSpawn_X - Platform1.speed + T, platformSpawn_Y - 2f,false);
+                addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y - 2f,false);
 
 
             }

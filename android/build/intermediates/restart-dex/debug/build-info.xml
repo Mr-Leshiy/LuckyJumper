@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="armeabi-v7a,armeabi"
-    api-level="22"
+    api-level="15"
     density="hdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="331236765381"
+    timestamp="5709255635187"
     token="6450027129571290324"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="1425" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="650" />
+        duration="0" />
     <task
         name="verifier"
-        duration="11" />
+        duration="0" />
 
     <artifact
         location="/home/alexey/Документы/This_Side_of_Paradise/android/build/outputs/apk/android-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="331236765381"
+        timestamp="5709255635187"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/home/alexey/Документы/This_Side_of_Paradise/android/build/outputs/apk/android-debug.apk"

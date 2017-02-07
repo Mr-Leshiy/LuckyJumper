@@ -29,7 +29,7 @@ public class ShopBoostersItem extends ObjectControl {
     private Texture neuron_texture;
     private int current_level;
 
-    public ShopBoostersItem(float x,float y,Texture[] mas,int price,int current_level)
+    public ShopBoostersItem(float x,float y,Texture[] mas)
     {
         super(new Rectangle(x,y,0,0));
         background = new Texture(URL.shop_item_background);
@@ -46,12 +46,13 @@ public class ShopBoostersItem extends ObjectControl {
             booster_level[i]= new Texture(URL.shop_booster_level_non_active);
         }
 
-        this.current_level=current_level;
+        this.current_level=0;
 
 
         neuron_texture = new Texture(URL.neuron_points);
 
-        this.price=price;
+
+        this.price=0;
         price_font=initializeFontStyle(50);
         font=initializeFontStyle(20);
 

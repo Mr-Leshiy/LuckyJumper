@@ -13,6 +13,10 @@ import com.mygdx.game.ObjectControls.NeuronPoints;
 import com.mygdx.game.ObjectControls.ScrollingBox;
 import com.mygdx.game.ObjectControls.ShopBoostersItem;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 /**
  * Created by alexey on 02.02.17.
@@ -45,9 +49,11 @@ public class BustersState extends State {
         final GameInformationFileHandler info = new GameInformationFileHandler();
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
         neuronPoints.setPoint(info.getNeuronsPoints());
+        final Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
+        final Texture[] m2 = {new Texture(URL.shop_button_platform_booster),new Texture(URL.shop_button_platform_booster_pressed)};
 
-        Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
-        clock_item= new ShopBoostersItem(0,0, m,info.getPrice("clock_item"),info.getLevel("clock_item"));
+        platform_booster= new ShopBoostersItem(0,0,m2);
+        clock_item = new ShopBoostersItem(0,0,m);
 
         clock_item.setOnClickBuuttonListener(new ButtonListener() {
             @Override
@@ -69,10 +75,7 @@ public class BustersState extends State {
 
             }
         });
-        scbox.addObject(clock_item);
 
-        Texture[] m2 = {new Texture(URL.shop_button_platform_booster),new Texture(URL.shop_button_platform_booster_pressed)};
-        platform_booster= new ShopBoostersItem(0,0,m2,info.getPrice("platform_booster_item"),info.getLevel("platform_booster_item"));
         platform_booster.setOnClickBuuttonListener(new ButtonListener() {
             @Override
             public void onClickListener() {
@@ -89,8 +92,12 @@ public class BustersState extends State {
 
             }
         });
-
+        scbox.addObject(clock_item);
         scbox.addObject(platform_booster);
+        clock_item.setPrice(info.getPrice("clock_item"));
+        clock_item.setLevel(info.getLevel("clock_item"));
+        platform_booster.setPrice(info.getPrice("platform_booster_item"));
+        platform_booster.setLevel(info.getLevel("platform_booster_item"));
 
     }
 
@@ -114,7 +121,9 @@ public class BustersState extends State {
 
         }
 
+        if(clock_item!=null)
         clock_item.ButtonClickHandle();
+        if(platform_booster!=null)
         platform_booster.ButtonClickHandle();
 
     }

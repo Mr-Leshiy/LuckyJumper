@@ -49,18 +49,16 @@ public class PlayState extends State{
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
      private FPSLogger fpslog;
-     public static float clock_time=10;
-    public static float platform_boost_time=10;
+     public static float clock_time;
+    public static float platform_boost_time;
 
     public PlayState(final GameStateManager gsm)
     {
 
         super(gsm);
         GameInformationFileHandler info = new GameInformationFileHandler();
-        clock_time=(info.getLevel("clock_item")*0.25f+1)*clock_time;
-        platform_boost_time=(info.getLevel("platform_booster_item")*0.25f+1)*clock_time;
-
-
+        clock_time=(info.getLevel("clock_item")*0.25f+1)*10;
+        platform_boost_time=(info.getLevel("platform_booster_item")*0.25f+1)*10;
 
         staticbatch = new SpriteBatch();
         static_camera=new OrthographicCamera();
