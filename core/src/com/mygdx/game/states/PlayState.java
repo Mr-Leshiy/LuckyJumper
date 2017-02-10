@@ -49,8 +49,10 @@ public class PlayState extends State{
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
      private FPSLogger fpslog;
+     private Box2DDebugRenderer debug;
+
      public static float clock_time;
-    public static float platform_boost_time;
+     public static float platform_boost_time;
 
     public PlayState(final GameStateManager gsm)
     {
@@ -61,6 +63,7 @@ public class PlayState extends State{
         platform_boost_time=(info.getLevel("platform_booster_item")*0.25f+1)*10;
 
         staticbatch = new SpriteBatch();
+        debug=new Box2DDebugRenderer();
         static_camera=new OrthographicCamera();
         static_camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         world = new MyWorld();
@@ -252,6 +255,7 @@ public class PlayState extends State{
         player_animation.render(sb);
         sb.end();
         fpslog.log();
+       // debug.render(world.getWorld(),camera.combined.cpy().scale(RATE,RATE,0));
 
     }
 
@@ -274,6 +278,7 @@ public class PlayState extends State{
         time_line_frame.dispose();
         platform1_boost.dispose();
         platformBoost.dispose();
+        debug.dispose();
 
     }
 

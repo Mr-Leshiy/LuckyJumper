@@ -13,12 +13,10 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 public class Player {
 
-
-
     private boolean isJump=false;
     private Body box;
     private Fixture playerPhysicsFixture;
-    private final float weight=0.35f;
+    private final float weight=0.35f;пше
     private final float height=0.35f;
     private float oldY;
 
@@ -26,9 +24,9 @@ public class Player {
     public Player(Body box)
     {
         this.box=box;
-        PolygonShape poly = new PolygonShape();
-        poly.setAsBox(weight,height);
-        playerPhysicsFixture=box.createFixture(poly,1);
+        CircleShape poly = new CircleShape();
+        poly.setRadius(weight);
+        playerPhysicsFixture=box.createFixture(poly,1.35f);
         playerPhysicsFixture.setFriction(0f);
         poly.dispose();
         box.setBullet(true);

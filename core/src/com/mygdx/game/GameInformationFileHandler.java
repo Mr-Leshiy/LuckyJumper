@@ -25,6 +25,7 @@ public class GameInformationFileHandler {
 
     private final static String NAME="GameInformation.xml";
     private Document document;
+    private final static String version="1.0";
 
 
     public GameInformationFileHandler()
@@ -178,16 +179,14 @@ public class GameInformationFileHandler {
 
     }
 
-
-
     public static void createDocument()
     {
-
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setNamespaceAware(true);
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document=builder.newDocument();
+            document.setXmlVersion(version);
 
             Element game=document.createElement("GAME");
             document.appendChild(game);
@@ -245,6 +244,24 @@ public class GameInformationFileHandler {
 
         }
 
+
+    }
+
+    public static boolean checkVersion()
+    {
+        try{
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setValidating(false);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(Gdx.files.local(NAME).file());
+            return version.equals(document.getXmlVersion());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
 
     }
 

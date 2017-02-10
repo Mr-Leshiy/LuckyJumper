@@ -11,8 +11,6 @@ public class GameClass extends ApplicationAdapter {
 
 	public static final float WIDTH=800;
 	public static final float HEIGTH=480;
-	public static final float CAMERA_WIDTH = 10f;
-	public static final float CAMERA_HEIGHT = 15f;
 	public static float CONST_WIDTH;
 	public static float CONST_HEIGHT;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";

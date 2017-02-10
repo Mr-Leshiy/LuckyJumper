@@ -304,7 +304,7 @@ public class MyWorld {
 
     public void addClock(float x, float y)
     {
-        if (clock == null && !isTimeClockActive && platformBoost==null)
+        if (clock == null && !isTimeClockActive && !isTimePlatformBoostActive && platformBoost==null)
         {
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.KinematicBody;
@@ -318,7 +318,7 @@ public class MyWorld {
 
     public void addPlatformBoost(float x, float y)
     {
-        if (platformBoost == null && !isTimePlatformBoostActive && clock==null)
+        if (platformBoost == null && !isTimePlatformBoostActive && !isTimeClockActive && clock==null)
         {
             BodyDef def = new BodyDef();
             def.type = BodyDef.BodyType.KinematicBody;
