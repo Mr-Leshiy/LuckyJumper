@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.Constants.Textures;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 
@@ -21,13 +22,16 @@ public class ShopBoostersItem extends ObjectControl {
     private Button button;
 
     private Texture background;
-    private Texture[] booster_level = new Texture[4];
     private int price;
     private BitmapFont price_font;
     private BitmapFont font;
     private GlyphLayout layout;
     private Texture neuron_texture;
     private int current_level;
+
+    private Texture booster_level_enaible;
+    private Texture booster_level_desaible;
+
 
     public ShopBoostersItem(float x,float y,Texture[] mas)
     {
@@ -37,20 +41,14 @@ public class ShopBoostersItem extends ObjectControl {
         object.setHeight(background.getHeight());
         object.setX(object.x-background.getWidth()/2);
         button= new Button(mas,object.getX()+20,object.getY()+background.getHeight()/2-mas[0].getHeight()/2);
-        for(int i=0;i<current_level;i++)
-        {
-            booster_level[i]= new Texture(URL.shop_booster_level_active);
-        }
-        for(int i=current_level;i<booster_level.length;i++)
-        {
-            booster_level[i]= new Texture(URL.shop_booster_level_non_active);
-        }
 
         this.current_level=0;
 
 
         neuron_texture = new Texture(URL.neuron_points);
 
+        booster_level_enaible = new Texture(URL.shop_booster_level_non_active);
+        booster_level_desaible = new Texture(URL.shop_booster_level_active);
 
         this.price=0;
         price_font=initializeFontStyle(50);
@@ -71,11 +69,17 @@ public class ShopBoostersItem extends ObjectControl {
 
         sb.draw(background,object.getX(),object.getY());
         button.render(sb);
-        for (int i=0;i<booster_level.length;i++)
+        for(int i=0;i<current_level;i++)
         {
-            sb.draw(booster_level[i],object.getX()+150+i*42,object.getY()+background.getHeight()/2-booster_level[i].getHeight()/2);
+            sb.draw(booster_level_desaible,object.getX()+150+i*42,object.getY()+background.getHeight()/2-booster_level_desaible.getHeight()/2);
             font.draw(sb,Integer.toString(25*(i+1))+"%",object.getX()+150+i*42,object.y+20);
         }
+        for(int i=current_level;i<4;i++)
+        {
+            sb.draw(booster_level_enaible,object.getX()+150+i*42,object.getY()+background.getHeight()/2-booster_level_enaible.getHeight()/2);
+            font.draw(sb,Integer.toString(25*(i+1))+"%",object.getX()+150+i*42,object.y+20);
+        }
+
 
         if(current_level<4) {
             price_font.draw(sb, Integer.toString(price), object.x + object.getWidth() / 2 + 100, object.y + object.getHeight() / 2 + layout.height / 2);
@@ -96,10 +100,8 @@ public class ShopBoostersItem extends ObjectControl {
 
         button.dispose();
         background.dispose();
-        for (int i=0;i<booster_level.length;i++)
-        {
-            booster_level[i].dispose();
-        }
+        booster_level_desaible.dispose();
+        booster_level_enaible.dispose();
         price_font.dispose();
         neuron_texture.dispose();
         font.dispose();
@@ -171,14 +173,6 @@ public class ShopBoostersItem extends ObjectControl {
 
     public void setLevel(int current_level)
     {
-        for(int i=0;i<current_level;i++)
-        {
-            booster_level[i]= new Texture(URL.shop_booster_level_active);
-        }
-        for(int i=current_level;i<booster_level.length;i++)
-        {
-            booster_level[i]= new Texture(URL.shop_booster_level_non_active);
-        }
 
         this.current_level=current_level;
 

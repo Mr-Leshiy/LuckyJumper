@@ -16,7 +16,7 @@ public class Player {
     private boolean isJump=false;
     private Body box;
     private Fixture playerPhysicsFixture;
-    private final float weight=0.35f;пше
+    private final float weight=0.35f;
     private final float height=0.35f;
     private float oldY;
 

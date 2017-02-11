@@ -12,8 +12,6 @@ import com.mygdx.game.ObjectControls.ButtonListener;
 import com.mygdx.game.ObjectControls.NeuronPoints;
 import com.mygdx.game.ObjectControls.ScrollingBox;
 import com.mygdx.game.ObjectControls.ShopBoostersItem;
-
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -54,50 +52,8 @@ public class BustersState extends State {
 
         platform_booster= new ShopBoostersItem(0,0,m2);
         clock_item = new ShopBoostersItem(0,0,m);
+        initializeItems(info);
 
-        clock_item.setOnClickBuuttonListener(new ButtonListener() {
-            @Override
-            public void onClickListener() {
-
-                if(neuronPoints.getPoints()>=clock_item.getPrice() && clock_item.getCurrent_level()<4)
-                {
-                    neuronPoints.setPoint(neuronPoints.getPoints()-clock_item.getPrice());
-                    info.spentNeronPoints(clock_item.getPrice());
-
-                    clock_item.setPrice(2*clock_item.getPrice());
-                    clock_item.setLevel(clock_item.getCurrent_level()+1);
-
-                    info.setPrice("clock_item",clock_item.getPrice());
-                    info.setLevel("clock_item",clock_item.getCurrent_level());
-
-                }
-
-
-            }
-        });
-
-        platform_booster.setOnClickBuuttonListener(new ButtonListener() {
-            @Override
-            public void onClickListener() {
-                if(neuronPoints.getPoints()>= platform_booster.getPrice() &&  platform_booster.getCurrent_level()<4) {
-                    neuronPoints.setPoint(neuronPoints.getPoints() - platform_booster.getPrice());
-                    info.spentNeronPoints(platform_booster.getPrice());
-
-                    platform_booster.setPrice(2 * platform_booster.getPrice());
-                    platform_booster.setLevel(platform_booster.getCurrent_level() + 1);
-
-                    info.setPrice("platform_booster_item", platform_booster.getPrice());
-                    info.setLevel("platform_booster_item", platform_booster.getCurrent_level());
-                }
-
-            }
-        });
-        scbox.addObject(clock_item);
-        scbox.addObject(platform_booster);
-        clock_item.setPrice(info.getPrice("clock_item"));
-        clock_item.setLevel(info.getLevel("clock_item"));
-        platform_booster.setPrice(info.getPrice("platform_booster_item"));
-        platform_booster.setLevel(info.getLevel("platform_booster_item"));
 
     }
 
@@ -164,6 +120,68 @@ public class BustersState extends State {
 
     @Override
     public void resume() {
+
+    }
+
+    public void initializeItems(final GameInformationFileHandler info)
+    {
+        ExecutorService exec =Executors.newCachedThreadPool();
+
+        exec.execute(new Runnable() {
+            @Override
+            public void run() {
+                clock_item.setOnClickBuuttonListener(new ButtonListener() {
+                    @Override
+                    public void onClickListener() {
+
+                        if(neuronPoints.getPoints()>=clock_item.getPrice() && clock_item.getCurrent_level()<4)
+                        {
+                            neuronPoints.setPoint(neuronPoints.getPoints()-clock_item.getPrice());
+                            info.spentNeronPoints(clock_item.getPrice());
+
+                            clock_item.setPrice(2*clock_item.getPrice());
+                            clock_item.setLevel(clock_item.getCurrent_level()+1);
+
+                            info.setPrice("clock_item",clock_item.getPrice());
+                            info.setLevel("clock_item",clock_item.getCurrent_level());
+
+                        }
+
+
+                    }
+                });
+
+                platform_booster.setOnClickBuuttonListener(new ButtonListener() {
+                    @Override
+                    public void onClickListener() {
+                        if(neuronPoints.getPoints()>= platform_booster.getPrice() &&  platform_booster.getCurrent_level()<4) {
+                            neuronPoints.setPoint(neuronPoints.getPoints() - platform_booster.getPrice());
+                            info.spentNeronPoints(platform_booster.getPrice());
+
+                            platform_booster.setPrice(2 * platform_booster.getPrice());
+                            platform_booster.setLevel(platform_booster.getCurrent_level() + 1);
+
+                            info.setPrice("platform_booster_item", platform_booster.getPrice());
+                            info.setLevel("platform_booster_item", platform_booster.getCurrent_level());
+                        }
+
+                    }
+                });
+
+                scbox.addObject(clock_item);
+                scbox.addObject(platform_booster);
+
+                clock_item.setPrice(info.getPrice("clock_item"));
+                clock_item.setLevel(info.getLevel("clock_item"));
+                platform_booster.setPrice(info.getPrice("platform_booster_item"));
+                platform_booster.setLevel(info.getLevel("platform_booster_item"));
+
+
+            }
+        });
+       exec.shutdown();
+
+
 
     }
 

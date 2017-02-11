@@ -5,22 +5,22 @@
     density="hdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="18235515838038"
+    timestamp="9711626504737"
     token="6450027129571290324"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="633" />
+        duration="60" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="693" />
+        duration="11" />
     <task
         name="verifier"
-        duration="14" />
+        duration="0" />
 
     <artifact
         location="/home/alexey/Документы/This_Side_of_Paradise/android/build/outputs/apk/android-debug.apk"
