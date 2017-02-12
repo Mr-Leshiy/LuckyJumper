@@ -53,12 +53,12 @@ public class MyWorld {
         BodyDef def = new BodyDef();
         def.type= BodyDef.BodyType.DynamicBody;
         Body bodyp = world.createBody(def);
-        bodyp.setTransform(2f,2.5f,0);
+        bodyp.setTransform(2.7f,2.5f,0);
         player = new Player(bodyp);
 
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
-        body.setTransform(4,1.5f,0);
+        body.setTransform(2,1.5f,0);
         body.setUserData(new PlatformData(true,false));
         StartPlatform platform1 = new StartPlatform(body);
         platforms.add(platform1);
@@ -67,7 +67,7 @@ public class MyWorld {
         EdgeShape end= new EdgeShape();
         end.set(0,0,8,0);
         endWorld=world.createBody(def);
-        endWorld.setTransform(0,0,0);
+        endWorld.setTransform(0,-2,0);
         endWorld.createFixture(end,0);
         endWorld.setUserData('e');
 

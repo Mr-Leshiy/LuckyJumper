@@ -51,6 +51,7 @@ public class URL {
     final static public String shop_item_background="backgrounds/shop_item_background.png";
 
     final static public String scrool_box_border="backgrounds/scrool_box_border.png";
+    final static public String training_background="backgrounds/training_background.png";
 
     //Модель персонажа
     final static public String player_walk_1="player/player_walk1.png";

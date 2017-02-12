@@ -46,8 +46,19 @@ public class MenuState extends State {  // Класс меню
             @Override
             public void onClickListener()
             {
-                gsm.set(new PlayState(gsm));
-                background.dispose();
+                if(GameClass.FirstTimeRunning) {
+                    gsm.set(new TrainingState(gsm));
+                    background.dispose();
+                    GameClass.FirstTimeRunning=false;
+                }
+                else
+                {
+                    gsm.set(new PlayState(gsm));
+                    background.dispose();
+
+
+
+                }
             }
         });
 
@@ -70,8 +81,6 @@ public class MenuState extends State {  // Класс меню
 
             }
         });
-
-
 
     }
 

@@ -113,7 +113,7 @@ public class PlayState extends State{
             }
             else
             {
-                if(Gdx.input.getX()<GameClass.WIDTH/2) {
+                if(Gdx.input.getX()<GameClass.WIDTH*GameClass.CONST_WIDTH/2) {
                     if (world.isGrounded())
                         world.getPlayer().jump();
                 }
@@ -218,9 +218,6 @@ public class PlayState extends State{
 
                 }
 
-
-
-
             }
          if (data.isActive())
                     {
@@ -229,7 +226,6 @@ public class PlayState extends State{
                             sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
                         }
                     }
-
         }
 
 

@@ -29,7 +29,6 @@ public class Player {
         playerPhysicsFixture=box.createFixture(poly,1.35f);
         playerPhysicsFixture.setFriction(0f);
         poly.dispose();
-        box.setBullet(true);
         oldY=box.getPosition().y;
     }
 

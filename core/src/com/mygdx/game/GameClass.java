@@ -14,6 +14,7 @@ public class GameClass extends ApplicationAdapter {
 	public static float CONST_WIDTH;
 	public static float CONST_HEIGHT;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
+	public static boolean FirstTimeRunning=true;
 
 	SpriteBatch batch;
 	GameStateManager gsm;
@@ -24,8 +25,10 @@ public class GameClass extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		gsm=new GameStateManager();
 
-		if(!Gdx.files.local("GameInformation.xml").exists())
-		GameInformationFileHandler.createDocument();
+		if(!Gdx.files.local("GameInformation.xml").exists()) {
+			GameInformationFileHandler.createDocument();
+			FirstTimeRunning=true;
+		}
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new MenuState(gsm,null));

@@ -20,19 +20,16 @@ public class PlayerAnimation extends ObjectControl {
     private Animation run_animation;
     private float state_time;
     private static final float change_time = 0.25f;
-    private boolean onGround;
 
     public PlayerAnimation(Player player) {
-        super(new Rectangle(player.getBox().getPosition().x,player.getBox().getPosition().y,0, 0));
+        super(new Rectangle((player.getBox().getPosition().x-player.getWeight())* PlayState.RATE,
+                (player.getBox().getPosition().y-player.getHeight())*PlayState.RATE,0, 0));
         this.player=player;
         state_time = 0;
-        onGround = false;
         run_frames = new Texture[]{new Texture(URL.player_walk_1), new Texture(URL.player_walk_2)};
         object.setHeight(run_frames[0].getHeight());
         object.setWidth(run_frames[0].getWidth());
         run_animation = new Animation(change_time, run_frames);
-
-
 
     }
 
@@ -50,7 +47,7 @@ public class PlayerAnimation extends ObjectControl {
     @Override
     public void render(SpriteBatch sb) {
 
-        sb.draw((Texture) run_animation.getKeyFrame(state_time, true), object.getX(), object.getY());
+        sb.draw((Texture) run_animation.getKeyFrame(state_time, true), object.x, object.y);
 
     }
 
