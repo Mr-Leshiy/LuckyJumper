@@ -1,11 +1,16 @@
 package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.game.Backgrounds.MenuBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
+import com.mygdx.game.GameInformationFileHandler;
 import com.mygdx.game.ObjectControls.Button;
 import com.mygdx.game.ObjectControls.ButtonListener;
 
@@ -19,10 +24,13 @@ import java.util.concurrent.Executors;
 
 public class MenuState extends State {  // Класс меню
 
+    private BitmapFont message;
+    private GlyphLayout layout;
     private MenuBackground background;
     private Button button_play;
     private Button button_settings;
     private Button button_shop;
+    private int points;
 
 
 
@@ -77,11 +85,16 @@ public class MenuState extends State {  // Класс меню
         button_shop.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new ShopState(gsm,background));
+                gsm.set(new BustersState(gsm,background));
 
             }
         });
 
+        GameInformationFileHandler info = new GameInformationFileHandler();
+        points=info.getPoints();
+        message=initializeFontStyle();
+        layout= new GlyphLayout();
+        layout.setText(message,"Your best score :"+Integer.toString(points));
     }
 
     @Override
@@ -123,12 +136,7 @@ public class MenuState extends State {  // Класс меню
                 button_shop.isTouched=true;
 
             }
-
-
         }
-
-
-
     }
 
     @Override
@@ -146,6 +154,7 @@ public class MenuState extends State {  // Класс меню
         button_play.render(sb);
         button_settings.render(sb);
         button_shop.render(sb);
+        message.draw(sb,"Your best score: "+Integer.toString(points),GameClass.WIDTH/2-layout.width/2,GameClass.HEIGTH-40);
         sb.end();
     }
 
@@ -155,6 +164,7 @@ public class MenuState extends State {  // Класс меню
         button_play.dispose();
         button_settings.dispose();
         button_shop.dispose();
+        message.dispose();
     }
 
     @Override
@@ -164,6 +174,21 @@ public class MenuState extends State {  // Класс меню
 
     @Override
     public void resume() {
+
+    }
+
+    private BitmapFont initializeFontStyle()
+    {
+        BitmapFont font;
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(URL.font_Free_mono_bold));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.characters= GameClass.FONT_CHARACTERS;
+        parameter.size=30;
+        parameter.color= Color.BROWN;
+        font=generator.generateFont(parameter);
+        generator.dispose();
+        return font;
+
 
     }
 

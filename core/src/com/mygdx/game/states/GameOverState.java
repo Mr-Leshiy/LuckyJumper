@@ -60,7 +60,9 @@ public class GameOverState extends State {
         exec.execute(new Runnable() {
             @Override
             public void run() {
+                if(state.getScore()>info.getPoints())
                 info.setPoints(state.getScore());
+
                 info.addNeuronPoints(state.getNeuronPoints());
             }
         });

@@ -17,6 +17,7 @@ ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/Android
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:7:5-73
+MERGED from [com.android.support:support-v4:21.0.3] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/AndroidManifest.xml:15:5-42
 	android:targetSdkVersion
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:7:41-70
 		INJECTED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml
@@ -27,6 +28,7 @@ ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/Android
 		INJECTED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml
 application
 ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:9:5-24:19
+MERGED from [com.android.support:support-v4:21.0.3] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/AndroidManifest.xml:16:5-19
 	android:label
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:12:9-41
 	android:allowBackup

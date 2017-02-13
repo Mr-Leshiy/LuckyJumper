@@ -13,7 +13,7 @@ public class GameClass extends ApplicationAdapter {
 	public static final float HEIGTH=480;
 	public static float CONST_WIDTH;
 	public static float CONST_HEIGHT;
-	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
+	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.:;,{}\"´`'<>";
 	public static boolean FirstTimeRunning=false;
 
 	SpriteBatch batch;
