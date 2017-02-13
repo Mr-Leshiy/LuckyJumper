@@ -349,7 +349,6 @@ public class MyWorld {
         for(Platform pl: platforms)
         {
             PlatformData data = (PlatformData) pl.getBox().getUserData();
-
          if ( data.isActive())
          {
              data.isActive=false;
@@ -360,6 +359,11 @@ public class MyWorld {
              data.isActive=true;
 
          }
+            if(pl instanceof StartPlatform)
+            {
+                data.isActive=true;
+
+            }
 
         }
 
