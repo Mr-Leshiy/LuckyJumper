@@ -3,7 +3,6 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Backgrounds.PauseStateBackground;
 import com.mygdx.game.Constants.URL;
 import com.mygdx.game.GameClass;
 
@@ -13,18 +12,16 @@ import com.mygdx.game.GameClass;
 
 public class TrainingState extends State {
 
-    private PauseStateBackground background;
-    private PlayState playState;
+    private Texture background;
+    private State state;
 
 
-    public TrainingState(GameStateManager gsm)
+    public TrainingState(GameStateManager gsm,State state)
     {
         super(gsm);
-        background = new PauseStateBackground();
-        playState = new PlayState(gsm);
+        background = new Texture(URL.training_background);
+        this.state=state;
         camera.setToOrtho(false, GameClass.WIDTH,GameClass.HEIGTH);
-
-
     }
 
     @Override
@@ -32,11 +29,8 @@ public class TrainingState extends State {
 
         if(Gdx.input.justTouched())
         {
-            gsm.set(playState);
+            gsm.set(state);
         }
-
-
-
     }
 
     @Override
@@ -47,15 +41,11 @@ public class TrainingState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        playState.render(sb);
-
+        state.render(sb);
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        background.render(sb);
+        sb.draw(background,0,0);
         sb.end();
-
-
-
     }
 
     @Override

@@ -36,6 +36,10 @@ public class URL {
     final static public String shop_button_platform_booster="buttons/shop_button_platform_booster.png";
     final static public String shop_button_platform_booster_pressed="buttons/shop_button_platform_booster_pressed.png";
 
+    final static public String button_show_help="buttons/button_show_help.png";
+    final static public String button_show_help_pressed="buttons/button_show_help_pressed.png";
+
+
 
 
     // Бэкграунды

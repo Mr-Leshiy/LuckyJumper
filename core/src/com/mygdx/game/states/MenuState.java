@@ -47,7 +47,7 @@ public class MenuState extends State {  // Класс меню
             public void onClickListener()
             {
                 if(GameClass.FirstTimeRunning) {
-                    gsm.set(new TrainingState(gsm));
+                    gsm.set(new TrainingState(gsm, new PlayState(gsm) ));
                     background.dispose();
                     GameClass.FirstTimeRunning=false;
                 }
