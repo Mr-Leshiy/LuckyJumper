@@ -18,6 +18,23 @@ public class GameClass extends ApplicationAdapter {
 
 	SpriteBatch batch;
 	GameStateManager gsm;
+	public static AdHandler handler;
+
+	public GameClass(AdHandler handler)
+	{
+		this.handler=handler;
+
+	}
+	public GameClass()
+	{
+		this.handler = new AdHandler() {
+			@Override
+			public void showAds(boolean show) {
+
+			}
+		};
+
+	}
 
 	
 	@Override

@@ -25,7 +25,7 @@ public class SettingsState extends State {
         super(gsm);
         this.background = background;
         Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2,40);
+        button_to_menu = new Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2,100);
         button_to_menu.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {

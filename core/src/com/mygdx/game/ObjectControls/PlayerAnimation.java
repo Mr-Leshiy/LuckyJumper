@@ -17,7 +17,9 @@ public class PlayerAnimation extends ObjectControl {
 
     private Player player;
     private Texture[] run_frames;
+    private Texture[] jump_frames;
     private Animation run_animation;
+    private Animation jump_animation;
     private float state_time;
     private static final float change_time = 0.25f;
 
@@ -27,6 +29,7 @@ public class PlayerAnimation extends ObjectControl {
         this.player=player;
         state_time = 0;
         run_frames = new Texture[]{new Texture(URL.player_walk_1), new Texture(URL.player_walk_2)};
+
         object.setHeight(run_frames[0].getHeight());
         object.setWidth(run_frames[0].getWidth());
         run_animation = new Animation(change_time, run_frames);

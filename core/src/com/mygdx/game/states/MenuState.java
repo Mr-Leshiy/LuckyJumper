@@ -58,11 +58,13 @@ public class MenuState extends State {  // Класс меню
                     gsm.set(new TrainingState(gsm, new PlayState(gsm) ));
                     background.dispose();
                     GameClass.FirstTimeRunning=false;
+                    GameClass.handler.showAds(false);
                 }
                 else
                 {
                     gsm.set(new PlayState(gsm));
                     background.dispose();
+                    GameClass.handler.showAds(false);
 
 
 
@@ -86,6 +88,7 @@ public class MenuState extends State {  // Класс меню
             @Override
             public void onClickListener() {
                 gsm.set(new BustersState(gsm,background));
+                GameClass.handler.showAds(false);
 
             }
         });

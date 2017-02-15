@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "370364554579",
+    "firebase_url": "https://lucky-jumper.firebaseio.com",
+    "project_id": "lucky-jumper",
+    "storage_bucket": "lucky-jumper.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370364554579:android:a29c971dfc44c526",
+        "android_client_info": {
+          "package_name": "com.mygdx.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370364554579-c6tsst53f22690clod5s6t4nltvuqfci.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_YXKvreW1aqQkXZ-5inhPReNMfHxj6_c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

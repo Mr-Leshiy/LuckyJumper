@@ -8,6 +8,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.0'
+        classpath 'com.google.gms:google-services:3.0.0'
+
     }
 }
 
@@ -17,12 +19,13 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "This_Side_Of_Paradise_(Game)"
+        appName = "Lucky Jumper"
         gdxVersion = '1.9.5'
         roboVMVersion = '2.3.0'
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
+
     }
 
     repositories {
@@ -48,6 +51,8 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
+    apply plugin: 'com.google.gms.google-services'
+
 
     configurations { natives }
 
@@ -73,11 +78,11 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
 
-        compile "com.android.support:support-v4:21.0.3"
+        compile 'com.google.firebase:firebase-ads:10.0.1'
+
+
     }
 }
-
-
 
 project(":core") {
     apply plugin: "java"
@@ -90,10 +95,6 @@ project(":core") {
 
     }
 }
-
-
-
-
 
 tasks.eclipse.doLast {
     delete ".project"

@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 public class Player {
 
-    private boolean isJump=false;
+    public boolean isJump=false;
     private Body box;
     private Fixture playerPhysicsFixture;
     private final float weight=0.35f;

@@ -48,6 +48,7 @@ public class GameOverState extends State {
             public void onClickListener() {
                 gsm.pop();
                 gsm.set(new MenuState(gsm,null));
+                GameClass.handler.showAds(true);
 
             }
         });

@@ -62,6 +62,7 @@ public class PauseState extends State {
                 GameInformationFileHandler info = new GameInformationFileHandler();
                 info.setPoints(state.getScore());
                 info.setPoints(state.getNeuronPoints());
+                GameClass.handler.showAds(true);
 
             }
         });

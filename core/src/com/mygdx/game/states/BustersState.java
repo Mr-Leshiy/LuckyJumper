@@ -40,10 +40,11 @@ public class BustersState extends State {
         button_back.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new ShopState(gsm,background));
+                gsm.set(new MenuState(gsm,background));
+                GameClass.handler.showAds(true);
             }
         });
-        scbox= new ScrollingBox(GameClass.WIDTH/2,120);
+        scbox= new ScrollingBox(GameClass.WIDTH/2,140);
         final GameInformationFileHandler info = new GameInformationFileHandler();
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
         neuronPoints.setPoint(info.getNeuronsPoints());
