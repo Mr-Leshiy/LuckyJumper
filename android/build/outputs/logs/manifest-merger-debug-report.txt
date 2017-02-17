@@ -81,7 +81,7 @@ MERGED from [com.android.support:support-v4:24.0.0] /home/alexey/Докумен�
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:13:9-45
 	android:theme
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:15:9-40
-activity#com.mygdx.game.AndroidLauncher
+activity#com.mygdx.Lucky_Jumper.AndroidLauncher
 ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:16:9-25:20
 	android:screenOrientation
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:19:13-50
@@ -90,7 +90,7 @@ ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/Android
 	android:configChanges
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:20:13-83
 	android:name
-		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:17:13-58
+		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:17:13-66
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:21:13-24:29
 action#android.intent.action.MAIN

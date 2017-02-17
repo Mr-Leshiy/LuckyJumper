@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mygdx.game.test" >
+    package="com.mygdx.Lucky_Jumper.test" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -10,8 +10,8 @@
         android:name="com.android.test.runner.MultiDexTestRunner"
         android:functionalTest="false"
         android:handleProfiling="false"
-        android:label="Tests for com.mygdx.game"
-        android:targetPackage="com.mygdx.game" />
+        android:label="Tests for com.mygdx.Lucky_Jumper"
+        android:targetPackage="com.mygdx.Lucky_Jumper" />
 
     <application>
         <uses-library android:name="android.test.runner" />
