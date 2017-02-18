@@ -31,6 +31,7 @@ public class GameOverState extends State {
     private GlyphLayout layout1;
     private GlyphLayout layout2;
     private GlyphLayout layout3;
+    private Button button_retry;
 
 
 
@@ -41,7 +42,7 @@ public class GameOverState extends State {
         backgound = new PauseStateBackground();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-40);
+        button_to_menu = new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-140);
         button_to_menu.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
@@ -49,6 +50,16 @@ public class GameOverState extends State {
                 gsm.set(new MenuState(gsm,null));
                 GameClass.handler.showAds(true);
 
+            }
+        });
+
+        Texture[] mas3= {new Texture(URL.button_retry), new Texture(URL.button_retry_pressed)};
+        button_retry =new Button(mas3, GameClass.WIDTH/2-mas3[0].getWidth()/2,GameClass.HEIGTH/2-40);
+        button_retry.setOnClickListener(new ButtonListener() {
+            @Override
+            public void onClickListener() {
+
+                gsm.set(new PlayState(gsm));
             }
         });
 
@@ -75,6 +86,9 @@ public class GameOverState extends State {
         layout2.setText(message,"Your score");
         layout3 = new GlyphLayout();
         layout3.setText(message,Integer.toString(state.getScore()));
+        GameClass.handler.showAdActivity();
+
+
 
     }
 
@@ -86,6 +100,14 @@ public class GameOverState extends State {
             button_to_menu.isTouched=false;
             button_to_menu.OnClick();
         }
+        if(!Gdx.input.isTouched() && button_retry.isTouched)
+        {
+            button_retry.isTouched=false;
+            button_retry.OnClick();
+
+
+        }
+
 
 
         if(Gdx.input.justTouched())
@@ -94,6 +116,11 @@ public class GameOverState extends State {
             if(button_to_menu.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_to_menu.isTouched=true;
+
+            }
+            if(button_retry.isClick(Gdx.input.getX()* com.mygdx.Lucky_Jumper.GameClass.CONST_WIDTH, com.mygdx.Lucky_Jumper.GameClass.HEIGTH-Gdx.input.getY()* com.mygdx.Lucky_Jumper.GameClass.CONST_HEIGHT))
+            {
+                button_retry.isTouched=true;
 
             }
 
@@ -118,6 +145,7 @@ public class GameOverState extends State {
         sb.begin();
         backgound.render(sb);
         button_to_menu.render(sb);
+        button_retry.render(sb);
         message.draw(sb,"GAME OVER",GameClass.WIDTH/2-layout1.width/2,GameClass.HEIGTH-20);
         message.draw(sb,"Your score",GameClass.WIDTH/2-layout2.width/2,GameClass.HEIGTH-80);
         message.draw(sb,Integer.toString(state.getScore()),GameClass.WIDTH/2-layout3.width/2,GameClass.HEIGTH-110);
@@ -130,6 +158,7 @@ public class GameOverState extends State {
 
         message.dispose();
         backgound.dispose();
+        button_to_menu.dispose();
         button_to_menu.dispose();
 
     }

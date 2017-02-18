@@ -39,6 +39,9 @@ public class URL {
     final static public String button_show_help="buttons/button_show_help.png";
     final static public String button_show_help_pressed="buttons/button_show_help_pressed.png";
 
+    final static public String button_retry="buttons/button_retry.png";
+    final static public String button_retry_pressed="buttons/button_retry_pressed.png";
+
 
 
 

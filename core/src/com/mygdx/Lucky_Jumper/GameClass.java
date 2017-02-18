@@ -31,6 +31,11 @@ public class GameClass extends ApplicationAdapter {
 			public void showAds(boolean show) {
 
 			}
+			@Override
+			public void showAdActivity()
+			{
+
+			}
 		};
 
 	}

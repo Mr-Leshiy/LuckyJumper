@@ -11,26 +11,30 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 public class AndroidLauncher extends AndroidApplication implements AdHandler {
 
 	private AdView adView;
+	private InterstitialAd adActivity;
 
 	private final int SHOW_AD=1;
 	private final int HIDE_AD=0;
+	private final int SHOW_AD_ACTIVITY=-1;
 
-	Handler handler = new Handler()
+	private Handler handler = new Handler()
 	{
 		@Override
-		public void handleMessage(Message msg)
-		{
-			switch (msg.what)
-			{
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
 				case SHOW_AD:
 					adView.setVisibility(View.VISIBLE);
 					break;
 				case HIDE_AD:
 					adView.setVisibility(View.GONE);
+					break;
+				case SHOW_AD_ACTIVITY:
+					adActivity.show();
 					break;
 			}
 		}
@@ -60,6 +64,9 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 		adView.setAdSize(AdSize.BANNER);
 		adView.setAdUnitId("ca-app-pub-2408703385236595/6943908869");
 
+		adActivity = new InterstitialAd(this);
+		adActivity.setAdUnitId("ca-app-pub-2408703385236595/6681366862");
+
 		layout.addView(gameView);
 		AdRequest.Builder builder = new AdRequest.Builder();
 		builder.addTestDevice("9BE9B1868EB225F94EB07CAA4CAE81F0");
@@ -68,8 +75,12 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 		adParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		adParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
+		AdRequest.Builder builder2 = new AdRequest.Builder();
+
+
 		layout.addView(adView,adParams);
 		adView.loadAd(builder.build());
+		adActivity.loadAd(builder2.build());
 		setContentView(layout);
 
   }
@@ -78,4 +89,10 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 	public void showAds(boolean show) {
 		handler.sendEmptyMessage(show ? SHOW_AD:HIDE_AD);
 	}
+	@Override
+	public void showAdActivity()
+	{
+		handler.sendEmptyMessage(SHOW_AD_ACTIVITY);
+	}
+
 }

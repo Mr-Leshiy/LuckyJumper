@@ -7,4 +7,5 @@ package com.mygdx.Lucky_Jumper;
 public interface AdHandler {
 
     public void showAds(boolean show);
+    public void showAdActivity();
 }
