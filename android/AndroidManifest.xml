@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mygdx.game"
-    android:versionCode="2"
-    android:versionName="1.0.1" >
+    android:versionCode="3"
+    android:versionName="1.1" >
 
     <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="25" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value=g"@integer/google_play_services_version"/>
     </application>
 
 </manifest>

@@ -63,9 +63,25 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 
 		adView.setAdSize(AdSize.BANNER);
 		adView.setAdUnitId("ca-app-pub-2408703385236595/6943908869");
+		adView.setAdListener(new AdListener() {
+			@Override
+			public void onAdClosed() {
+				super.onAdClosed();
+				AdRequest.Builder builder = new AdRequest.Builder();
+				adActivity.loadAd(builder.build());
+			}
+		});
 
 		adActivity = new InterstitialAd(this);
 		adActivity.setAdUnitId("ca-app-pub-2408703385236595/6681366862");
+		adActivity.setAdListener(new AdListener() {
+			@Override
+			public void onAdClosed() {
+				super.onAdClosed();
+				AdRequest.Builder builder = new AdRequest.Builder();
+				adActivity.loadAd(builder.build());
+			}
+		});
 
 		layout.addView(gameView);
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -93,6 +109,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 	public void showAdActivity()
 	{
 		handler.sendEmptyMessage(SHOW_AD_ACTIVITY);
+
 	}
 
 }

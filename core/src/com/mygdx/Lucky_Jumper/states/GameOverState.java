@@ -91,13 +91,10 @@ public class GameOverState extends State {
             GameClass.adActivity_counter++;
 
         }
-        if(GameClass.adActivity_counter==5) {
+        if(GameClass.adActivity_counter==8) {
             GameClass.handler.showAdActivity();
             GameClass.adActivity_counter=0;
         }
-
-
-
 
     }
 
