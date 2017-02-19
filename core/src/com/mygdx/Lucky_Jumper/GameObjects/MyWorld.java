@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.Lucky_Jumper.states.PlayState;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,19 +21,21 @@ public class MyWorld {
     private Random random;
     private World world;
     private Player player;
-    private List<com.mygdx.Lucky_Jumper.GameObjects.Platform> platforms;
+    private List<Platform> platforms;
     private Body endWorld;
     boolean playerDead;
-    private List<com.mygdx.Lucky_Jumper.GameObjects.Neurons> neurons;
+    private List<Neurons> neurons;
     public boolean isDelete=false;
     public boolean isContact=false;
     private final static float T=0;
     private float platformSpawn_X;
     private float platformSpawn_Y;
-    private com.mygdx.Lucky_Jumper.GameObjects.Clock clock;
-    private com.mygdx.Lucky_Jumper.GameObjects.PlatformBoost platformBoost;
+    private Clock clock;
+    private PlatformBoost platformBoost;
+    private DoubleNeuronBoost doubleNeuronBoost;
     boolean isTimeClockActive;
     boolean isTimePlatformBoostActive;
+    boolean isTimeDoubleNeuronBoostActive;
 
     float time;
     
@@ -40,11 +43,11 @@ public class MyWorld {
     {
         Box2D.init();
         world = new World(new Vector2(0,-10f),true);
-        com.mygdx.Lucky_Jumper.GameObjects.Platform.resetsSpeed();
+        Platform.resetsSpeed();
         random = new Random();
         world.setContactListener(new MyContactListener(this));
-        platforms = new ArrayList<com.mygdx.Lucky_Jumper.GameObjects.Platform>();
-        neurons= new ArrayList<com.mygdx.Lucky_Jumper.GameObjects.Neurons>();
+        platforms = new ArrayList<Platform>();
+        neurons= new ArrayList<Neurons>();
         createWorld();
     }
 
@@ -59,8 +62,8 @@ public class MyWorld {
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
         body.setTransform(2,1.5f,0);
-        body.setUserData(new com.mygdx.Lucky_Jumper.GameObjects.PlatformData(true,false));
-        com.mygdx.Lucky_Jumper.GameObjects.StartPlatform platform1 = new com.mygdx.Lucky_Jumper.GameObjects.StartPlatform(body);
+        body.setUserData(new PlatformData(true,false));
+        StartPlatform platform1 = new StartPlatform(body);
         platforms.add(platform1);
 
         def.type= BodyDef.BodyType.StaticBody;
@@ -76,25 +79,26 @@ public class MyWorld {
 
         isTimeClockActive=false;
         isTimePlatformBoostActive=false;
+        isTimeDoubleNeuronBoostActive=false;
     }
 
     public boolean isTimePlatformBoostActive() {
         return isTimePlatformBoostActive;
     }
 
-    public List<com.mygdx.Lucky_Jumper.GameObjects.Platform> getPlatforms()
+    public List<Platform> getPlatforms()
     {
         return platforms;
     }
 
-    public com.mygdx.Lucky_Jumper.GameObjects.Clock getClock() {
+    public Clock getClock() {
         return clock;
     }
-    public com.mygdx.Lucky_Jumper.GameObjects.PlatformBoost getPlatformBoost() {
+    public PlatformBoost getPlatformBoost() {
         return platformBoost;
     }
 
-    public List<com.mygdx.Lucky_Jumper.GameObjects.Neurons> getNeurons() {
+    public List<Neurons> getNeurons() {
         return neurons;
     }
 
@@ -110,14 +114,26 @@ public class MyWorld {
         if(isTimePlatformBoostActive()) {
             return time / PlayState.platform_boost_time;
         }
-        else
+       if(isTimeClockActive()) {
+           return time / PlayState.clock_time;
+       }
+        if(isTimeDoubleNeuronBoostActive)
         {
-            return time / PlayState.clock_time;
-
+            return time/PlayState.double_neuron_boost_time;
 
         }
+
+        return 0;
     }
 
+
+    public DoubleNeuronBoost getDoubleNeuronBoost() {
+        return doubleNeuronBoost;
+    }
+
+    public boolean isTimeDoubleNeuronBoostActive() {
+        return isTimeDoubleNeuronBoostActive;
+    }
 
     public void update(float delta)
     {
@@ -129,19 +145,19 @@ public class MyWorld {
 
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X- com.mygdx.Lucky_Jumper.GameObjects.Platform1.speed,platformSpawn_Y +1f,true);
+                addPlatform(platformSpawn_X- Platform1.speed,platformSpawn_Y +1f,true);
                 platformSpawn_Y+=0.8f;
 
             }
             else
             {
                 if((platformSpawn_Y-0.8f)>0) {
-                    addPlatform(platformSpawn_X - com.mygdx.Lucky_Jumper.GameObjects.Platform1.speed , platformSpawn_Y - 1f,true);
+                    addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y - 1f,true);
                     platformSpawn_Y -= 0.8f;
                 }
                 else
                 {
-                    addPlatform(platformSpawn_X - com.mygdx.Lucky_Jumper.GameObjects.Platform1.speed , platformSpawn_Y + 1f,true);
+                    addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y + 1f,true);
                     platformSpawn_Y += 0.8f;
 
                 }
@@ -149,13 +165,13 @@ public class MyWorld {
             }
             if(random.nextBoolean())
             {
-                addPlatform(platformSpawn_X - com.mygdx.Lucky_Jumper.GameObjects.Platform1.speed , platformSpawn_Y + 2f,false);
+                addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y + 2f,false);
 
             }
             if (random.nextBoolean())
             {
                 if((platformSpawn_Y)-2f>0)
-                addPlatform(platformSpawn_X - com.mygdx.Lucky_Jumper.GameObjects.Platform1.speed , platformSpawn_Y - 2f,false);
+                addPlatform(platformSpawn_X - Platform1.speed , platformSpawn_Y - 2f,false);
 
 
             }
@@ -168,15 +184,21 @@ public class MyWorld {
 
             }
             else {
-             if (random.nextInt(100)<15) {
 
-                addClock(platforms.get(platforms.size()-1).getBox().getPosition().x+0.15f
-                        , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
-            }
-            if(random.nextInt(100)<15) {
-                addPlatformBoost(platforms.get(platforms.size()-1).getBox().getPosition().x+0.05f
-                        , platforms.get(platforms.size()-1).getBox().getPosition().y+0.5f);
-            }
+                switch (random.nextInt(4)) {
+                    case 1:
+                        addClock(platforms.get(platforms.size() - 1).getBox().getPosition().x + 0.15f
+                                , platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.5f);
+                        break;
+                    case 2:
+                        addPlatformBoost(platforms.get(platforms.size() - 1).getBox().getPosition().x + 0.05f
+                                , platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.5f);
+                        break;
+                    case 3:
+                        addDoubleNeuronBoost(platforms.get(platforms.size() - 1).getBox().getPosition().x + 0.05f
+                                , platforms.get(platforms.size() - 1).getBox().getPosition().y + 0.5f);
+                        break;
+                }
 
             }
 
@@ -188,6 +210,7 @@ public class MyWorld {
         deleteNeurons();
         deleteCLock();
         deletePlatformBoost();
+        deleteDoubleNeuronPoints();
 
         if(isTimeClockActive)
         {
@@ -201,21 +224,24 @@ public class MyWorld {
             world.step(delta,4,4);
 
         }
-        if(time<0)
-        {
-            time=PlayState.clock_time;
-            isTimeClockActive=false;
-        }
 
         if(isTimePlatformBoostActive) {
 
             time -= delta;
         }
+
+        if(isTimeDoubleNeuronBoostActive)
+        {
+            time-=delta;
+        }
         if(time<0)
         {
-            time=PlayState.clock_time;
+            isTimeDoubleNeuronBoostActive=false;
+            isTimeClockActive=false;
             isTimePlatformBoostActive=false;
+
         }
+
 
 
     }
@@ -290,6 +316,18 @@ public class MyWorld {
 
     }
 
+    public void deleteDoubleNeuronPoints()
+    {
+        if(doubleNeuronBoost!=null && (isTimeDoubleNeuronBoostActive || doubleNeuronBoost.getBody().getPosition().x<-5))
+        {
+            doubleNeuronBoost.getBody().setActive(false);
+            world.destroyBody(doubleNeuronBoost.getBody());
+            doubleNeuronBoost=null;
+
+        }
+
+    }
+
 
     public void addNeuron(float x,float y)
     {
@@ -304,29 +342,46 @@ public class MyWorld {
 
     public void addClock(float x, float y)
     {
-        if (clock == null && !isTimeClockActive && !isTimePlatformBoostActive && platformBoost==null)
+        if (doubleNeuronBoost ==null && !isTimePlatformBoostActive && !isTimeClockActive && clock==null && platformBoost ==null && !isTimeDoubleNeuronBoostActive)
         {
         BodyDef def = new BodyDef();
         def.type = BodyDef.BodyType.KinematicBody;
         Body body = world.createBody(def);
         body.setTransform(x, y, 0);
         body.setUserData('t');
-        clock = new com.mygdx.Lucky_Jumper.GameObjects.Clock(body);
+        clock = new Clock(body);
         }
 
     }
 
     public void addPlatformBoost(float x, float y)
     {
-        if (platformBoost == null && !isTimePlatformBoostActive && !isTimeClockActive && clock==null)
+        if (doubleNeuronBoost ==null && !isTimePlatformBoostActive && !isTimeClockActive && clock==null && platformBoost ==null && !isTimeDoubleNeuronBoostActive)
         {
             BodyDef def = new BodyDef();
             def.type = BodyDef.BodyType.KinematicBody;
             Body body = world.createBody(def);
             body.setTransform(x, y, 0);
             body.setUserData('b');
-            platformBoost = new com.mygdx.Lucky_Jumper.GameObjects.PlatformBoost(body);
+            platformBoost = new PlatformBoost(body);
         }
+
+    }
+
+    public void addDoubleNeuronBoost(float x,float y)
+    {
+        if(doubleNeuronBoost ==null && !isTimePlatformBoostActive && !isTimeClockActive && clock==null && platformBoost ==null && !isTimeDoubleNeuronBoostActive)
+        {
+            BodyDef def = new BodyDef();
+            def.type = BodyDef.BodyType.KinematicBody;
+            Body body = world.createBody(def);
+            body.setTransform(x, y, 0);
+            body.setUserData('2');
+            doubleNeuronBoost = new DoubleNeuronBoost(body);
+
+        }
+
+
 
     }
     public void addPlatform(float x, float y,boolean isBoost)

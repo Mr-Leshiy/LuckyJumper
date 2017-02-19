@@ -42,6 +42,9 @@ public class URL {
     final static public String button_retry="buttons/button_retry.png";
     final static public String button_retry_pressed="buttons/button_retry_pressed.png";
 
+    final static public String shop_button_double_neuron_points="buttons/shop_button_double_neuron_points.png";
+    final static public String shop_button_double_neuron_points_pressed="buttons/shop_button_double_neuron_points_pressed.png";
+
 
 
 
@@ -82,6 +85,7 @@ public class URL {
     final static public String shop_booster_level_active="shop_booster_level_active.png";
     final static public String shop_booster_level_non_active="shop_booster_level_non_active.png";
     final static public String platformBoost="platformBoost.png";
+    final static public String double_neuron_points="double_neuron_points.png";
 
 
 

@@ -35,7 +35,7 @@ public class GameOverState extends State {
 
 
 
-    public GameOverState(final com.mygdx.Lucky_Jumper.states.GameStateManager gsm, final com.mygdx.Lucky_Jumper.states.PlayState state) {
+    public GameOverState(final GameStateManager gsm, final PlayState state) {
         super(gsm);
         this.state=state;
         message=initializeFontStyle();
@@ -86,7 +86,16 @@ public class GameOverState extends State {
         layout2.setText(message,"Your score");
         layout3 = new GlyphLayout();
         layout3.setText(message,Integer.toString(state.getScore()));
-        GameClass.handler.showAdActivity();
+        if(state.getScore()>=5)
+        {
+            GameClass.adActivity_counter++;
+
+        }
+        if(GameClass.adActivity_counter==5) {
+            GameClass.handler.showAdActivity();
+            GameClass.adActivity_counter=0;
+        }
+
 
 
 
@@ -108,15 +117,12 @@ public class GameOverState extends State {
 
         }
 
-
-
         if(Gdx.input.justTouched())
         {
 
             if(button_to_menu.isClick(Gdx.input.getX()*GameClass.CONST_WIDTH,GameClass.HEIGTH-Gdx.input.getY()*GameClass.CONST_HEIGHT))
             {
                 button_to_menu.isTouched=true;
-
             }
             if(button_retry.isClick(Gdx.input.getX()* com.mygdx.Lucky_Jumper.GameClass.CONST_WIDTH, com.mygdx.Lucky_Jumper.GameClass.HEIGTH-Gdx.input.getY()* com.mygdx.Lucky_Jumper.GameClass.CONST_HEIGHT))
             {

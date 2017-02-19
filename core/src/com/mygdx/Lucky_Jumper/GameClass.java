@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.Lucky_Jumper.states.GameStateManager;
 import com.mygdx.Lucky_Jumper.states.MenuState;
 
 public class GameClass extends ApplicationAdapter {
@@ -14,6 +15,7 @@ public class GameClass extends ApplicationAdapter {
 	public static float CONST_HEIGHT;
 	public static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.:;,{}\"´`'<>";
 	public static boolean FirstTimeRunning=false;
+	public static int adActivity_counter=0;
 
 	SpriteBatch batch;
 	com.mygdx.Lucky_Jumper.states.GameStateManager gsm;
@@ -44,11 +46,16 @@ public class GameClass extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		gsm=new com.mygdx.Lucky_Jumper.states.GameStateManager();
+		gsm=new GameStateManager();
 
 		if(!Gdx.files.local("GameInformation.xml").exists()) {
-			com.mygdx.Lucky_Jumper.GameInformationFileHandler.createDocument();
+			GameInformationFileHandler.createDocument();
 			FirstTimeRunning=true;
+		}
+
+		if(!GameInformationFileHandler.checkVersion())
+		{
+			GameInformationFileHandler.updateDocument();
 		}
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);

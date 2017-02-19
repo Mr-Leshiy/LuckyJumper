@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.mygdx.Lucky_Jumper.Backgrounds.PlayStateBackgound;
 import com.mygdx.Lucky_Jumper.Constants.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
+import com.mygdx.Lucky_Jumper.GameObjects.MyWorld;
 import com.mygdx.Lucky_Jumper.GameObjects.Neurons;
 import com.mygdx.Lucky_Jumper.GameObjects.Platform;
 import com.mygdx.Lucky_Jumper.GameObjects.Platform1;
@@ -29,8 +31,8 @@ import com.mygdx.Lucky_Jumper.ObjectControls.Points;
 public class PlayState extends State {
 
 
-     private com.mygdx.Lucky_Jumper.GameObjects.MyWorld world;
-     private com.mygdx.Lucky_Jumper.Backgrounds.PlayStateBackgound background;
+     private MyWorld world;
+     private PlayStateBackgound background;
      private Button button_pause;
      private Points score;
      private NeuronPoints neuronPoints;
@@ -43,12 +45,15 @@ public class PlayState extends State {
      private Texture platformBoost;
      private Texture time_line;
      private Texture time_line_frame;
+     private Texture double_neuron_boost;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
 
+
      public static float clock_time;
      public static float platform_boost_time;
+     public static float double_neuron_boost_time;
 
     public PlayState(final com.mygdx.Lucky_Jumper.states.GameStateManager gsm)
     {
@@ -57,6 +62,7 @@ public class PlayState extends State {
         GameInformationFileHandler info = new GameInformationFileHandler();
         clock_time=(info.getLevel("clock_item")*0.25f+1)*10;
         platform_boost_time=(info.getLevel("platform_booster_item")*0.25f+1)*10;
+        double_neuron_boost_time=(info.getLevel("double_neuron_points")*0.25f+1)*10;
 
         staticbatch = new SpriteBatch();
         static_camera=new OrthographicCamera();
@@ -82,6 +88,7 @@ public class PlayState extends State {
         neuron= new Texture(URL.neuron);
         clock = new Texture(URL.clock);
         platformBoost = new Texture(URL.platformBoost);
+        double_neuron_boost= new Texture(URL.double_neuron_points);
         time_line = new Texture(URL.time_line);
         time_line_frame = new Texture(URL.time_line_frame);
         staticbatch.setProjectionMatrix(static_camera.combined);
@@ -141,8 +148,17 @@ public class PlayState extends State {
         }
         if(world.isDelete)
         {
-            neuronPoints.addPoints();
-            world.isDelete=false;
+            if(world.isTimeDoubleNeuronBoostActive())
+            {
+                neuronPoints.addPoints();
+                neuronPoints.addPoints();
+                world.isDelete=false;
+
+            }
+            else {
+                neuronPoints.addPoints();
+                world.isDelete = false;
+            }
         }
 
         if(world.isContact)
@@ -167,7 +183,7 @@ public class PlayState extends State {
         neuronPoints.render(staticbatch);
         score.render(staticbatch);
 
-        if(world.isTimeClockActive() || world.isTimePlatformBoostActive())
+        if(world.isTimeClockActive() || world.isTimePlatformBoostActive() || world.isTimeDoubleNeuronBoostActive())
         {
             staticbatch.draw(time_line,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,world.getTime()*time_line.getWidth(),time_line.getHeight());
             staticbatch.draw(time_line_frame,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,time_line_frame.getWidth(),time_line_frame.getHeight());
@@ -237,6 +253,12 @@ public class PlayState extends State {
                     (world.getPlatformBoost().getBody().getPosition().y-world.getPlatformBoost().getHeight())*RATE);
 
         }
+        if(world.getDoubleNeuronBoost()!=null)
+        {
+            sb.draw(double_neuron_boost,(world.getDoubleNeuronBoost().getBody().getPosition().x-world.getDoubleNeuronBoost().getWeight())*RATE,
+                    (world.getDoubleNeuronBoost().getBody().getPosition().y-world.getDoubleNeuronBoost().getHeight())*RATE);
+
+        }
 
 
         player_animation.render(sb);
@@ -263,13 +285,14 @@ public class PlayState extends State {
         time_line_frame.dispose();
         platform1_boost.dispose();
         platformBoost.dispose();
+        double_neuron_boost.dispose();
 
     }
 
     @Override
     public void pause() {
 
-        gsm.push(new com.mygdx.Lucky_Jumper.states.PauseState(gsm,this));
+        gsm.push(new PauseState(gsm,this));
         isPaused=true;
 
     }

@@ -7,6 +7,11 @@ import com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground;
 import com.mygdx.Lucky_Jumper.Constants.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
+import com.mygdx.Lucky_Jumper.ObjectControls.Button;
+import com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener;
+import com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints;
+import com.mygdx.Lucky_Jumper.ObjectControls.ScrollingBox;
+import com.mygdx.Lucky_Jumper.ObjectControls.ShopBoostersItem;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,11 +24,12 @@ import java.util.concurrent.Executors;
 public class BustersState extends State {
 
     private MenuBackground background;
-    private com.mygdx.Lucky_Jumper.ObjectControls.Button button_back;
-    private com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints neuronPoints;
-    private com.mygdx.Lucky_Jumper.ObjectControls.ShopBoostersItem clock_item;
-    private com.mygdx.Lucky_Jumper.ObjectControls.ShopBoostersItem platform_booster;
-    private com.mygdx.Lucky_Jumper.ObjectControls.ScrollingBox scbox;
+    private Button button_back;
+    private NeuronPoints neuronPoints;
+    private ShopBoostersItem clock_item;
+    private ShopBoostersItem platform_booster;
+    private ShopBoostersItem double_neuron_points;
+    private ScrollingBox scbox;
 
     public BustersState(final GameStateManager gsm,final MenuBackground background)
     {
@@ -41,14 +47,17 @@ public class BustersState extends State {
             }
         });
         scbox= new com.mygdx.Lucky_Jumper.ObjectControls.ScrollingBox(GameClass.WIDTH/2,140);
-        final GameInformationFileHandler info = new GameInformationFileHandler();
+        GameInformationFileHandler info = new GameInformationFileHandler();
         neuronPoints = new com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
         neuronPoints.setPoint(info.getNeuronsPoints());
-        final Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
-        final Texture[] m2 = {new Texture(URL.shop_button_platform_booster),new Texture(URL.shop_button_platform_booster_pressed)};
+        Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
+        Texture[] m2 = {new Texture(URL.shop_button_platform_booster),new Texture(URL.shop_button_platform_booster_pressed)};
+        Texture[] m3 ={new Texture(URL.shop_button_double_neuron_points), new Texture(URL.shop_button_double_neuron_points_pressed)};
 
-        platform_booster= new com.mygdx.Lucky_Jumper.ObjectControls.ShopBoostersItem(0,0,m2);
-        clock_item = new com.mygdx.Lucky_Jumper.ObjectControls.ShopBoostersItem(0,0,m);
+        platform_booster= new ShopBoostersItem(0,0,m2);
+        clock_item = new ShopBoostersItem(0,0,m);
+        double_neuron_points= new ShopBoostersItem(0,0,m3);
+
         initializeItems(info);
 
 
@@ -78,6 +87,8 @@ public class BustersState extends State {
         clock_item.ButtonClickHandle();
         if(platform_booster!=null)
         platform_booster.ButtonClickHandle();
+        if(double_neuron_points!=null)
+        double_neuron_points.ButtonClickHandle();
 
     }
 
@@ -165,13 +176,36 @@ public class BustersState extends State {
                     }
                 });
 
+                double_neuron_points.setOnClickBuuttonListener(new ButtonListener() {
+                    @Override
+                    public void onClickListener() {
+                        if(neuronPoints.getPoints()>=double_neuron_points.getPrice() && double_neuron_points.getCurrent_level()<4)
+                        {
+                            neuronPoints.setPoint(neuronPoints.getPoints()-double_neuron_points.getPrice());
+                            info.spentNeronPoints(double_neuron_points.getPrice());
+
+                            double_neuron_points.setPrice(2*double_neuron_points.getPrice());
+                            double_neuron_points.setLevel(double_neuron_points.getCurrent_level()+1);
+
+                            info.setPrice("double_neuron_points",double_neuron_points.getPrice());
+                            info.setLevel("double_neuron_points",double_neuron_points.getCurrent_level());
+
+                        }
+
+
+                    }
+                });
+
                 scbox.addObject(clock_item);
                 scbox.addObject(platform_booster);
+                scbox.addObject(double_neuron_points);
 
                 clock_item.setPrice(info.getPrice("clock_item"));
                 clock_item.setLevel(info.getLevel("clock_item"));
                 platform_booster.setPrice(info.getPrice("platform_booster_item"));
                 platform_booster.setLevel(info.getLevel("platform_booster_item"));
+                double_neuron_points.setPrice(info.getPrice("double_neuron_points"));
+                double_neuron_points.setLevel(info.getLevel("double_neuron_points"));
 
 
             }

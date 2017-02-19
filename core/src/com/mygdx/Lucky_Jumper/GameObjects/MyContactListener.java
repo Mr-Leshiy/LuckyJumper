@@ -151,6 +151,20 @@ public class MyContactListener implements ContactListener {
             world.isTimePlatformBoostActive=true;
             world.time=PlayState.platform_boost_time;
         }
+        if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('2'))
+        {
+            contact.setEnabled(false);
+            world.isTimeDoubleNeuronBoostActive=true;
+            world.time=PlayState.double_neuron_boost_time;
+
+
+        }
+        if (contact.getFixtureB().getBody().getUserData() != null  && contact.getFixtureB().getBody().getUserData().equals('2')) {
+
+            contact.setEnabled(false);
+            world.isTimeDoubleNeuronBoostActive=true;
+            world.time=PlayState.double_neuron_boost_time;
+        }
 
 
         if (contact.isEnabled() && (contact.getFixtureA().getUserData() != null && contact.getFixtureA().getUserData().equals('c')))

@@ -25,7 +25,7 @@ public class GameInformationFileHandler {
 
     private final static String NAME="GameInformation.xml";
     private Document document;
-    private final static String version="1.0";
+    private final static String version="2.0";
 
 
     public GameInformationFileHandler()
@@ -111,7 +111,6 @@ public class GameInformationFileHandler {
             e.printStackTrace();
 
         }
-
 
 
     }
@@ -231,6 +230,18 @@ public class GameInformationFileHandler {
             level1.setTextContent("0");
             platformBoost.appendChild(level1);
 
+            Element doubleNeuronpoints=document.createElement("double_neuron_points");
+            boosters.appendChild(doubleNeuronpoints);
+            Element price2=document.createElement("current_price");
+            price2.setTextContent("100");
+
+            doubleNeuronpoints.appendChild(price2);
+
+            Element level2=document.createElement("current_level");
+            level2.setTextContent("0");
+            doubleNeuronpoints.appendChild(level2);
+
+
 
             FileHandle fileHandle = Gdx.files.local(NAME);
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -243,6 +254,51 @@ public class GameInformationFileHandler {
             e.printStackTrace();
 
         }
+
+
+    }
+
+    public static void updateDocument()
+    {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setValidating(false);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(Gdx.files.local(NAME).file());
+
+            double version =Double.valueOf(document.getXmlVersion());
+
+            if(version<2)
+            {
+                Element boosters = (Element) document.getElementsByTagName("boosters").item(0);
+
+                Element doubleNeuronpoints=document.createElement("double_neuron_points");
+                boosters.appendChild(doubleNeuronpoints);
+                Element price2=document.createElement("current_price");
+                price2.setTextContent("100");
+
+                doubleNeuronpoints.appendChild(price2);
+
+                Element level2=document.createElement("current_level");
+                level2.setTextContent("0");
+                doubleNeuronpoints.appendChild(level2);
+
+            }
+
+            FileHandle fileHandle = Gdx.files.local(NAME);
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(new DOMSource(document), new StreamResult(fileHandle.file()));
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
+
 
 
     }
