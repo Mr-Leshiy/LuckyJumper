@@ -1,7 +1,4 @@
-#Sun Feb 19 17:39:09 EET 2017
-base.0=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_728a4bcb387d13567e652c48bfaa54be182ba84f
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6fa4d9021ddf7880b40060bc61a19abc76abe5bb/classes.dex
-base.1=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6fa4d9021ddf7880b40060bc61a19abc76abe5bb
-file.0=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_728a4bcb387d13567e652c48bfaa54be182ba84f/classes.dex
+#Wed Feb 22 20:31:40 EET 2017
+base.0=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

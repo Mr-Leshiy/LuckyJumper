@@ -336,7 +336,7 @@ public class MyWorld {
         Body body =world.createBody(def);
         body.setTransform(x,y,0);
         body.setUserData('n');
-        com.mygdx.Lucky_Jumper.GameObjects.Neurons neuron = new com.mygdx.Lucky_Jumper.GameObjects.Neurons(body);
+        Neurons neuron = new Neurons(body);
         neurons.add(neuron);
     }
 
@@ -388,23 +388,38 @@ public class MyWorld {
     {
 
         BodyDef def = new BodyDef();
-        com.mygdx.Lucky_Jumper.GameObjects.PlatformData data = new com.mygdx.Lucky_Jumper.GameObjects.PlatformData(random.nextBoolean(),isBoost);
+        PlatformData data = new PlatformData(random.nextBoolean(),isBoost);
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
         body.setTransform(x,y,0);
         body.setUserData(data);
-        com.mygdx.Lucky_Jumper.GameObjects.Platform1 platform1 = new com.mygdx.Lucky_Jumper.GameObjects.Platform1(body);
+        Platform1 platform1 = new Platform1(body);
         platforms.add(platform1);
 
     }
 
     public void changeActivelatforms()
     {
-
-        for(com.mygdx.Lucky_Jumper.GameObjects.Platform pl: platforms)
+        Body body=null;
+        Array<Contact> contacts =world.getContactList();
+        for(Contact contact:contacts)
         {
-            com.mygdx.Lucky_Jumper.GameObjects.PlatformData data = (com.mygdx.Lucky_Jumper.GameObjects.PlatformData) pl.getBox().getUserData();
-         if ( data.isActive())
+            if(contact.isTouching() && contact.getFixtureA()==player.getPlayerPhysicsFixture())
+            {
+                body=contact.getFixtureB().getBody();
+            }
+            if(contact.isTouching() && contact.getFixtureB()==player.getPlayerPhysicsFixture())
+            {
+                body=contact.getFixtureA().getBody();
+            }
+        }
+
+
+
+        for(Platform pl: platforms)
+        {
+            PlatformData data = (PlatformData) pl.getBox().getUserData();
+         if ( data.isActive() && pl.getBox()!=body)
          {
              data.isActive=false;
 
@@ -414,7 +429,7 @@ public class MyWorld {
              data.isActive=true;
 
          }
-            if(pl instanceof com.mygdx.Lucky_Jumper.GameObjects.StartPlatform)
+            if(pl instanceof StartPlatform)
             {
                 data.isActive=true;
 
@@ -430,7 +445,7 @@ public class MyWorld {
         for(Contact contact:contacts)
         {
             if(contact.isTouching() && (contact.getFixtureA()==player.getPlayerPhysicsFixture()
-                    || contact.getFixtureB()==player.getPlayerPhysicsFixture()))
+                    || contact.getFixtureB()==player.getPlayerPhysicsFixture()) && contact.isEnabled())
             {
               return true;
 
@@ -450,12 +465,12 @@ public class MyWorld {
 
     public void inncreaseSpeed()
     {
-        com.mygdx.Lucky_Jumper.GameObjects.Platform.increaseSpeed();
-        for(com.mygdx.Lucky_Jumper.GameObjects.Platform pl:platforms)
+        Platform.increaseSpeed();
+        for(Platform pl:platforms)
         {
             pl.setSpeed();
         }
-        for(com.mygdx.Lucky_Jumper.GameObjects.Neurons n:neurons)
+        for(Neurons n:neurons)
         {
             n.increaseSpeed();
         }

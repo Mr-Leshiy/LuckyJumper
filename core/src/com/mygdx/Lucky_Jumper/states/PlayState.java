@@ -1,12 +1,9 @@
 package com.mygdx.Lucky_Jumper.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.Lucky_Jumper.Backgrounds.PlayStateBackgound;
 import com.mygdx.Lucky_Jumper.Constants.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
@@ -46,6 +43,7 @@ public class PlayState extends State {
      private Texture time_line;
      private Texture time_line_frame;
      private Texture double_neuron_boost;
+     private Texture platform_bright;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
@@ -67,10 +65,8 @@ public class PlayState extends State {
         staticbatch = new SpriteBatch();
         static_camera=new OrthographicCamera();
         static_camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
-        world = new com.mygdx.Lucky_Jumper.GameObjects.MyWorld();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         background = new com.mygdx.Lucky_Jumper.Backgrounds.PlayStateBackgound();
-        player_animation = new PlayerAnimation(world.getPlayer());
         Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
         score = new Points(GameClass.WIDTH/2,GameClass.HEIGTH-20);
         neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
@@ -91,7 +87,12 @@ public class PlayState extends State {
         double_neuron_boost= new Texture(URL.double_neuron_points);
         time_line = new Texture(URL.time_line);
         time_line_frame = new Texture(URL.time_line_frame);
+        platform_bright= new Texture(URL.platform_bright);
         staticbatch.setProjectionMatrix(static_camera.combined);
+
+        world = new MyWorld();
+        player_animation = new PlayerAnimation(world.getPlayer());
+
 
 
     }
@@ -208,6 +209,17 @@ public class PlayState extends State {
                         sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
                     }
                 }
+                else
+                {
+                    if (pl instanceof Platform1)
+                    {
+                        sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f) * RATE);
+
+                    }
+
+
+
+                }
 
             }
             else
@@ -218,6 +230,10 @@ public class PlayState extends State {
                     {
                         sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
                     }
+                    else
+                    {
+                        sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f));
+                    }
                 }
                 else
                 {
@@ -226,13 +242,10 @@ public class PlayState extends State {
                 }
 
             }
-         if (data.isActive())
-                    {
                         if (pl instanceof StartPlatform)
                         {
                             sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
                         }
-                    }
         }
 
 

@@ -6,7 +6,7 @@ ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/Android
 		INJECTED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml
 		INJECTED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml
 	android:versionName
-		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:5:5-32
+		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:5:5-30
 		INJECTED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml
 		INJECTED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml
 	android:versionCode
@@ -16,7 +16,7 @@ ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/Android
 	xmlns:android
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:2:11-69
 uses-sdk
-ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:7:5-73
+ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:7:5-72
 MERGED from [com.android.support:multidex:1.0.1] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/AndroidManifest.xml:18:5-42
 MERGED from [com.google.firebase:firebase-core:9.0.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-core/9.0.0/AndroidManifest.xml:4:5-42
 MERGED from [com.google.firebase:firebase-ads:10.0.1] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-ads/10.0.1/AndroidManifest.xml:4:5-42

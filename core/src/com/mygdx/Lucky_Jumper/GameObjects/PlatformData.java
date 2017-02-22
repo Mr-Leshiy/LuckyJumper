@@ -1,13 +1,13 @@
 package com.mygdx.Lucky_Jumper.GameObjects;
 
 /**
- * Created by alexey on 06.02.17.
+ * Created by alexey on 22.02.17.
  */
 
 public class PlatformData
 {
-     boolean isActive;
-     boolean isBoost;
+    boolean isActive;
+    boolean isBoost;
 
     public PlatformData(boolean isActive,boolean isBoost)
     {
@@ -23,3 +23,4 @@ public class PlatformData
         return isBoost;
     }
 }
+

@@ -75,6 +75,7 @@ public class URL {
     final static public String platfomr_1="platforms/platform1.png";
     final static public String start_platform="platforms/start_platform.png";
     final static public String platfomr_1_boost="platforms/platform1_boost.png";
+    final static public String platform_bright="platforms/bright_platform.png";
 
     //другие спрайты
     final static public String neuron="Neurons.png";

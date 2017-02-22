@@ -51,7 +51,7 @@ public class MyContactListener implements ContactListener {
         if(!world.isTimePlatformBoostActive()) {
 
             if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData) {
-                com.mygdx.Lucky_Jumper.GameObjects.PlatformData data = (com.mygdx.Lucky_Jumper.GameObjects.PlatformData) contact.getFixtureA().getBody().getUserData();
+                PlatformData data = (PlatformData) contact.getFixtureA().getBody().getUserData();
 
                 if (!data.isActive()) {
 
@@ -75,7 +75,7 @@ public class MyContactListener implements ContactListener {
         {
             if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData)
             {
-                com.mygdx.Lucky_Jumper.GameObjects.PlatformData data = (com.mygdx.Lucky_Jumper.GameObjects.PlatformData) contact.getFixtureA().getBody().getUserData();
+                PlatformData data = (PlatformData) contact.getFixtureA().getBody().getUserData();
                 if(!data.isBoost())
                 {
                     if (!data.isActive()) {
@@ -90,7 +90,7 @@ public class MyContactListener implements ContactListener {
             }
             if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData)
             {
-                com.mygdx.Lucky_Jumper.GameObjects.PlatformData data = (com.mygdx.Lucky_Jumper.GameObjects.PlatformData) contact.getFixtureB().getBody().getUserData();
+                PlatformData data = (PlatformData) contact.getFixtureB().getBody().getUserData();
                 if(!data.isBoost())
                 {
                     if (!data.isActive()) {

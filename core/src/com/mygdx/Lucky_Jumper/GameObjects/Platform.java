@@ -15,7 +15,6 @@ public abstract class Platform {
     public Platform(Body box)
     {
         this.box=box;
-
     }
 
     public Body getBox() {
@@ -39,6 +38,7 @@ public abstract class Platform {
     public static void resetsSpeed()
     {
         speed=-2f;
+
 
     }
 
