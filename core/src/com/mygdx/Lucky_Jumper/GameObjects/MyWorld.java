@@ -416,24 +416,48 @@ public class MyWorld {
 
 
 
-        for(Platform pl: platforms)
-        {
-            PlatformData data = (PlatformData) pl.getBox().getUserData();
-         if ( data.isActive() && pl.getBox()!=body)
-         {
-             data.isActive=false;
+        if(!isTimePlatformBoostActive) {
+            for (Platform pl : platforms) {
+                PlatformData data = (PlatformData) pl.getBox().getUserData();
+                if (data.isActive() && pl.getBox() != body) {
+                    data.isActive = false;
 
-         }
-         else
-         {
-             data.isActive=true;
+                } else {
+                    data.isActive = true;
 
-         }
-            if(pl instanceof StartPlatform)
-            {
-                data.isActive=true;
+                }
+                if (pl instanceof StartPlatform) {
+                    data.isActive = true;
+
+                }
 
             }
+        }
+        else
+        {
+            for (Platform pl : platforms) {
+                PlatformData data = (PlatformData) pl.getBox().getUserData();
+                if(!data.isBoost) {
+                    if (data.isActive() && pl.getBox() != body) {
+                        data.isActive = false;
+
+                    } else {
+                        data.isActive = true;
+
+                    }
+                }
+                else
+                {
+                    data.isActive=true;
+                }
+                if (pl instanceof StartPlatform) {
+                    data.isActive = true;
+
+                }
+
+            }
+
+
 
         }
 

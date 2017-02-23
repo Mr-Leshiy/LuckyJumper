@@ -34,9 +34,6 @@ public class MyContactListener implements ContactListener {
             }
 
         }
-
-
-
     }
 
     @Override
@@ -48,9 +45,7 @@ public class MyContactListener implements ContactListener {
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
-        if(!world.isTimePlatformBoostActive()) {
-
-            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData) {
+            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof PlatformData) {
                 PlatformData data = (PlatformData) contact.getFixtureA().getBody().getUserData();
 
                 if (!data.isActive()) {
@@ -58,57 +53,14 @@ public class MyContactListener implements ContactListener {
                     contact.setEnabled(false);
 
                 }
-
-
             }
-            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData) {
-                com.mygdx.Lucky_Jumper.GameObjects.PlatformData data = (com.mygdx.Lucky_Jumper.GameObjects.PlatformData) contact.getFixtureB().getBody().getUserData();
-                if (!data.isActive()) {
-                    contact.setEnabled(false);
-
-                }
-
-
-            }
-        }
-        else
-        {
-            if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData)
-            {
-                PlatformData data = (PlatformData) contact.getFixtureA().getBody().getUserData();
-                if(!data.isBoost())
-                {
-                    if (!data.isActive()) {
-
-                        contact.setEnabled(false);
-
-                    }
-
-                }
-
-
-            }
-            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData() instanceof com.mygdx.Lucky_Jumper.GameObjects.PlatformData)
-            {
+            if (contact.getFixtureB().getBody().getUserData() != null && contact.getFixtureB().getBody().getUserData() instanceof PlatformData) {
                 PlatformData data = (PlatformData) contact.getFixtureB().getBody().getUserData();
-                if(!data.isBoost())
-                {
-                    if (!data.isActive()) {
-
-                        contact.setEnabled(false);
-
-                    }
+                if (!data.isActive()) {
+                    contact.setEnabled(false);
 
                 }
-
-
             }
-
-
-
-        }
-
-
 
 
         if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('n'))
@@ -179,7 +131,6 @@ public class MyContactListener implements ContactListener {
             contact.getFixtureB().setUserData('d');
 
         }
-
 
 
     }

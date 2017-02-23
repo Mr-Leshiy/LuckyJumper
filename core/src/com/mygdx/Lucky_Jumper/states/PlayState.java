@@ -1,6 +1,7 @@
 package com.mygdx.Lucky_Jumper.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +12,6 @@ import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 import com.mygdx.Lucky_Jumper.GameObjects.MyWorld;
 import com.mygdx.Lucky_Jumper.GameObjects.Neurons;
 import com.mygdx.Lucky_Jumper.GameObjects.Platform;
-import com.mygdx.Lucky_Jumper.GameObjects.Platform1;
 import com.mygdx.Lucky_Jumper.GameObjects.PlatformData;
 import com.mygdx.Lucky_Jumper.GameObjects.StartPlatform;
 import com.mygdx.Lucky_Jumper.ObjectControls.Button;
@@ -204,21 +204,12 @@ public class PlayState extends State {
 
                 if (data.isActive())
                 {
-                    if (pl instanceof Platform1)
-                    {
                         sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
-                    }
+
                 }
                 else
                 {
-                    if (pl instanceof Platform1)
-                    {
                         sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f) * RATE);
-
-                    }
-
-
-
                 }
 
             }
@@ -232,7 +223,7 @@ public class PlayState extends State {
                     }
                     else
                     {
-                        sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f));
+                        sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f)*RATE);
                     }
                 }
                 else
@@ -242,10 +233,10 @@ public class PlayState extends State {
                 }
 
             }
-                        if (pl instanceof StartPlatform)
-                        {
-                            sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
-                        }
+            if (pl instanceof StartPlatform)
+                {
+                    sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+             }
         }
 
 
