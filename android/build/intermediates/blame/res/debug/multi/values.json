@@ -11,7 +11,7 @@
                     "endOffset": 190
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -30,7 +30,7 @@
                     "endOffset": 270
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 0,
@@ -49,7 +49,7 @@
                     "endOffset": 360
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 0,
@@ -68,7 +68,7 @@
                     "endOffset": 450
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 0,
@@ -87,7 +87,7 @@
                     "endOffset": 530
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 0,
@@ -106,7 +106,7 @@
                     "endOffset": 611
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 0,
@@ -125,7 +125,7 @@
                     "endOffset": 691
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 0,
@@ -144,7 +144,7 @@
                     "endOffset": 771
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 0,
@@ -163,7 +163,7 @@
                     "endOffset": 1736
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -182,7 +182,7 @@
                     "endOffset": 1778
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,
@@ -197,8 +197,27 @@
                     "startLine": 36,
                     "startColumn": 4,
                     "startOffset": 1783,
+                    "endColumn": 47,
+                    "endOffset": 1826
+                },
+                "from": {
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/res/values/ids.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 155,
+                        "endColumn": 47,
+                        "endOffset": 198
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 37,
+                    "startColumn": 4,
+                    "startOffset": 1831,
                     "endColumn": 49,
-                    "endOffset": 1828
+                    "endOffset": 1876
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/res/values/strings.xml",
@@ -213,11 +232,11 @@
             },
             {
                 "to": {
-                    "startLine": 37,
+                    "startLine": 38,
                     "startColumn": 4,
-                    "startOffset": 1833,
+                    "startOffset": 1881,
                     "endColumn": 84,
-                    "endOffset": 1913
+                    "endOffset": 1961
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/res/values/strings.xml",
@@ -232,14 +251,14 @@
             },
             {
                 "to": {
-                    "startLine": 38,
+                    "startLine": 39,
                     "startColumn": 4,
-                    "startOffset": 1918,
+                    "startOffset": 1966,
                     "endColumn": 104,
-                    "endOffset": 2018
+                    "endOffset": 2066
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 0,
@@ -251,14 +270,14 @@
             },
             {
                 "to": {
-                    "startLine": 39,
+                    "startLine": 40,
                     "startColumn": 4,
-                    "startOffset": 2023,
+                    "startOffset": 2071,
                     "endColumn": 180,
-                    "endOffset": 2199
+                    "endOffset": 2247
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 0,
@@ -270,14 +289,14 @@
             },
             {
                 "to": {
-                    "startLine": 40,
+                    "startLine": 41,
                     "startColumn": 4,
-                    "startOffset": 2204,
+                    "startOffset": 2252,
                     "endColumn": 124,
-                    "endOffset": 2324
+                    "endOffset": 2372
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 0,
@@ -289,14 +308,14 @@
             },
             {
                 "to": {
-                    "startLine": 41,
+                    "startLine": 42,
                     "startColumn": 4,
-                    "startOffset": 2329,
+                    "startOffset": 2377,
                     "endColumn": 106,
-                    "endOffset": 2431
+                    "endOffset": 2479
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 0,
@@ -308,14 +327,14 @@
             },
             {
                 "to": {
-                    "startLine": 42,
+                    "startLine": 43,
                     "startColumn": 4,
-                    "startOffset": 2436,
+                    "startOffset": 2484,
                     "endColumn": 179,
-                    "endOffset": 2611
+                    "endOffset": 2659
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 0,
@@ -327,14 +346,14 @@
             },
             {
                 "to": {
-                    "startLine": 43,
+                    "startLine": 44,
                     "startColumn": 4,
-                    "startOffset": 2616,
+                    "startOffset": 2664,
                     "endColumn": 122,
-                    "endOffset": 2734
+                    "endOffset": 2782
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 0,
@@ -346,14 +365,14 @@
             },
             {
                 "to": {
-                    "startLine": 44,
+                    "startLine": 45,
                     "startColumn": 4,
-                    "startOffset": 2739,
+                    "startOffset": 2787,
                     "endColumn": 102,
-                    "endOffset": 2837
+                    "endOffset": 2885
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 0,
@@ -365,14 +384,14 @@
             },
             {
                 "to": {
-                    "startLine": 45,
+                    "startLine": 46,
                     "startColumn": 4,
-                    "startOffset": 2842,
+                    "startOffset": 2890,
                     "endColumn": 166,
-                    "endOffset": 3004
+                    "endOffset": 3052
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 0,
@@ -384,14 +403,14 @@
             },
             {
                 "to": {
-                    "startLine": 46,
+                    "startLine": 47,
                     "startColumn": 4,
-                    "startOffset": 3009,
+                    "startOffset": 3057,
                     "endColumn": 187,
-                    "endOffset": 3192
+                    "endOffset": 3240
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 0,
@@ -403,14 +422,14 @@
             },
             {
                 "to": {
-                    "startLine": 47,
+                    "startLine": 48,
                     "startColumn": 4,
-                    "startOffset": 3197,
+                    "startOffset": 3245,
                     "endColumn": 104,
-                    "endOffset": 3297
+                    "endOffset": 3345
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 0,
@@ -422,14 +441,14 @@
             },
             {
                 "to": {
-                    "startLine": 48,
+                    "startLine": 49,
                     "startColumn": 4,
-                    "startOffset": 3302,
+                    "startOffset": 3350,
                     "endColumn": 180,
-                    "endOffset": 3478
+                    "endOffset": 3526
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 0,
@@ -441,14 +460,14 @@
             },
             {
                 "to": {
-                    "startLine": 49,
+                    "startLine": 50,
                     "startColumn": 4,
-                    "startOffset": 3483,
+                    "startOffset": 3531,
                     "endColumn": 124,
-                    "endOffset": 3603
+                    "endOffset": 3651
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 0,
@@ -460,14 +479,14 @@
             },
             {
                 "to": {
-                    "startLine": 50,
+                    "startLine": 51,
                     "startColumn": 4,
-                    "startOffset": 3608,
+                    "startOffset": 3656,
                     "endColumn": 174,
-                    "endOffset": 3778
+                    "endOffset": 3826
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 0,
@@ -479,14 +498,14 @@
             },
             {
                 "to": {
-                    "startLine": 51,
+                    "startLine": 52,
                     "startColumn": 4,
-                    "startOffset": 3783,
+                    "startOffset": 3831,
                     "endColumn": 147,
-                    "endOffset": 3926
+                    "endOffset": 3974
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 0,
@@ -498,14 +517,14 @@
             },
             {
                 "to": {
-                    "startLine": 52,
+                    "startLine": 53,
                     "startColumn": 4,
-                    "startOffset": 3931,
+                    "startOffset": 3979,
                     "endColumn": 62,
-                    "endOffset": 3989
+                    "endOffset": 4037
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 0,
@@ -517,14 +536,14 @@
             },
             {
                 "to": {
-                    "startLine": 53,
+                    "startLine": 54,
                     "startColumn": 4,
-                    "startOffset": 3994,
+                    "startOffset": 4042,
                     "endColumn": 61,
-                    "endOffset": 4051
+                    "endOffset": 4099
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 28,
                         "startColumn": 0,
@@ -536,14 +555,14 @@
             },
             {
                 "to": {
-                    "startLine": 54,
+                    "startLine": 55,
                     "startColumn": 4,
-                    "startOffset": 4056,
+                    "startOffset": 4104,
                     "endColumn": 78,
-                    "endOffset": 4130
+                    "endOffset": 4178
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 29,
                         "startColumn": 0,
@@ -555,14 +574,14 @@
             },
             {
                 "to": {
-                    "startLine": 55,
+                    "startLine": 56,
                     "startColumn": 4,
-                    "startOffset": 4135,
+                    "startOffset": 4183,
                     "endColumn": 88,
-                    "endOffset": 4219
+                    "endOffset": 4267
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 0,
@@ -574,14 +593,14 @@
             },
             {
                 "to": {
-                    "startLine": 56,
+                    "startLine": 57,
                     "startColumn": 4,
-                    "startOffset": 4224,
+                    "startOffset": 4272,
                     "endColumn": 71,
-                    "endOffset": 4291
+                    "endOffset": 4339
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 0,
@@ -593,14 +612,14 @@
             },
             {
                 "to": {
-                    "startLine": 57,
+                    "startLine": 58,
                     "startColumn": 4,
-                    "startOffset": 4296,
+                    "startOffset": 4344,
                     "endColumn": 68,
-                    "endOffset": 4360
+                    "endOffset": 4408
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 0,
@@ -612,14 +631,14 @@
             },
             {
                 "to": {
-                    "startLine": 58,
+                    "startLine": 59,
                     "startColumn": 4,
-                    "startOffset": 4365,
+                    "startOffset": 4413,
                     "endColumn": 72,
-                    "endOffset": 4433
+                    "endOffset": 4481
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 0,
@@ -631,14 +650,14 @@
             },
             {
                 "to": {
-                    "startLine": 59,
+                    "startLine": 60,
                     "startColumn": 4,
-                    "startOffset": 4438,
+                    "startOffset": 4486,
                     "endColumn": 64,
-                    "endOffset": 4498
+                    "endOffset": 4546
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 0,
@@ -650,14 +669,14 @@
             },
             {
                 "to": {
-                    "startLine": 60,
+                    "startLine": 61,
                     "startColumn": 4,
-                    "startOffset": 4503,
+                    "startOffset": 4551,
                     "endColumn": 70,
-                    "endOffset": 4569
+                    "endOffset": 4617
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 0,
@@ -669,14 +688,14 @@
             },
             {
                 "to": {
-                    "startLine": 61,
+                    "startLine": 62,
                     "startColumn": 4,
-                    "startOffset": 4574,
+                    "startOffset": 4622,
                     "endColumn": 43,
-                    "endOffset": 4613
+                    "endOffset": 4661
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 0,
@@ -688,11 +707,11 @@
             },
             {
                 "to": {
-                    "startLine": 62,
+                    "startLine": 63,
                     "startColumn": 4,
-                    "startOffset": 4618,
+                    "startOffset": 4666,
                     "endColumn": 143,
-                    "endOffset": 4757
+                    "endOffset": 4805
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -707,11 +726,11 @@
             },
             {
                 "to": {
-                    "startLine": 63,
+                    "startLine": 64,
                     "startColumn": 4,
-                    "startOffset": 4762,
+                    "startOffset": 4810,
                     "endColumn": 106,
-                    "endOffset": 4864
+                    "endOffset": 4912
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -726,11 +745,11 @@
             },
             {
                 "to": {
-                    "startLine": 64,
+                    "startLine": 65,
                     "startColumn": 4,
-                    "startOffset": 4869,
+                    "startOffset": 4917,
                     "endColumn": 81,
-                    "endOffset": 4946
+                    "endOffset": 4994
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -745,11 +764,11 @@
             },
             {
                 "to": {
-                    "startLine": 65,
+                    "startLine": 66,
                     "startColumn": 4,
-                    "startOffset": 4951,
+                    "startOffset": 4999,
                     "endColumn": 103,
-                    "endOffset": 5050
+                    "endOffset": 5098
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -764,11 +783,11 @@
             },
             {
                 "to": {
-                    "startLine": 66,
+                    "startLine": 67,
                     "startColumn": 4,
-                    "startOffset": 5055,
+                    "startOffset": 5103,
                     "endColumn": 102,
-                    "endOffset": 5153
+                    "endOffset": 5201
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -783,11 +802,11 @@
             },
             {
                 "to": {
-                    "startLine": 67,
+                    "startLine": 68,
                     "startColumn": 4,
-                    "startOffset": 5158,
+                    "startOffset": 5206,
                     "endColumn": 119,
-                    "endOffset": 5273
+                    "endOffset": 5321
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -802,11 +821,11 @@
             },
             {
                 "to": {
-                    "startLine": 68,
+                    "startLine": 69,
                     "startColumn": 4,
-                    "startOffset": 5278,
+                    "startOffset": 5326,
                     "endColumn": 95,
-                    "endOffset": 5369
+                    "endOffset": 5417
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/generated/res/google-services/debug/values/values.xml",
@@ -821,14 +840,52 @@
             },
             {
                 "to": {
-                    "startLine": 69,
+                    "startLine": 70,
                     "startColumn": 4,
-                    "startOffset": 5374,
-                    "endColumn": 95,
-                    "endOffset": 5465
+                    "startOffset": 5422,
+                    "endColumn": 64,
+                    "endOffset": 5482
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/res/values/ids.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 267,
+                        "endColumn": 64,
+                        "endOffset": 327
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 71,
+                    "startColumn": 4,
+                    "startOffset": 5487,
+                    "endColumn": 63,
+                    "endOffset": 5546
+                },
+                "from": {
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/res/values/ids.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 203,
+                        "endColumn": 63,
+                        "endOffset": 262
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 72,
+                    "startColumn": 4,
+                    "startOffset": 5551,
+                    "endColumn": 95,
+                    "endOffset": 5642
+                },
+                "from": {
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 0,
@@ -840,14 +897,14 @@
             },
             {
                 "to": {
-                    "startLine": 70,
+                    "startLine": 73,
                     "startColumn": 4,
-                    "startOffset": 5470,
+                    "startOffset": 5647,
                     "endColumn": 58,
-                    "endOffset": 5524
+                    "endOffset": 5701
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 0,
@@ -859,12 +916,12 @@
             },
             {
                 "to": {
-                    "startLine": 71,
+                    "startLine": 74,
                     "startColumn": 4,
-                    "startOffset": 5529,
-                    "endLine": 78,
+                    "startOffset": 5706,
+                    "endLine": 81,
                     "endColumn": 12,
-                    "endOffset": 5987
+                    "endOffset": 6164
                 },
                 "from": {
                     "file": "/home/alexey/Документы/This_Side_of_Paradise/android/res/values/styles.xml",
@@ -880,15 +937,15 @@
             },
             {
                 "to": {
-                    "startLine": 79,
+                    "startLine": 82,
                     "startColumn": 4,
-                    "startOffset": 5992,
-                    "endLine": 86,
+                    "startOffset": 6169,
+                    "endLine": 89,
                     "endColumn": 8,
-                    "endOffset": 6385
+                    "endOffset": 6562
                 },
                 "from": {
-                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.0.1/res/values/values.xml",
+                    "file": "/home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.2.0/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 0,

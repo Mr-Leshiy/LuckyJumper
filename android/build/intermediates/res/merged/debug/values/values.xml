@@ -32,8 +32,9 @@
 <enum name="auto" value="2"/>
 
 </attr><attr format="reference|string" name="scopeUris"/></declare-styleable>
-    <integer name="google_play_services_version">10084000</integer>
+    <integer name="google_play_services_version">10298000</integer>
     <string name="accept">Accept</string>
+    <string name="app_id">370364554579</string>
     <string name="app_name">Lucky Jumper</string>
     <string name="banner_ad_unit_id">ca-app-pub-2408703385236595/6943908869</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Enable</string>
@@ -67,6 +68,8 @@
     <string name="google_app_id" translatable="false">1:370364554579:android:a29c971dfc44c526</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD_YXKvreW1aqQkXZ-5inhPReNMfHxj6_c</string>
     <string name="google_storage_bucket" translatable="false">lucky-jumper.appspot.com</string>
+    <string name="leaderboard_ranks">CgkI07rK2-MKEAIQAQ</string>
+    <string name="package_name">com.mygdx.Lucky_Jumper</string>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
     <style name="GdxTheme" parent="android:Theme">

@@ -106,29 +106,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int common_google_signin_btn_text_light_disabled=0x7f040005;
         public static final int common_google_signin_btn_text_light_focused=0x7f040006;
         public static final int common_google_signin_btn_text_light_pressed=0x7f040007;
+        public static final int common_google_signin_btn_tint=0x7f04000a;
     }
     public static final class drawable {
         public static final int common_full_open_on_phone=0x7f020000;
         public static final int common_google_signin_btn_icon_dark=0x7f020001;
-        public static final int common_google_signin_btn_icon_dark_disabled=0x7f020002;
-        public static final int common_google_signin_btn_icon_dark_focused=0x7f020003;
-        public static final int common_google_signin_btn_icon_dark_normal=0x7f020004;
-        public static final int common_google_signin_btn_icon_dark_pressed=0x7f020005;
+        public static final int common_google_signin_btn_icon_dark_focused=0x7f020002;
+        public static final int common_google_signin_btn_icon_dark_normal=0x7f020003;
+        public static final int common_google_signin_btn_icon_dark_normal_background=0x7f020004;
+        public static final int common_google_signin_btn_icon_disabled=0x7f020005;
         public static final int common_google_signin_btn_icon_light=0x7f020006;
-        public static final int common_google_signin_btn_icon_light_disabled=0x7f020007;
-        public static final int common_google_signin_btn_icon_light_focused=0x7f020008;
-        public static final int common_google_signin_btn_icon_light_normal=0x7f020009;
-        public static final int common_google_signin_btn_icon_light_pressed=0x7f02000a;
-        public static final int common_google_signin_btn_text_dark=0x7f02000b;
-        public static final int common_google_signin_btn_text_dark_disabled=0x7f02000c;
-        public static final int common_google_signin_btn_text_dark_focused=0x7f02000d;
-        public static final int common_google_signin_btn_text_dark_normal=0x7f02000e;
-        public static final int common_google_signin_btn_text_dark_pressed=0x7f02000f;
-        public static final int common_google_signin_btn_text_light=0x7f020010;
-        public static final int common_google_signin_btn_text_light_disabled=0x7f020011;
-        public static final int common_google_signin_btn_text_light_focused=0x7f020012;
-        public static final int common_google_signin_btn_text_light_normal=0x7f020013;
-        public static final int common_google_signin_btn_text_light_pressed=0x7f020014;
+        public static final int common_google_signin_btn_icon_light_focused=0x7f020007;
+        public static final int common_google_signin_btn_icon_light_normal=0x7f020008;
+        public static final int common_google_signin_btn_icon_light_normal_background=0x7f020009;
+        public static final int common_google_signin_btn_text_dark=0x7f02000a;
+        public static final int common_google_signin_btn_text_dark_focused=0x7f02000b;
+        public static final int common_google_signin_btn_text_dark_normal=0x7f02000c;
+        public static final int common_google_signin_btn_text_dark_normal_background=0x7f02000d;
+        public static final int common_google_signin_btn_text_disabled=0x7f02000e;
+        public static final int common_google_signin_btn_text_light=0x7f02000f;
+        public static final int common_google_signin_btn_text_light_focused=0x7f020010;
+        public static final int common_google_signin_btn_text_light_normal=0x7f020011;
+        public static final int common_google_signin_btn_text_light_normal_background=0x7f020012;
+        public static final int googleg_disabled_color_18=0x7f020013;
+        public static final int googleg_standard_color_18=0x7f020014;
         public static final int ic_launcher=0x7f020015;
     }
     public static final class id {
@@ -147,8 +148,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int accept=0x7f030000;
-        public static final int app_name=0x7f03001b;
-        public static final int banner_ad_unit_id=0x7f03001c;
+        public static final int app_id=0x7f03001b;
+        public static final int app_name=0x7f03001c;
+        public static final int banner_ad_unit_id=0x7f03001d;
         public static final int common_google_play_services_enable_button=0x7f030001;
         public static final int common_google_play_services_enable_text=0x7f030002;
         public static final int common_google_play_services_enable_title=0x7f030003;
@@ -173,13 +175,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int debug_menu_title=0x7f030016;
         public static final int debug_menu_troubleshooting=0x7f030017;
         public static final int decline=0x7f030018;
-        public static final int default_web_client_id=0x7f03001d;
-        public static final int firebase_database_url=0x7f03001e;
-        public static final int gcm_defaultSenderId=0x7f03001f;
-        public static final int google_api_key=0x7f030020;
-        public static final int google_app_id=0x7f030021;
-        public static final int google_crash_reporting_api_key=0x7f030022;
-        public static final int google_storage_bucket=0x7f030023;
+        public static final int default_web_client_id=0x7f03001e;
+        public static final int firebase_database_url=0x7f03001f;
+        public static final int gcm_defaultSenderId=0x7f030020;
+        public static final int google_api_key=0x7f030021;
+        public static final int google_app_id=0x7f030022;
+        public static final int google_crash_reporting_api_key=0x7f030023;
+        public static final int google_storage_bucket=0x7f030024;
+        public static final int leaderboard_ranks=0x7f030025;
+        public static final int package_name=0x7f030026;
         public static final int store_picture_message=0x7f030019;
         public static final int store_picture_title=0x7f03001a;
     }

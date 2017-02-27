@@ -2,6 +2,7 @@ package com.mygdx.Lucky_Jumper;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -13,11 +14,12 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class AndroidLauncher extends AndroidApplication implements AdHandler {
+
+public class AndroidLauncher extends AndroidApplication implements AdHandler
+{
 
 	private AdView adView;
 	private InterstitialAd adActivity;
-
 	private final int SHOW_AD=1;
 	private final int HIDE_AD=0;
 	private final int SHOW_AD_ACTIVITY=-1;
@@ -99,7 +101,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 		adActivity.loadAd(builder2.build());
 		setContentView(layout);
 
-  }
+	}
 
 	@Override
 	public void showAds(boolean show) {
@@ -111,5 +113,10 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 		handler.sendEmptyMessage(SHOW_AD_ACTIVITY);
 
 	}
+	@Override
+	public void submitScore(int score)
+	{
+	}
+
 
 }

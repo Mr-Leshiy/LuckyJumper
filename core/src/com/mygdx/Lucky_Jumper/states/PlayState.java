@@ -127,6 +127,12 @@ public class PlayState extends State {
                 }
             }
         }
+
+      /* if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+        {
+            world.changeActivelatforms();
+
+        } */
          if(world.isPlayerDead())
         {
             gsm.push(new GameOverState(gsm,this));

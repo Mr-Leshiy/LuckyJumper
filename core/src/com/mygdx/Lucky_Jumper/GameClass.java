@@ -38,6 +38,11 @@ public class GameClass extends ApplicationAdapter {
 			{
 
 			}
+			@Override
+			public void submitScore(int score)
+			{
+
+			}
 		};
 
 	}

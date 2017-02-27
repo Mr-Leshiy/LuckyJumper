@@ -3,7 +3,7 @@
     package="com.mygdx.Lucky_Jumper.test" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="14"
         android:targetSdkVersion="25" />
 
     <instrumentation

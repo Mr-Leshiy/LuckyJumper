@@ -29,8 +29,6 @@ public class MenuState extends State {  // Класс меню
     private Button button_shop;
     private int points;
 
-
-
     public MenuState(final GameStateManager gsm, MenuBackground b) {
         super(gsm);
 
@@ -62,9 +60,6 @@ public class MenuState extends State {  // Класс меню
                     gsm.set(new PlayState(gsm));
                     background.dispose();
                     GameClass.handler.showAds(false);
-
-
-
                 }
             }
         });

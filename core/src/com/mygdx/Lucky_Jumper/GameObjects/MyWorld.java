@@ -202,8 +202,6 @@ public class MyWorld {
 
             }
 
-
-
         }
 
         platformSpawn_X=platforms.get(platforms.size()-1).getBox().getPosition().x+platforms.get(platforms.size() - 1).getWeight();
@@ -388,7 +386,14 @@ public class MyWorld {
     {
 
         BodyDef def = new BodyDef();
-        PlatformData data = new PlatformData(random.nextBoolean(),isBoost);
+        PlatformData data;
+        if(isTimePlatformBoostActive && isBoost) {
+            data = new PlatformData(true, isBoost);
+        }
+        else
+        {
+            data = new PlatformData(random.nextBoolean(), isBoost);
+        }
         def.type= BodyDef.BodyType.KinematicBody;
         Body body =world.createBody(def);
         body.setTransform(x,y,0);
@@ -506,6 +511,10 @@ public class MyWorld {
         {
             platformBoost.increaseSpeed();
 
+        }
+        if(doubleNeuronBoost!=null)
+        {
+            doubleNeuronBoost.increaseSpeed();
         }
 
     }
