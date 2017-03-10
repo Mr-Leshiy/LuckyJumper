@@ -3,7 +3,8 @@ package com.mygdx.Lucky_Jumper.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.GameClass;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
 
 /**
  * Created by alexey on 12.02.17.
@@ -15,12 +16,12 @@ public class TrainingState extends State {
     private State state;
 
 
-    public TrainingState(GameStateManager gsm,State state)
+    public TrainingState(GameStateManager gsm, State state, TexturesResources resources)
     {
-        super(gsm);
-        background = new Texture(URL.training_background);
+        super(gsm,resources);
+        background = resources.training_background;
         this.state=state;
-        camera.setToOrtho(false, com.mygdx.Lucky_Jumper.GameClass.WIDTH, com.mygdx.Lucky_Jumper.GameClass.HEIGTH);
+        camera.setToOrtho(false, GameClass.WIDTH, GameClass.HEIGTH);
     }
 
     @Override
@@ -49,8 +50,6 @@ public class TrainingState extends State {
 
     @Override
     public void dispose() {
-
-        background.dispose();
 
     }
 

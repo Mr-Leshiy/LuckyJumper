@@ -8,15 +8,12 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.Lucky_Jumper.Backgrounds.PauseStateBackground;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 import com.mygdx.Lucky_Jumper.ObjectControls.Button;
 import com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener;
-
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by alexey on 10.01.17.
@@ -35,17 +32,17 @@ public class PauseState extends State {
     private Button button_retry;
 
 
-    public PauseState(final GameStateManager gsm,final PlayState state)
+    public PauseState(final GameStateManager gsm, final PlayState state, final TexturesResources resources)
     {
-        super(gsm);
+        super(gsm,resources);
         font_score=initializeFontStyle();
-        camera.setToOrtho(false, com.mygdx.Lucky_Jumper.GameClass.WIDTH, com.mygdx.Lucky_Jumper.GameClass.HEIGTH);
+        camera.setToOrtho(false, GameClass.WIDTH, GameClass.HEIGTH);
         this.state=state;
         this.score=state.getScore();
-        backGround= new com.mygdx.Lucky_Jumper.Backgrounds.PauseStateBackground();
+        backGround= new PauseStateBackground(resources);
 
-        Texture[] mas = {new Texture(URL.button_resume), new Texture(URL.button_resume_pressed)};
-        button_resume = new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas, GameClass.WIDTH/2-mas[0].getWidth()/2, GameClass.HEIGTH/2+50);
+        Texture[] mas = {resources.button_resume, resources.button_resume_pressed};
+        button_resume = new Button(mas, GameClass.WIDTH/2-mas[0].getWidth()/2, GameClass.HEIGTH/2+50);
         button_resume.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
@@ -54,13 +51,13 @@ public class PauseState extends State {
             }
         });
 
-        Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2, GameClass.HEIGTH/2-150);
+        Texture[] mas2 = {resources.button_to_main_menu,resources.button_to_main_menu_pressed};
+        button_to_menu = new Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2, GameClass.HEIGTH/2-150);
         button_to_menu.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
                 gsm.pop();
-                gsm.set(new MenuState(gsm,null));
+                gsm.set(new MenuState(gsm,null,resources));
                 GameInformationFileHandler info = new GameInformationFileHandler();
                 info.setPoints(state.getScore());
                 info.setPoints(state.getNeuronPoints());
@@ -69,13 +66,13 @@ public class PauseState extends State {
             }
         });
 
-        Texture[] mas3= {new Texture(URL.button_retry), new Texture(URL.button_retry_pressed)};
+        Texture[] mas3= {resources.button_retry,resources.button_retry_pressed};
         button_retry =new Button(mas3, GameClass.WIDTH/2-mas[0].getWidth()/2,GameClass.HEIGTH/2-50);
         button_retry.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
 
-                gsm.set(new PlayState(gsm));
+                gsm.set(new PlayState(gsm,resources));
             }
         });
 

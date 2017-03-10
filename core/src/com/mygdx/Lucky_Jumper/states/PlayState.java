@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.Lucky_Jumper.Backgrounds.PlayStateBackgound;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 import com.mygdx.Lucky_Jumper.GameObjects.MyWorld;
@@ -34,29 +35,17 @@ public class PlayState extends State {
      private Points score;
      private NeuronPoints neuronPoints;
      private PlayerAnimation player_animation;
-     private Texture platform1;
-     private Texture platform1_boost;
-     private Texture neuron;
-     private Texture start_platform;
-     private Texture clock;
-     private Texture platformBoost;
-     private Texture time_line;
-     private Texture time_line_frame;
-     private Texture double_neuron_boost;
-     private Texture platform_bright;
      public static final float RATE=100F;
      private SpriteBatch staticbatch;
      private OrthographicCamera static_camera;
-
-
      public static float clock_time;
      public static float platform_boost_time;
      public static float double_neuron_boost_time;
 
-    public PlayState(final com.mygdx.Lucky_Jumper.states.GameStateManager gsm)
+    public PlayState(final GameStateManager gsm,TexturesResources resources)
     {
 
-        super(gsm);
+        super(gsm,resources);
         GameInformationFileHandler info = new GameInformationFileHandler();
         clock_time=(info.getLevel("clock_item")*0.25f+1)*10;
         platform_boost_time=(info.getLevel("platform_booster_item")*0.25f+1)*10;
@@ -66,10 +55,10 @@ public class PlayState extends State {
         static_camera=new OrthographicCamera();
         static_camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
-        background = new com.mygdx.Lucky_Jumper.Backgrounds.PlayStateBackgound();
-        Texture[] mas = {new Texture(URL.button_pause), new Texture(URL.button_pause_pressed)} ;
+        background = new PlayStateBackgound(resources);
+        Texture[] mas = {resources.button_pause, resources.button_pause_pressed} ;
         score = new Points(GameClass.WIDTH/2,GameClass.HEIGTH-20);
-        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
+        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20,resources);
         button_pause = new Button(mas,10,GameClass.HEIGTH-50);
         button_pause.setOnClickListener(new ButtonListener() {
             @Override
@@ -78,20 +67,10 @@ public class PlayState extends State {
 
             }
         });
-        platform1 = new Texture(URL.platfomr_1);
-        platform1_boost = new Texture(URL.platfomr_1_boost);
-        start_platform = new Texture(URL.start_platform);
-        neuron= new Texture(URL.neuron);
-        clock = new Texture(URL.clock);
-        platformBoost = new Texture(URL.platformBoost);
-        double_neuron_boost= new Texture(URL.double_neuron_points);
-        time_line = new Texture(URL.time_line);
-        time_line_frame = new Texture(URL.time_line_frame);
-        platform_bright= new Texture(URL.platform_bright);
         staticbatch.setProjectionMatrix(static_camera.combined);
 
         world = new MyWorld();
-        player_animation = new PlayerAnimation(world.getPlayer());
+        player_animation = new PlayerAnimation(world.getPlayer(),resources);
 
 
 
@@ -128,14 +107,14 @@ public class PlayState extends State {
             }
         }
 
-      /* if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
         {
             world.changeActivelatforms();
 
-        } */
+        }
          if(world.isPlayerDead())
         {
-            gsm.push(new GameOverState(gsm,this));
+            gsm.push(new GameOverState(gsm,this,resources));
         }
 
     }
@@ -192,8 +171,8 @@ public class PlayState extends State {
 
         if(world.isTimeClockActive() || world.isTimePlatformBoostActive() || world.isTimeDoubleNeuronBoostActive())
         {
-            staticbatch.draw(time_line,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,world.getTime()*time_line.getWidth(),time_line.getHeight());
-            staticbatch.draw(time_line_frame,GameClass.WIDTH/2-time_line.getWidth()/2,GameClass.HEIGTH-70,time_line_frame.getWidth(),time_line_frame.getHeight());
+            staticbatch.draw(resources.time_line,GameClass.WIDTH/2-resources.time_line.getWidth()/2,GameClass.HEIGTH-70,world.getTime()*resources.time_line.getWidth(),resources.time_line.getHeight());
+            staticbatch.draw(resources.time_line_frame,GameClass.WIDTH/2-resources.time_line.getWidth()/2,GameClass.HEIGTH-70,resources.time_line_frame.getWidth(),resources.time_line_frame.getHeight());
         }
 
 
@@ -210,12 +189,12 @@ public class PlayState extends State {
 
                 if (data.isActive())
                 {
-                        sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                        sb.draw(resources.platfomr_1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
 
                 }
                 else
                 {
-                        sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f) * RATE);
+                        sb.draw(resources.platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f) * RATE);
                 }
 
             }
@@ -225,47 +204,47 @@ public class PlayState extends State {
                 {
                     if(data.isActive())
                     {
-                        sb.draw(platform1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                        sb.draw(resources.platfomr_1, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
                     }
                     else
                     {
-                        sb.draw(platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f)*RATE);
+                        sb.draw(resources.platform_bright, (pl.getBox().getPosition().x - pl.getWeight()-0.15f) * RATE, (pl.getBox().getPosition().y - pl.getHeight()-0.05f)*RATE);
                     }
                 }
                 else
                 {
-                    sb.draw(platform1_boost, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                    sb.draw(resources.platfomr_1_boost, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
 
                 }
 
             }
             if (pl instanceof StartPlatform)
                 {
-                    sb.draw(start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
+                    sb.draw(resources.start_platform, (pl.getBox().getPosition().x - pl.getWeight()) * RATE, (pl.getBox().getPosition().y - pl.getHeight()) * RATE);
              }
         }
 
 
         for(Neurons n:world.getNeurons())
         {
-            sb.draw(neuron,(n.getBody().getPosition().x-n.getWeight())*RATE,(n.getBody().getPosition().y-n.getHeight())*RATE);
+            sb.draw(resources.neuron,(n.getBody().getPosition().x-n.getWeight())*RATE,(n.getBody().getPosition().y-n.getHeight())*RATE);
 
         }
         if(world.getClock()!=null)
         {
-            sb.draw(clock,(world.getClock().getBody().getPosition().x-world.getClock().getWeight())*RATE,
+            sb.draw(resources.clock,(world.getClock().getBody().getPosition().x-world.getClock().getWeight())*RATE,
                     (world.getClock().getBody().getPosition().y-world.getClock().getHeight())*RATE);
 
         }
         if(world.getPlatformBoost()!=null)
         {
-            sb.draw(platformBoost,(world.getPlatformBoost().getBody().getPosition().x-world.getPlatformBoost().getWeight())*RATE,
+            sb.draw(resources.platformBoost,(world.getPlatformBoost().getBody().getPosition().x-world.getPlatformBoost().getWeight())*RATE,
                     (world.getPlatformBoost().getBody().getPosition().y-world.getPlatformBoost().getHeight())*RATE);
 
         }
         if(world.getDoubleNeuronBoost()!=null)
         {
-            sb.draw(double_neuron_boost,(world.getDoubleNeuronBoost().getBody().getPosition().x-world.getDoubleNeuronBoost().getWeight())*RATE,
+            sb.draw(resources.double_neuron_points,(world.getDoubleNeuronBoost().getBody().getPosition().x-world.getDoubleNeuronBoost().getWeight())*RATE,
                     (world.getDoubleNeuronBoost().getBody().getPosition().y-world.getDoubleNeuronBoost().getHeight())*RATE);
 
         }
@@ -285,32 +264,20 @@ public class PlayState extends State {
         player_animation.dispose();
         world.getWorld().dispose();
         staticbatch.dispose();
-        neuron.dispose();
-        platform1.dispose();
         neuronPoints.dispose();
-        start_platform.dispose();
-        clock.dispose();
-        platform1_boost.dispose();
-        time_line.dispose();
-        time_line_frame.dispose();
-        platform1_boost.dispose();
-        platformBoost.dispose();
-        double_neuron_boost.dispose();
 
     }
 
     @Override
     public void pause() {
 
-        gsm.push(new PauseState(gsm,this));
-        isPaused=true;
+        gsm.push(new PauseState(gsm,this,resources));
 
     }
 
     @Override
     public void resume() {
 
-        isPaused=false;
 
     }
 

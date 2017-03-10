@@ -3,7 +3,8 @@ package com.mygdx.Lucky_Jumper.Backgrounds;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 
 
@@ -19,10 +20,10 @@ public class PlayStateBackgound {
 
 
 
-    public PlayStateBackgound()
+    public PlayStateBackgound(TexturesResources resources)
     {
 
-        backgroundTextures=new Texture[]{new Texture(URL.play_state_background1),new Texture(URL.play_state_background2)};
+        backgroundTextures=new Texture[]{resources.play_state_background1,resources.play_state_background2};
 
         coordinates= new Rectangle[]{new Rectangle(0,0,0,0), new Rectangle(GameClass.WIDTH,0,0,0)};
 
@@ -45,8 +46,7 @@ public class PlayStateBackgound {
 
     public void dispose()
     {
-        backgroundTextures[0].dispose();
-        backgroundTextures[1].dispose();
+
     }
 
 

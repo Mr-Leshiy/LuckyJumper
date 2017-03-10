@@ -3,7 +3,12 @@ package com.mygdx.Lucky_Jumper.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground;
+import com.mygdx.Lucky_Jumper.GameClass;
+import com.mygdx.Lucky_Jumper.ObjectControls.Button;
+import com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 
 /**
@@ -12,39 +17,39 @@ import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 
 public class ShopState extends State {
 
-    private com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground background;
-    private com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints neuronPoints;
-    private com.mygdx.Lucky_Jumper.ObjectControls.Button button_to_menu;
-    private com.mygdx.Lucky_Jumper.ObjectControls.Button button_boosters;
+    private MenuBackground background;
+    private NeuronPoints neuronPoints;
+    private Button button_to_menu;
+    private Button button_boosters;
 
-    public ShopState(final GameStateManager gsm, final com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground background)
+    public ShopState(final GameStateManager gsm, final MenuBackground background, final TexturesResources resources)
     {
-        super(gsm);
+        super(gsm,resources);
 
         this.background=background;
 
-        Texture[] mas = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas, com.mygdx.Lucky_Jumper.GameClass.WIDTH/2-mas[0].getWidth()/2,40);
+        Texture[] mas = {resources.button_to_main_menu,resources.button_to_main_menu_pressed};
+        button_to_menu = new Button(mas, GameClass.WIDTH/2-mas[0].getWidth()/2,40);
         button_to_menu.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new MenuState(gsm,background));
+                gsm.set(new MenuState(gsm,background,resources));
 
             }
         });
 
-        Texture[] mas2 = {new Texture(URL.shop_button_boosters),new Texture(URL.shop_button_boosters_pressed)};
-        button_boosters = new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas2, 150, com.mygdx.Lucky_Jumper.GameClass.HEIGTH-200);
+        Texture[] mas2 = {resources.shop_button_boosters,resources.shop_button_boosters_pressed};
+        button_boosters = new Button(mas2, 150, GameClass.HEIGTH-200);
         button_boosters.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new BustersState(gsm,background));
+                gsm.set(new BustersState(gsm,background,resources));
             }
         });
 
 
         GameInformationFileHandler info = new GameInformationFileHandler();
-        neuronPoints = new com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints(com.mygdx.Lucky_Jumper.GameClass.WIDTH-60, com.mygdx.Lucky_Jumper.GameClass.HEIGTH-20);
+        neuronPoints = new NeuronPoints(GameClass.WIDTH-60, GameClass.HEIGTH-20,resources);
         neuronPoints.setPoint(info.getNeuronsPoints());
 
 

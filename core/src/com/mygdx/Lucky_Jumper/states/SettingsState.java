@@ -5,7 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.ObjectControls.Button;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 
 /**
@@ -15,30 +17,30 @@ import com.mygdx.Lucky_Jumper.GameClass;
 public class SettingsState extends State {
 
     private MenuBackground background;
-    private com.mygdx.Lucky_Jumper.ObjectControls.Button button_to_menu;
-    private com.mygdx.Lucky_Jumper.ObjectControls.Button button_show_help;
+    private Button button_to_menu;
+    private Button button_show_help;
 
-    public SettingsState(final GameStateManager gsm,final MenuBackground background)
+    public SettingsState(final GameStateManager gsm, final MenuBackground background, final TexturesResources resources)
     {
-        super(gsm);
+        super(gsm,resources);
         this.background = background;
-        Texture[] mas2 = {new Texture(URL.button_to_main_menu),new Texture(URL.button_to_main_menu_pressed)};
-        button_to_menu = new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2,100);
+        Texture[] mas2 = {resources.button_to_main_menu,resources.button_to_main_menu_pressed};
+        button_to_menu = new Button(mas2, GameClass.WIDTH/2-mas2[0].getWidth()/2,100);
         button_to_menu.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new MenuState(gsm,background));
+                gsm.set(new MenuState(gsm,background,resources));
 
             }
         });
 
-        Texture[] mas ={new Texture(URL.button_show_help),new Texture(URL.button_show_help_pressed)};
-        button_show_help= new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2);
+        Texture[] mas ={resources.button_show_help,resources.button_show_help_pressed};
+        button_show_help= new Button(mas,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2);
         button_show_help.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
 
-                gsm.set(new TrainingState(gsm,new SettingsState(gsm,background)));
+                gsm.set(new TrainingState(gsm,new SettingsState(gsm,background,resources),resources));
 
             }
         });

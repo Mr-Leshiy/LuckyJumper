@@ -18,13 +18,13 @@ ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/Android
 uses-sdk
 ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:7:5-72
 MERGED from [com.android.support:multidex:1.0.1] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/AndroidManifest.xml:18:5-42
-MERGED from [com.google.firebase:firebase-core:9.0.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-core/9.0.0/AndroidManifest.xml:4:5-42
 MERGED from [com.google.firebase:firebase-ads:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-ads/10.2.0/AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-ads:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.2.0/AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-ads-lite:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.2.0/AndroidManifest.xml:22:5-43
 MERGED from [com.google.android.gms:play-services-clearcut:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/10.2.0/AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-base:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-gass:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/10.2.0/AndroidManifest.xml:3:5-43
+MERGED from [com.google.firebase:firebase-core:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-core/10.2.0/AndroidManifest.xml:4:5-43
 MERGED from [com.google.firebase:firebase-analytics:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.2.0/AndroidManifest.xml:17:5-43
 MERGED from [com.google.firebase:firebase-analytics-impl:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.2.0/AndroidManifest.xml:17:5-43
 MERGED from [com.google.firebase:firebase-iid:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.2.0/AndroidManifest.xml:17:5-43
@@ -60,12 +60,12 @@ MERGED from [com.google.firebase:firebase-iid:10.2.0] /home/alexey/Докуме�
 		ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:9:22-76
 application
 ADDED from /home/alexey/Документы/This_Side_of_Paradise/android/AndroidManifest.xml:11:5-28:19
-MERGED from [com.google.firebase:firebase-core:9.0.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-core/9.0.0/AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-ads:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-ads/10.2.0/AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-ads-lite:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.2.0/AndroidManifest.xml:23:5-27:19
 MERGED from [com.google.android.gms:play-services-clearcut:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/10.2.0/AndroidManifest.xml:18:5-19
 MERGED from [com.google.android.gms:play-services-base:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.2.0/AndroidManifest.xml:18:5-20:19
 MERGED from [com.google.android.gms:play-services-gass:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/10.2.0/AndroidManifest.xml:4:5-19
+MERGED from [com.google.firebase:firebase-core:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-core/10.2.0/AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-analytics:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.2.0/AndroidManifest.xml:24:5-33:19
 MERGED from [com.google.firebase:firebase-analytics-impl:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.2.0/AndroidManifest.xml:24:5-28:19
 MERGED from [com.google.firebase:firebase-iid:10.2.0] /home/alexey/Документы/This_Side_of_Paradise/android/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.2.0/AndroidManifest.xml:28:5-50:19

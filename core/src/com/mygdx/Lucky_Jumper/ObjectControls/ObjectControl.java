@@ -3,6 +3,7 @@ package com.mygdx.Lucky_Jumper.ObjectControls;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
 
 import java.util.List;
 
@@ -15,12 +16,14 @@ public abstract class ObjectControl {
 
 
     protected Rectangle object;
+    protected TexturesResources resources;
 
 
 
-    public ObjectControl(Rectangle object)
+    public ObjectControl(Rectangle object,TexturesResources resources)
     {
         this.object=object;
+        this.resources=resources;
 
     }
 

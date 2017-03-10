@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 
 /**
@@ -18,7 +19,7 @@ import com.mygdx.Lucky_Jumper.GameClass;
 public class ShopBoostersItem extends ObjectControl {
 
 
-    private com.mygdx.Lucky_Jumper.ObjectControls.Button button;
+    private Button button;
 
     private Texture background;
     private int price;
@@ -32,22 +33,22 @@ public class ShopBoostersItem extends ObjectControl {
     private Texture booster_level_desaible;
 
 
-    public ShopBoostersItem(float x,float y,Texture[] mas)
+    public ShopBoostersItem(float x, float y, Texture[] mas, TexturesResources resources)
     {
-        super(new Rectangle(x,y,0,0));
-        background = new Texture(URL.shop_item_background);
+        super(new Rectangle(x,y,0,0),resources);
+        background = resources.shop_item_background;
         object.setWidth(background.getWidth());
         object.setHeight(background.getHeight());
         object.setX(object.x-background.getWidth()/2);
-        button= new com.mygdx.Lucky_Jumper.ObjectControls.Button(mas,object.getX()+20,object.getY()+background.getHeight()/2-mas[0].getHeight()/2);
+        button= new Button(mas,object.getX()+20,object.getY()+background.getHeight()/2-mas[0].getHeight()/2);
 
         this.current_level=0;
 
 
-        neuron_texture = new Texture(URL.neuron_points);
+        neuron_texture = resources.neuron_points;
 
-        booster_level_enaible = new Texture(URL.shop_booster_level_non_active);
-        booster_level_desaible = new Texture(URL.shop_booster_level_active);
+        booster_level_enaible = resources.shop_booster_level_non_active;
+        booster_level_desaible = resources.shop_booster_level_active;
 
         this.price=0;
         price_font=initializeFontStyle(50);
@@ -99,11 +100,7 @@ public class ShopBoostersItem extends ObjectControl {
     public void dispose() {
 
         button.dispose();
-        background.dispose();
-        booster_level_desaible.dispose();
-        booster_level_enaible.dispose();
         price_font.dispose();
-        neuron_texture.dispose();
         font.dispose();
 
     }

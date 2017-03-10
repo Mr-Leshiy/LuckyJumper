@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 
 
@@ -24,7 +24,7 @@ public class Points extends ObjectControl {
 
     public Points(float x,float y)
     {
-        super(new Rectangle(x,y,0,0));
+        super(new Rectangle(x,y,0,0),null);
 
         layout =new GlyphLayout();
         font_points=initializeFontStyle();

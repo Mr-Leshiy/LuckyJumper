@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 import com.mygdx.Lucky_Jumper.ObjectControls.Button;
@@ -29,57 +30,57 @@ public class MenuState extends State {  // Класс меню
     private Button button_shop;
     private int points;
 
-    public MenuState(final GameStateManager gsm, MenuBackground b) {
-        super(gsm);
+    public MenuState(final GameStateManager gsm, MenuBackground b, final TexturesResources resources) {
+        super(gsm,resources);
 
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
 
         if(b==null)
         {
-            background = new MenuBackground();
+            background = new MenuBackground(resources);
         }
         else
         {
             background=b;
 
         }
-        Texture[] mas = {new Texture(URL.button_play),new Texture(URL.button_play_pressed)};
+        Texture[] mas = {resources.button_play,resources.button_play_pressed};
         button_play =new Button(mas,GameClass.WIDTH/2-mas[0].getWidth()/2,GameClass.HEIGTH/2+50);
         button_play.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener()
             {
                 if(GameClass.FirstTimeRunning) {
-                    gsm.set(new TrainingState(gsm, new PlayState(gsm) ));
+                    gsm.set(new TrainingState(gsm, new PlayState(gsm,resources),resources ));
                     background.dispose();
                     GameClass.FirstTimeRunning=false;
                     GameClass.handler.showAds(false);
                 }
                 else
                 {
-                    gsm.set(new PlayState(gsm));
+                    gsm.set(new PlayState(gsm,resources));
                     background.dispose();
                     GameClass.handler.showAds(false);
                 }
             }
         });
 
-        Texture[] mas2 = {new Texture(URL.button_setting),new Texture(URL.button_setting_pressed)};
+        Texture[] mas2 = {resources.button_setting,resources.button_setting_pressed};
         button_settings =new Button(mas2,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-150);
         button_settings.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener()
             {
-                gsm.set(new SettingsState(gsm,background));
+                gsm.set(new SettingsState(gsm,background,resources));
             }
         });
 
-        Texture[] mas3 = {new Texture(URL.button_shop),new Texture(URL.button_shop_pressed)};
+        Texture[] mas3 = {resources.button_shop,resources.button_shop_pressed};
         button_shop = new Button(mas3,GameClass.WIDTH/2-mas2[0].getWidth()/2,GameClass.HEIGTH/2-50);
         button_shop.setOnClickListener(new ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new BustersState(gsm,background));
+                gsm.set(new BustersState(gsm,background,resources));
                 GameClass.handler.showAds(false);
 
             }

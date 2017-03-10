@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.GameObjects.Player;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 
 
 /**
@@ -13,20 +15,18 @@ import com.mygdx.Lucky_Jumper.Constants.URL;
 
 public class PlayerAnimation extends ObjectControl {
 
-    private com.mygdx.Lucky_Jumper.GameObjects.Player player;
+    private Player player;
     private Texture[] run_frames;
-    private Texture[] jump_frames;
     private Animation run_animation;
-    private Animation jump_animation;
     private float state_time;
     private static final float change_time = 0.25f;
 
-    public PlayerAnimation(com.mygdx.Lucky_Jumper.GameObjects.Player player) {
+    public PlayerAnimation(Player player, TexturesResources resources) {
         super(new Rectangle((player.getBox().getPosition().x-player.getWeight())* com.mygdx.Lucky_Jumper.states.PlayState.RATE,
-                (player.getBox().getPosition().y-player.getHeight())* com.mygdx.Lucky_Jumper.states.PlayState.RATE,0, 0));
+                (player.getBox().getPosition().y-player.getHeight())* com.mygdx.Lucky_Jumper.states.PlayState.RATE,0, 0),resources);
         this.player=player;
         state_time = 0;
-        run_frames = new Texture[]{new Texture(URL.player_walk_1), new Texture(URL.player_walk_2)};
+        run_frames = new Texture[]{resources.player_walk_1, resources.player_walk_2};
 
         object.setHeight(run_frames[0].getHeight());
         object.setWidth(run_frames[0].getWidth());
@@ -54,11 +54,6 @@ public class PlayerAnimation extends ObjectControl {
 
     @Override
     public void dispose() {
-
-        for (Texture texture : run_frames) {
-            texture.dispose();
-        }
-
 
     }
 

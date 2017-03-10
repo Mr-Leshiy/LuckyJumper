@@ -17,7 +17,7 @@ public class Button extends ObjectControl {
     public Button(Texture[] texture, float x, float y)
     {
 
-        super(new Rectangle(x,y,texture[0].getWidth(),texture[0].getHeight()));
+        super(new Rectangle(x,y,texture[0].getWidth(),texture[0].getHeight()),null);
         objectTextures=texture;
         isTouched=false;
 
@@ -44,12 +44,6 @@ public class Button extends ObjectControl {
 
     @Override
     public void dispose() {
-
-        for(Texture objecttexture: objectTextures)
-        {
-            objecttexture.dispose();
-
-        }
 
     }
 

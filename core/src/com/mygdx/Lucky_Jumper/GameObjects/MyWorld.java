@@ -468,6 +468,23 @@ public class MyWorld {
 
     }
 
+    public void activeBoostPlatforms()
+    {
+        for (Platform platform:platforms)
+        {
+            PlatformData data = (PlatformData) platform.getBox().getUserData();
+            if(data.isBoost())
+            {
+                data.isActive=true;
+            }
+
+
+        }
+
+
+
+    }
+
     public boolean isGrounded()
     {
         Array<Contact> contacts = world.getContactList();

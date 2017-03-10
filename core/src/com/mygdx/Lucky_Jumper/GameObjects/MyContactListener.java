@@ -93,7 +93,9 @@ public class MyContactListener implements ContactListener {
         {
             contact.setEnabled(false);
             world.isTimePlatformBoostActive=true;
+            world.activeBoostPlatforms();
             world.time=PlayState.platform_boost_time;
+
 
 
         }
@@ -101,6 +103,7 @@ public class MyContactListener implements ContactListener {
 
             contact.setEnabled(false);
             world.isTimePlatformBoostActive=true;
+            world.activeBoostPlatforms();
             world.time=PlayState.platform_boost_time;
         }
         if (contact.getFixtureA().getBody().getUserData() != null && contact.getFixtureA().getBody().getUserData().equals('2'))

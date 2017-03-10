@@ -21,11 +21,12 @@ import javax.xml.transform.stream.StreamResult;
  * Created by alexey on 30.01.17.
  */
 
-public class GameInformationFileHandler {
+public class GameInformationFileHandler  {
 
     private final static String NAME="GameInformation.xml";
     private Document document;
     private final static String version="2.0";
+
 
 
     public GameInformationFileHandler()

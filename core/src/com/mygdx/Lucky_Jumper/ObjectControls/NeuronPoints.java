@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 
 /**
@@ -17,16 +18,14 @@ import com.mygdx.Lucky_Jumper.GameClass;
 
 public class NeuronPoints extends ObjectControl {
 
-    private Texture neuron_texture;
     private BitmapFont font_points;
     private int points;
     private GlyphLayout layout;
 
 
-    public NeuronPoints(float x, float y)
+    public NeuronPoints(float x, float y, TexturesResources resources)
     {
-        super(new Rectangle(x,y,0,0));
-        neuron_texture = new Texture(URL.neuron_points);
+        super(new Rectangle(x,y,0,0),resources);
         layout=new GlyphLayout();
         font_points=initializeFontStyle();
         this.points=0;
@@ -43,7 +42,7 @@ public class NeuronPoints extends ObjectControl {
 
         layout.setText(font_points,Integer.toString(points));
         font_points.draw(sb,Integer.toString(points),object.getX()-layout.width,object.getY());
-        sb.draw(neuron_texture,object.getX()+10,object.getY()-30);
+        sb.draw(resources.neuron_points,object.getX()+10,object.getY()-30);
 
 
     }
@@ -51,7 +50,6 @@ public class NeuronPoints extends ObjectControl {
     @Override
     public void dispose() {
 
-        neuron_texture.dispose();
         font_points.dispose();
 
     }

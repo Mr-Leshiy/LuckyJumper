@@ -3,7 +3,8 @@ package com.mygdx.Lucky_Jumper.Backgrounds;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 
 /**
  * Created by alexey on 15.01.17.
@@ -15,10 +16,10 @@ public class MenuBackground {
     private Texture texture_quad;
     private Texture background;
 
-    public MenuBackground()
+    public MenuBackground(TexturesResources resources)
     {
-        texture_quad = new Texture(URL.quad);
-        background = new Texture(URL.menu_state_bg);
+        texture_quad = resources.quad;
+        background = resources.menu_state_bg;
         TextureRegion tr = new TextureRegion(texture_quad,texture_quad.getWidth(),texture_quad.getHeight());
 
         quads = new RotatingQuad[]{new RotatingQuad(tr,5,600,150,1),
@@ -54,11 +55,6 @@ public class MenuBackground {
 
     public void dispose()
     {
-        texture_quad.dispose();
-        background.dispose();
-
-
-
     }
 
     static class RotatingQuad

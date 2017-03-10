@@ -8,7 +8,8 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 
 import java.util.ArrayList;
@@ -22,18 +23,15 @@ public class ScrollingBox extends ObjectControl {
 
     private OrthographicCamera camera;
     private List<ObjectControl> objects;
-    private Texture background;
     private float maxY;
     private float minY;
-
     private Rectangle scissors;
 
 
-    public ScrollingBox(float x,float y)
+    public ScrollingBox(float x, float y, TexturesResources resources)
     {
-        super(new Rectangle(x,y,700,290));
+        super(new Rectangle(x,y,700,290),resources);
         object.setX(object.x-700/2);
-        background = new Texture(URL.scrool_box_border);
         scissors = new Rectangle();
         camera = new OrthographicCamera();
         camera.setToOrtho(false,GameClass.WIDTH,GameClass.HEIGTH);
@@ -59,7 +57,7 @@ public class ScrollingBox extends ObjectControl {
         }
         sb.flush();
         ScissorStack.popScissors();
-        sb.draw(background,object.x,object.y-10);
+        sb.draw(resources.scrool_box_border,object.x,object.y-10);
         sb.end();
 
 
@@ -73,7 +71,6 @@ public class ScrollingBox extends ObjectControl {
             objectControl.dispose();
         }
 
-        background.dispose();
 
 
 

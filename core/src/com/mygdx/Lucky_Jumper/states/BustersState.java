@@ -4,7 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.Lucky_Jumper.Backgrounds.MenuBackground;
-import com.mygdx.Lucky_Jumper.Constants.URL;
+import com.mygdx.Lucky_Jumper.Resources.TexturesResources;
+import com.mygdx.Lucky_Jumper.Resources.URL;
 import com.mygdx.Lucky_Jumper.GameClass;
 import com.mygdx.Lucky_Jumper.GameInformationFileHandler;
 import com.mygdx.Lucky_Jumper.ObjectControls.Button;
@@ -31,9 +32,9 @@ public class BustersState extends State {
     private ShopBoostersItem double_neuron_points;
     private ScrollingBox scbox;
 
-    public BustersState(final GameStateManager gsm,final MenuBackground background)
+    public BustersState(final GameStateManager gsm, final MenuBackground background, final TexturesResources resources)
     {
-        super(gsm);
+        super(gsm,resources);
 
         this.background=background;
         Texture[] mas = {new Texture(URL.button_back),new Texture(URL.button_back_pressed)};
@@ -42,21 +43,21 @@ public class BustersState extends State {
         button_back.setOnClickListener(new com.mygdx.Lucky_Jumper.ObjectControls.ButtonListener() {
             @Override
             public void onClickListener() {
-                gsm.set(new MenuState(gsm,background));
+                gsm.set(new MenuState(gsm,background,resources));
                 GameClass.handler.showAds(true);
             }
         });
-        scbox= new com.mygdx.Lucky_Jumper.ObjectControls.ScrollingBox(GameClass.WIDTH/2,140);
+        scbox= new ScrollingBox(GameClass.WIDTH/2,140,resources);
         GameInformationFileHandler info = new GameInformationFileHandler();
-        neuronPoints = new com.mygdx.Lucky_Jumper.ObjectControls.NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20);
+        neuronPoints = new NeuronPoints(GameClass.WIDTH-60,GameClass.HEIGTH-20,resources);
         neuronPoints.setPoint(info.getNeuronsPoints());
-        Texture[] m = {new Texture(URL.shop_button_clock_boosters),new Texture(URL.shop_button_clock_boosters_pressed)};
-        Texture[] m2 = {new Texture(URL.shop_button_platform_booster),new Texture(URL.shop_button_platform_booster_pressed)};
-        Texture[] m3 ={new Texture(URL.shop_button_double_neuron_points), new Texture(URL.shop_button_double_neuron_points_pressed)};
+        Texture[] m = {resources.shop_button_clock_boosters,resources.shop_button_clock_boosters_pressed};
+        Texture[] m2 = {resources.shop_button_platform_booster,resources.shop_button_platform_booster_pressed};
+        Texture[] m3 ={resources.shop_button_double_neuron_points, resources.shop_button_double_neuron_points_pressed};
 
-        platform_booster= new ShopBoostersItem(0,0,m2);
-        clock_item = new ShopBoostersItem(0,0,m);
-        double_neuron_points= new ShopBoostersItem(0,0,m3);
+        platform_booster= new ShopBoostersItem(0,0,m2,resources);
+        clock_item = new ShopBoostersItem(0,0,m,resources);
+        double_neuron_points= new ShopBoostersItem(0,0,m3,resources);
 
         initializeItems(info);
 
